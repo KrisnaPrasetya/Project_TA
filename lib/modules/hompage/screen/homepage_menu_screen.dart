@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/homepage_menu/controller/homepage_menu_controller.dart';
+import 'package:project_ta/modules/hompage/controller/homepage_menu_controller.dart';
 
 class HomepageMenuScreen extends StatelessWidget {
   const HomepageMenuScreen({super.key});
