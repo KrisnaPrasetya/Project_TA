@@ -8,7 +8,7 @@ class CustomHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.65,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF1DE9B6), Color(0xFF64FFDA)],
@@ -29,7 +29,26 @@ class CustomHeader extends StatelessWidget {
             right: 16,
             child: const UserDetailsWidget(),
           ),
-          // White Card in Center
+          Positioned(
+            top: 120,
+            left: 16,
+            right: 16,
+            child: Container(
+              height: 160,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
           Positioned(
             bottom: 20,
             left: 16,

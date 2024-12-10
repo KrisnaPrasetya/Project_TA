@@ -15,20 +15,27 @@ class HomepageMenuScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomHeader(),
-              Expanded(
+              Container(
+                color: Colors.green,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Text("Riwayat belajar kamu..."),
+                ),
+              ),
+              Container(
+                color: Colors.red,
                 child: ListView.builder(
-                  itemCount: 3,
+                  shrinkWrap: true,
+                  itemCount: 1,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ProgressItemList(
-                        title: index == 0
-                            ? "Materi Kubus dan Balok"
-                            : "Segera hadir ... ",
-                        onTap: () {},
-                      ),
+                    return ProgressItemList(
+                      title: "Materi Kubus dan Balok",
+                      onTap: () {},
                     );
                   },
                 ),

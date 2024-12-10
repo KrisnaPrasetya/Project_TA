@@ -29,26 +29,13 @@ class UserDetailsWidget extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           // User Information
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Muhammad Vincent',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'NISN XXXX XXXX XXXX',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 12,
-                ),
-              ),
-            ],
+          Text(
+            'Muhammad Vincent',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const Spacer(),
           // Badge

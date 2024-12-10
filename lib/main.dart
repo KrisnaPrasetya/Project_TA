@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_pages.dart';
-import 'package:project_ta/modules/hompage/screen/homepage_menu_screen.dart';
+import 'package:project_ta/modules/homescreen/screen/homescreen.dart';
 
 
 void main() async {
@@ -10,7 +10,7 @@ void main() async {
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.fadeIn,
-        home: HomepageMenuScreen(),
+        home: HomeScreen(),
         getPages: AppPages.pages,
       ),
     );
