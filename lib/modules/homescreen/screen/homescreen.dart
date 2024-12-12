@@ -69,11 +69,10 @@ class HomeScreen extends StatelessWidget {
       child: Obx(() => Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(
-                  controller, 0, 'assets/icons/icon_kuis.svg', 'Kuis'),
-              const SizedBox(width: 60), // Space for floating action button
-              _buildNavItem(
-                  controller, 2, 'assets/icons/icon_book.svg', 'Profile'),
+              _buildNavItem(controller, 0, 'assets/images/kuis.png', 'Kuis'),
+              const SizedBox(width: 60),
+              _buildNavItem(controller, 2, 'assets/images/mulai_belajar.png',
+                  'Mulai Belajar'),
             ],
           )),
     );
@@ -87,19 +86,17 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
+          Image.asset(
             iconPath,
-            width: 28,
-            height: 28,
-            color: isActive ? Colors.black : Colors.white,
+            width: 44,
+            height: 44,
           ),
-          const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
               color: isActive ? Colors.black : Colors.white,
-              fontSize: 10,
-              fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ],

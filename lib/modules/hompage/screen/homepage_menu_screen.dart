@@ -24,7 +24,10 @@ class HomepageMenuScreen extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Text("Riwayat belajar kamu..."),
+                  child: Text(
+                    "Riwayat belajar kamu...",
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               Container(
