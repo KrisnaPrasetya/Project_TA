@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project_ta/modules/hompage/widgets/user_details.dart';
 
 class CustomHeader extends StatelessWidget {
-  const CustomHeader({super.key});
+  const  CustomHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

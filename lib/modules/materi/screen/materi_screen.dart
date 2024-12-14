@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/modules/materi/controller/materi_controller.dart';
+import 'package:project_ta/modules/materi/widgets/custom_header_materi.dart';
 
 class MateriMenuScreen extends StatelessWidget {
   const MateriMenuScreen({super.key});
@@ -11,19 +12,17 @@ class MateriMenuScreen extends StatelessWidget {
       init: MateriController(),
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text('Homepage Menu'),
-          ),
+          backgroundColor: Colors.white,
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(color: Colors.red),
-                child: Text("hello 1"),
-              )
+              CustomHeaderMateri(),
+              Center(child: Text("materi")),
             ],
           ),
         );
-      },
+        },
     );
   }
 }

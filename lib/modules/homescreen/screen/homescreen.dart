@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/modules/homescreen/controller/homescreen_controller.dart';
 import 'package:project_ta/modules/hompage/screen/homepage_menu_screen.dart';
+import 'package:project_ta/modules/materi/screen/materi_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     final List<Widget> homeWidgets = [
       Center(child: Text('Kuis', style: TextStyle(fontSize: 24))),
       HomepageMenuScreen(),
-      Center(child: Text('Profile', style: TextStyle(fontSize: 24))),
+      MateriMenuScreen()
     ];
 
     return GetBuilder<HomeController>(
