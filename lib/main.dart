@@ -4,11 +4,10 @@ import 'package:get/get.dart';
 import 'package:project_ta/core/base/base_controller.dart';
 import 'package:project_ta/core/routes/app_pages.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
-import 'package:project_ta/modules/homescreen/screen/homescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  BaseController.initialize();
+  await BaseController.initialize();
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -17,11 +16,11 @@ void main() async {
       getPages: AppPages.pages,
       transitionDuration: const Duration(milliseconds: 300),
       title: 'Aplikasi Pembelajaran Matematika',
-      // Handle unknown routes
-      unknownRoute: GetPage(
-        name: '/home',
-        page: () => const HomeScreen(),
-      ),
+      // // Handle unknown routes
+      // unknownRoute: GetPage(
+      //   name: '/home',
+      //   page: () => const HomeScreen(),
+      // ),
     ),
   );
 

@@ -18,6 +18,7 @@ dependencies:
   flutter_launcher_icons: ^0.14.2
   flutter_native_splash: ^2.4.3
   lottie: any
+  animated_flip_counter: ^0.3.4
 
 
 dev_dependencies:

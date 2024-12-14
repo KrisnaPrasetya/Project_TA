@@ -75,12 +75,17 @@ class ProgressItemList extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    CircularProgressIndicator(
-                      value: progress,
-                      strokeWidth: 5,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        progress > 0.5 ? Colors.green : Colors.orange,
+                    TweenAnimationBuilder<double>(
+                      tween: Tween<double>(begin: 0, end: progress),
+                      duration: const Duration(milliseconds: 700),
+                      builder: (context, value, child) =>
+                          CircularProgressIndicator(
+                        value: value,
+                        strokeWidth: 5,
+                        backgroundColor: Colors.grey[300],
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          value > 0.5 ? Colors.green : Colors.orange,
+                        ),
                       ),
                     ),
                     Center(

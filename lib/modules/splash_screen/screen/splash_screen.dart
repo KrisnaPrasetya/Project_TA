@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:project_ta/modules/splash_screen/controller/splash_screen_controller.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -23,8 +22,8 @@ class SplashScreen extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xFF56FFB0), // Warna pertama
-                  Color(0xFF15D9C8), // Warna kedua
+                  Color(0xFF56FFB0),
+                  Color(0xFF15D9C8), 
                 ],
               ),
             ),
@@ -32,8 +31,8 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Lottie.asset(
-                    'assets/lottie/maskot.json',
+                  Image.asset(
+                    'assets/images/mascot.png',
                     width: 200,
                     height: 200,
                   ),
