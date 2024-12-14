@@ -47,7 +47,7 @@ class HomepageMenuScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ProgressItemList(
                         title: "Materi Kubus dan Balok",
-                        progress: 0.80,
+                        progress: 0.40,
                         subtitle: 'Terakhir dikerjakan pada 28 Desember 2024  ',
                         onTap: () {},
                       );

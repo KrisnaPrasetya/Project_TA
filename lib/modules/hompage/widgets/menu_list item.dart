@@ -1,3 +1,4 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 
 class ProgressItemList extends StatelessWidget {
@@ -88,16 +89,16 @@ class ProgressItemList extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Center(
-                      child: Text(
-                        '${(progress * 100).toInt()}%',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                    AnimatedFlipCounter(
+                      value: progress * 100,
+                      fractionDigits: 0,
+                      duration: const Duration(milliseconds: 700),
+                      suffix: "%",
+                      textStyle: TextStyle(
+                        fontSize: 12,
+                        color: progress * 100 >= 50 ? Colors.green : Colors.orange,
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
