@@ -16,7 +16,6 @@ dependencies:
   flutter_svg: ^2.0.10+1
   video_player: ^2.9.2
   flutter_launcher_icons: ^0.14.2
-  flutter_native_splash: ^2.4.3
   lottie: any
   animated_flip_counter: ^0.3.4
 
@@ -25,21 +24,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-
-flutter_native_splash:
-  color: "#AEE6E5"  # The specific color you requested
-  android: true
-  ios: false  # Disable for iOS since it's Android-only
-  web: false
-  
-  # Android 12 specific settings
-  android_12:
-    image: assets/images/app_icon.png  # Your splash icon
-    icon_background_color: "#AEE6E5"
-    image_dark: assets/images/app_icon.png
-    icon_background_color_dark: "#AEE6E5"
-
-  fullscreen: false  # Optional: Makes the splash screen fullscreen
 
 
 flutter_launcher_icons:
