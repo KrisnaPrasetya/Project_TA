@@ -91,12 +91,11 @@ class ProgressItemList extends StatelessWidget {
                     ),
                     AnimatedFlipCounter(
                       value: progress * 100,
-                      fractionDigits: 0,
-                      duration: const Duration(milliseconds: 700),
+                      duration: const Duration(milliseconds: 500),
                       suffix: "%",
                       textStyle: TextStyle(
                         fontSize: 12,
-                        color: progress * 100 >= 50 ? Colors.green : Colors.orange,
+                        color: progress  >= 0.5 ? Colors.green : Colors.orange,
                       ),
                     )
                   ],
