@@ -12,47 +12,48 @@ class CustomSnackbar {
     Color textColor = Colors.white,
   }) {
     Get.snackbar(
-      '', 
+      '',
       '',
       snackPosition: snackPosition,
       backgroundColor: backgroundColor,
       colorText: textColor,
       duration: Duration(seconds: 3),
-      margin: const EdgeInsets.all(10),
       borderRadius: 10,
-      messageText: Row(
-        children: [
-          Lottie.asset(
-            lottieAsset,
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  message,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: textColor,
-                  ),
-                ),
-              ],
+      messageText: Align(
+        alignment: Alignment.center,
+        child: Row(
+          children: [
+            Lottie.asset(
+              lottieAsset,
+              width: 50,
+              height: 50,
             ),
-          ),
-        ],
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: textColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

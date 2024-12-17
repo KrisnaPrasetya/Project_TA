@@ -1,10 +1,11 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class ItemListMateri extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
-  final String subtitle;
   final bool isProgress;
   final double progress;
 
@@ -12,7 +13,6 @@ class ItemListMateri extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.title,
-    required this.subtitle,
     required this.isProgress,
     required this.progress,
   });
@@ -27,10 +27,17 @@ class ItemListMateri extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.44,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
+            image: DecorationImage(
+                image: isProgress == true
+                    ? AssetImage("assets/images/background_materi1.png")
+                    : AssetImage("assets/images/background_materi2.png"),
+                fit: BoxFit.cover),
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(40),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -39,83 +46,128 @@ class ItemListMateri extends StatelessWidget {
               ),
             ],
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: Stack(
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundColor: Colors.grey[300],
-                child: Icon(Icons.book, color: Colors.grey[700]),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    isProgress == false
-                        ? SizedBox.shrink()
-                        : Text(
-                            subtitle,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.black54,
-                            ),
-                          ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 16),
               isProgress == false
-                  ? const SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: Icon(
-                        Icons.lock,
-                        color: Colors.grey,
+                  ? Positioned(
+                      left: 18,
+                      top: 12,
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     )
-                  : SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          TweenAnimationBuilder<double>(
-                            tween: Tween<double>(begin: 0, end: progress),
-                            duration: const Duration(milliseconds: 700),
-                            builder: (context, value, child) =>
-                                CircularProgressIndicator(
-                              value: value,
-                              strokeWidth: 5,
-                              backgroundColor: Colors.grey[300],
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                value > 0.5 ? Colors.green : Colors.orange,
-                              ),
-                            ),
-                          ),
-                          AnimatedFlipCounter(
-                            value: progress * 100,
-                            duration: const Duration(milliseconds: 500),
-                            suffix: "%",
-                            textStyle: TextStyle(
-                              fontSize: 12,
-                              color: progress >= 0.5
-                                  ? Colors.green
-                                  : Colors.orange,
-                            ),
-                          )
-                        ],
+                  : Positioned(
+                      left: 12,
+                      top: 12,
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
+              isProgress == false
+                  ? Center(
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/lock.svg',
+                              width: 30,
+                              height: 30,
+                            ),
+                            AnimatedFlipCounter(
+                              value: 0,
+                              duration: const Duration(milliseconds: 500),
+                              suffix: "%",
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color:
+                                    progress >= 0.5 ? Colors.grey : Colors.grey,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/block_of_cubes.png",
+                                width: 40, height: 40),
+                            AnimatedFlipCounter(
+                              value: progress * 100,
+                              duration: const Duration(milliseconds: 500),
+                              suffix: "%",
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: progress >= 0.5
+                                    ? Colors.green
+                                    : Colors.orange,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+              if (isProgress == false)
+                Center(
+                  child: SizedBox(
+                    height: 90,
+                    width: 90,
+                    child: TweenAnimationBuilder<double>(
+                      tween: Tween<double>(begin: 0, end: progress),
+                      duration: const Duration(milliseconds: 700),
+                      builder: (context, value, child) =>
+                          CircularProgressIndicator(
+                        value: 0,
+                        strokeWidth: 5,
+                        backgroundColor: Colors.white,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          value > 0.5 ? Colors.green : Colors.orange,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                Center(
+                  child: SizedBox(
+                    height: 90,
+                    width: 90,
+                    child: TweenAnimationBuilder<double>(
+                      tween: Tween<double>(begin: 0, end: progress),
+                      duration: const Duration(milliseconds: 700),
+                      builder: (context, value, child) =>
+                          CircularProgressIndicator(
+                        value: value,
+                        strokeWidth: 5,
+                        backgroundColor: Colors.grey[300],
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          value > 0.5 ? Colors.green : Colors.orange,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
