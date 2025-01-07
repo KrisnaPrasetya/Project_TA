@@ -23,7 +23,7 @@ class SplashScreen extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   Color(0xFF56FFB0),
-                  Color(0xFF15D9C8), 
+                  Color(0xFF15D9C8),
                 ],
               ),
             ),
@@ -36,14 +36,14 @@ class SplashScreen extends StatelessWidget {
                     width: 200,
                     height: 200,
                   ),
-                  Text(
-                    '#CaraBaruUntukBelajar',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // Text(
+                  //   '#CaraBaruUntukBelajar',
+                  //   style: TextStyle(
+                  //     color: Colors.white,
+                  //     fontSize: 24,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

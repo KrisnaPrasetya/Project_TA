@@ -1,6 +1,7 @@
 
 import 'package:get/get.dart';
 import 'package:project_ta/modules/detailmateri/screen/detail_screen.dart';
+import 'package:project_ta/modules/firsttimeuser/screen/firsttime_user_screen.dart';
 import 'package:project_ta/modules/homescreen/screen/homescreen.dart';
 import 'package:project_ta/modules/hompage/screen/homepage_menu_screen.dart';
 import 'package:project_ta/modules/materipagescreen/screen/materi_page_screen.dart';
@@ -15,7 +16,6 @@ class AppPages {
     GetPage(name: AppRoutes.splashScreen, page: () =>  SplashScreen()),
     GetPage(name: AppRoutes.detailMateri, page: () =>  DetailScreen()),
     GetPage(name: AppRoutes.detailPageMateri, page: () =>  MateriPageScreen(),),
-
-   
+    GetPage(name: AppRoutes.firsttimeuser, page: () =>  FirsttimeUserScreen()),
   ];
 }
