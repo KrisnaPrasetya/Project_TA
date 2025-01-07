@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project_ta/modules/firsttimeuser/controller/firsttime_user_controller.dart';
+import 'package:project_ta/widgets/custom_button.dart';
 
 class SetupAvatarWidget extends StatelessWidget {
   final FirstTimeUserController controller;
@@ -50,37 +51,60 @@ class SetupAvatarWidget extends StatelessWidget {
         Container(
           width: double.infinity,
           alignment: Alignment.center,
-          child: Obx(() => Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 16.0,
-                runSpacing: 16.0,
-                children: List.generate(
-                  5,
-                  (index) {
-                    return GestureDetector(
-                      onTap: () {
-                        controller.changeAvatar(index);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: controller.selectedIndex.value == index
-                                ? Colors.white
-                                : Colors.transparent,
-                            width: 3,
-                          ),
-                        ),
-                        child: CircleAvatar(
-                          radius: 45,
-                          backgroundImage: AssetImage(
-                              'assets/images/avatar/avatar_$index.png'),
+          child: Obx(
+            () => Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 16.0,
+              runSpacing: 16.0,
+              children: List.generate(
+                5,
+                (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      controller.changeAvatar(index);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: controller.selectedIndex.value == index
+                              ? Colors.white
+                              : Colors.transparent,
+                          width: 3,
                         ),
                       ),
-                    );
-                  },
-                ),
-              )),
+                      child: CircleAvatar(
+                        radius: 45,
+                        backgroundImage: AssetImage(
+                            'assets/images/avatar/avatar_$index.png'),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Row(
+          children: [
+            CustomButton(
+              width: 100,
+              height: 50,
+              onPressed: () {},
+              color: Colors.red,
+              child: Text("kembali"),
+            ),
+            CustomButton(
+              width: 100,
+              height: 50,
+              onPressed: () {},
+              color: Colors.green,
+              child: Text("Lanjut"),
+            ),
+          ],
         ),
       ],
     );
