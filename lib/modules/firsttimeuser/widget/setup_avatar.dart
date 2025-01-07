@@ -89,6 +89,7 @@ class SetupAvatarWidget extends StatelessWidget {
           height: 16,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             CustomButton(
               width: 100,
