@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/firsttimeuser/controller/firsttime_user_controller.dart';
 import 'package:project_ta/widgets/custom_button.dart';
 
@@ -85,9 +86,7 @@ class SetupAvatarWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: 16,
-        ),
+        Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -96,14 +95,30 @@ class SetupAvatarWidget extends StatelessWidget {
               height: 50,
               onPressed: () {},
               color: Colors.red,
-              child: Text("kembali"),
+              child: Text(
+                "kembali",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
             ),
             CustomButton(
               width: 100,
               height: 50,
-              onPressed: () {},
+              onPressed: () async {
+                await Get.offAllNamed(AppRoutes.home);
+              },
               color: Colors.green,
-              child: Text("Lanjut"),
+              child: Text(
+                "Lanjut",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),
