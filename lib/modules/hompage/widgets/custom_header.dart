@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project_ta/modules/hompage/widgets/user_details.dart';
 
@@ -10,14 +11,14 @@ class CustomHeader extends StatelessWidget {
 
   Future<String> _loadName() async {
     String? name = await _secureStorage.read(key: 'name');
-    return name ?? 'User'; 
+    return name ?? 'User';
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.60,
+      height: Get.height * 0.65,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF1DE9B6), Color(0xFF64FFDA)],
@@ -32,17 +33,17 @@ class CustomHeader extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
+            top: Get.height * 0.08,
+            left: Get.width * 0.04,
+            right: Get.width * 0.04,
             child: UserDetailsWidget(),
           ),
           Positioned(
-            top: 120,
-            left: 16,
-            right: 16,
+            top: Get.height * 0.18,
+            left: Get.width * 0.04,
+            right: Get.width * 0.04,
             child: Container(
-              height: 160,
+              height: Get.height * 0.2,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -56,7 +57,10 @@ class CustomHeader extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Lottie.asset('assets/lottie/maskot.json'),
+                  Lottie.asset(
+                    'assets/lottie/maskot.json',
+                    width: Get.width * 0.35,
+                  ),
                   Expanded(
                     child: FutureBuilder<String>(
                       future: _loadName(),
@@ -71,17 +75,26 @@ class CustomHeader extends StatelessWidget {
                           children: [
                             Text(
                               'Hi, $name',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 18),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: Get.width * 0.045,
+                              ),
                             ),
-                            const Text(
+                            SizedBox(
+                              height: Get.height * 0.01,
+                            ),
+                            Text(
                               'Langkah kecil hari ini bisa jadi kesuksesan besar esok.',
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(
+                                fontSize: Get.width * 0.035,
+                              ),
                             ),
-                            const Text(
+                            Text(
                               'Yuk, mulai belajar! 💡',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 12),
+                                fontWeight: FontWeight.w600,
+                                fontSize: Get.width * 0.035,
+                              ),
                             ),
                           ],
                         );
@@ -93,40 +106,11 @@ class CustomHeader extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 300,
-            left: 42,
-            right: 42,
+            bottom: Get.height * 0.03,
+            left: Get.width * 0.04,
+            right: Get.width * 0.04,
             child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: const Text(
-                'Persentase Hasil Belajar',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            left: 16,
-            right: 16,
-            child: Container(
-              height: 150,
+              height: Get.height * 0.2,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),

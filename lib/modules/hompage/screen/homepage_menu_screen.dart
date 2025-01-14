@@ -25,15 +25,9 @@ class HomepageMenuScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Riwayat belajar kamu...",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Spacer(),
-                      SvgPicture.asset('assets/icons/sortby.svg')
-                    ],
+                  child: Text(
+                    "Riwayat belajar kamu...",
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
                 SizedBox(
