@@ -1,9 +1,11 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 class FirstTimeUserController extends GetxController {
   RxBool isFirstTimeUser = true.obs;
   RxString avatar = "".obs;
+  TextEditingController nameController = TextEditingController();
   RxInt selectedIndex = (-1).obs;
 
   final _storage = const FlutterSecureStorage();
