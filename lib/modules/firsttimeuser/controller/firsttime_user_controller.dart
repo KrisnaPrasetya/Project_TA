@@ -24,7 +24,6 @@ class FirstTimeUserController extends GetxController {
     _loadUserData();
   }
 
-  // Change and store avatar selection
   void changeAvatar(int index) {
     selectedIndex.value = index;
     switch (index) {
@@ -48,14 +47,12 @@ class FirstTimeUserController extends GetxController {
     }
   }
 
-  // Save user data (avatar and name) to secure storage
   Future<void> saveUserData() async {
     await _storage.write(key: 'isFirstTime', value: 'false');
     await _storage.write(key: 'avatar', value: avatar.value);
     await _storage.write(key: 'name', value: nameController.text.trim());
   }
 
-  // Validate inputs
   Future<void> validateAndSave() async {
     if (avatar.isEmpty) {
       _showPopup('Kamu belum avatar terlebih dahulu.');
@@ -66,13 +63,10 @@ class FirstTimeUserController extends GetxController {
       _showPopup('Masukkan nama kamu terlebih dahulu yah.');
       return;
     }
-
-    // If valid, save data and navigate
     await saveUserData();
     Get.offAllNamed(AppRoutes.home);
   }
 
-  // Show popup
   void _showPopup(String message) {
     Get.dialog(
       CustomDialog(message: message),
@@ -80,7 +74,6 @@ class FirstTimeUserController extends GetxController {
     );
   }
 
-  // Load user data on app startup
   Future<void> _loadUserData() async {
     String? isFirstTime = await _storage.read(key: 'isFirstTime');
     String? savedAvatar = await _storage.read(key: 'avatar');

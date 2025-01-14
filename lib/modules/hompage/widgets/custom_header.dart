@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project_ta/modules/hompage/widgets/user_details.dart';
 
 class CustomHeader extends StatelessWidget {
-  const  CustomHeader({super.key});
+  const CustomHeader({super.key});
+
+  final _secureStorage = const FlutterSecureStorage();
+
+  Future<String> _loadName() async {
+    String? name = await _secureStorage.read(key: 'name');
+    return name ?? 'User'; 
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.65,
+      height: MediaQuery.of(context).size.height * 0.60,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF1DE9B6), Color(0xFF64FFDA)],
@@ -50,22 +58,34 @@ class CustomHeader extends StatelessWidget {
                 children: [
                   Lottie.asset('assets/lottie/maskot.json'),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hi, Vincent',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
-                        ),
-                        Text(
-                            'Langkah kecil hari ini bisa jadi kesuksesan besar esok.',
-                            style: TextStyle(fontSize: 12)),
-                        Text('Yuk, mulai belajar! 💡',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 12)),
-                      ],
+                    child: FutureBuilder<String>(
+                      future: _loadName(),
+                      builder: (context, snapshot) {
+                        String name =
+                            snapshot.connectionState == ConnectionState.waiting
+                                ? '...'
+                                : (snapshot.data ?? 'User');
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hi, $name',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 18),
+                            ),
+                            const Text(
+                              'Langkah kecil hari ini bisa jadi kesuksesan besar esok.',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            const Text(
+                              'Yuk, mulai belajar! 💡',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   )
                 ],
@@ -87,11 +107,11 @@ class CustomHeader extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: 4,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
-              child: Text(
+              child: const Text(
                 'Persentase Hasil Belajar',
                 style: TextStyle(
                   color: Colors.white,
