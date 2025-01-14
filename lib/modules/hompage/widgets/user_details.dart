@@ -15,6 +15,12 @@ class UserDetailsWidget extends StatelessWidget {
     return avatarPath ?? ''; // Return empty string if no avatar is set
   }
 
+  // Method to load name
+  Future<String> _loadName() async {
+    String? name = await _secureStorage.read(key: 'name');
+    return name ?? 'User'; // Return "User" if no name is set
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -62,14 +68,39 @@ class UserDetailsWidget extends StatelessWidget {
               },
             ),
             const SizedBox(width: 12),
-            // User Information
-            const Text(
-              'Muhammad Vincent',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
+            // User Information with FutureBuilder
+            FutureBuilder<String>(
+              future: _loadName(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text(
+                    'Loading...',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return Text(
+                    snapshot.data!,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                } else {
+                  return const Text(
+                    'User',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }
+              },
             ),
             const Spacer(),
             // Badge

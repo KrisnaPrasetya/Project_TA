@@ -99,13 +99,15 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         SizedBox(height: Get.height * 0.02),
                         // Name Text
-                        Text(
-                          'Samsudin',
-                          style: TextStyle(
-                            fontSize: (Get.width * 0.05).clamp(16.0, 24.0),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        Obx(() {
+                          return Text(
+                            controller.userName.value,
+                            style: TextStyle(
+                              fontSize: (Get.width * 0.05).clamp(16.0, 24.0),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),
