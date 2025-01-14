@@ -93,10 +93,12 @@ class SetupAvatarWidget extends StatelessWidget {
             CustomButton(
               width: 100,
               height: 50,
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               color: Colors.red,
               child: Text(
-                "kembali",
+                "Kembali",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -108,7 +110,9 @@ class SetupAvatarWidget extends StatelessWidget {
               width: 100,
               height: 50,
               onPressed: () async {
-                await Get.offAllNamed(AppRoutes.home);
+                // Save data and navigate
+                await controller.saveUserData();
+                Get.offAllNamed(AppRoutes.home);
               },
               color: Colors.green,
               child: Text(

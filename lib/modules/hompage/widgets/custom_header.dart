@@ -27,7 +27,7 @@ class CustomHeader extends StatelessWidget {
             top: 50,
             left: 16,
             right: 16,
-            child: const UserDetailsWidget(),
+            child: UserDetailsWidget(),
           ),
           Positioned(
             top: 120,

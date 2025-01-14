@@ -19,6 +19,7 @@ dependencies:
   lottie: any
   animated_flip_counter: ^0.3.4
   hexcolor: ^3.0.1
+  flutter_secure_storage: ^9.2.4
 
 
 dev_dependencies:

@@ -1,60 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:project_ta/core/routes/app_routes.dart';
 
 class UserDetailsWidget extends StatelessWidget {
   const UserDetailsWidget({super.key});
 
+  // Instance of secure storage
+  final _secureStorage = const FlutterSecureStorage();
+
+  // Method to load avatar path
+  Future<String> _loadAvatar() async {
+    String? avatarPath = await _secureStorage.read(key: 'avatar');
+    return avatarPath ?? ''; // Return empty string if no avatar is set
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      height: 60,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Profile Icon
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.white,
-            child: Icon(Icons.person, color: Colors.grey[700]),
-          ),
-          const SizedBox(width: 12),
-          // User Information
-          Text(
-            'Muhammad Vincent',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () => Get.toNamed(AppRoutes.profile),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
             ),
-          ),
-          const Spacer(),
-          // Badge
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
-              color: Colors.amber,
-              shape: BoxShape.circle,
+          ],
+        ),
+        child: Row(
+          children: [
+            // Profile Icon with FutureBuilder
+            FutureBuilder<String>(
+              future: _loadAvatar(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.white,
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
+                  );
+                } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                  return CircleAvatar(
+                    radius: 20,
+                    backgroundImage: AssetImage(snapshot.data!),
+                  );
+                } else {
+                  return const CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person, color: Colors.black),
+                  );
+                }
+              },
             ),
-            child: const Text(
-              '2',
+            const SizedBox(width: 12),
+            // User Information
+            const Text(
+              'Muhammad Vincent',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
-                fontSize: 12,
               ),
             ),
-          ),
-        ],
+            const Spacer(),
+            // Badge
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                color: Colors.amber,
+                shape: BoxShape.circle,
+              ),
+              child: const Text(
+                '2',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

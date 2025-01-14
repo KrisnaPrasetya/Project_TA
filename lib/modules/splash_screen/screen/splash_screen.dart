@@ -36,14 +36,6 @@ class SplashScreen extends StatelessWidget {
                     width: 200,
                     height: 200,
                   ),
-                  // Text(
-                  //   '#CaraBaruUntukBelajar',
-                  //   style: TextStyle(
-                  //     color: Colors.white,
-                  //     fontSize: 24,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
                 ],
               ),
             ),

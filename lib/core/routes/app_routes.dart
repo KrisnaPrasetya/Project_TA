@@ -6,4 +6,5 @@ class AppRoutes {
   static const String splashScreen = '/splash';
   static const String detailMateri = '/detailmateri';
   static const String detailPageMateri = '/detailpagemateri';
+  static const String profile = '/profile';
 }

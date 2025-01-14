@@ -1,28 +1,29 @@
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
-import 'package:project_ta/modules/firsttimeuser/controller/firsttime_user_controller.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SplashScreenController extends GetxController {
-  final FirstTimeUserController firstTimeUserController = Get.find<FirstTimeUserController>();
+  final _secureStorage = const FlutterSecureStorage();
 
-  Future<void> nextpage() async {
+  Future<void> nextPage() async {
     await Future.delayed(const Duration(seconds: 2));
-
-    checkFirstTimeUser();     
-    
+    await checkFirstTimeUser();
   }
 
-  checkFirstTimeUser() {
-   if (firstTimeUserController.isFirstTimeUser.value == false) {
+  Future<void> checkFirstTimeUser() async {
+    String? isFirstTime = await _secureStorage.read(key: 'isFirstTime');
+    if (isFirstTime == null || isFirstTime != 'false') {
+      // User's first time, navigate to avatar setup
       Get.offAllNamed(AppRoutes.firsttimeuser);
-   }else{
-     Get.offAllNamed(AppRoutes.home);
-   }
+    } else {
+      // User has already set up avatar, navigate to home
+      Get.offAllNamed(AppRoutes.home);
+    } 
   }
 
   @override
   void onInit() {
     super.onInit();
-    nextpage();
+    nextPage();
   }
 }
