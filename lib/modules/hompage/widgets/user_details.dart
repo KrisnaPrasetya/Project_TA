@@ -85,22 +85,6 @@ class UserDetailsWidget extends StatelessWidget {
                 }
               },
             ),
-            const Spacer(),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: Colors.amber,
-                shape: BoxShape.circle,
-              ),
-              child: const Text(
-                '2',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-              ),
-            ),
           ],
         ),
       ),

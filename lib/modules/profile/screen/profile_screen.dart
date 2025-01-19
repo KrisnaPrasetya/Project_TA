@@ -14,126 +14,137 @@ class ProfileScreen extends StatelessWidget {
     return GetBuilder<ProfileController>(
       init: ProfileController(),
       builder: (controller) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(Get.height * 0.08),
-            child: AppBar(
-              scrolledUnderElevation: 0,
-              backgroundColor: Colors.white,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Get.offAllNamed(AppRoutes.home),
+        return WillPopScope(
+          onWillPop: () async {
+            Get.offAllNamed(AppRoutes.home);
+            return false;
+          },
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(Get.height * 0.08),
+              child: AppBar(
+                scrolledUnderElevation: 0,
+                backgroundColor: Colors.white,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Get.offAllNamed(AppRoutes.home),
+                ),
+                automaticallyImplyLeading: false,
               ),
-              automaticallyImplyLeading: false,
             ),
-          ),
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: Get.height * 0.03),
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: (Get.width * 0.3).clamp(80.0, 120.0),
-                              height: (Get.width * 0.3).clamp(80.0, 120.0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.grey[200],
-                                border: Border.all(
-                                  color: Colors.grey[400]!,
-                                  width: 2,
-                                ),
-                              ),
-                              child: Obx(() {
-                                if (controller.avatarPath.isEmpty) {
-                                  return const Icon(
-                                    Icons.person,
-                                    size: 60,
-                                    color: Colors.grey,
-                                  );
-                                } else {
-                                  return ClipOval(
-                                    child: Image.asset(
-                                      controller.avatarPath.value,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  );
-                                }
-                              }),
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.dialog(EditAvatarDialog());
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(6),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.orange,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                    size: 16,
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: Get.height * 0.03),
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: (Get.width * 0.3).clamp(80.0, 120.0),
+                                height: (Get.width * 0.3).clamp(80.0, 120.0),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey[200],
+                                  border: Border.all(
+                                    color: Colors.grey[400]!,
+                                    width: 2,
                                   ),
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: Get.height * 0.02),
-                        // Name Text
-                        Obx(
-                          () {
-                            return Text(
-                              controller.userName.value,
-                              style: TextStyle(
-                                fontSize: (Get.width * 0.05).clamp(16.0, 24.0),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            );
-                          },
-                        ),
-                        SizedBox(height: Get.height * 0.08),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller.materials.length,
-                          itemBuilder: (context, index) {
-                            final item = controller.materials[index];
-                            return MenuItemlist(
-                              title: item.title,
-                              icon: item.icon,
-                              onTap: () {
-                                if (index == 0) {
-                                  Get.dialog(
-                                      EditNameDialog(
-                                        controller: controller,
+                                child: Obx(() {
+                                  if (controller.avatarPath.isEmpty) {
+                                    return const Icon(
+                                      Icons.person,
+                                      size: 60,
+                                      color: Colors.grey,
+                                    );
+                                  } else {
+                                    return ClipOval(
+                                      child: Image.asset(
+                                        controller.avatarPath.value,
+                                        fit: BoxFit.cover,
                                       ),
-                                      barrierDismissible: false);
-                                } else if (index == 1) {
-                                  // Handle about us
-                                } else if (index == 2) {
-                                  // Handle source and reference
-                                }
-                              },
-                            );
-                          },
-                        ),
-                      ],
+                                    );
+                                  }
+                                }),
+                              ),
+                              Positioned(
+                                bottom: 5,
+                                right: 5,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.dialog(
+                                        EditAvatarDialog(
+                                          controller: controller,
+                                        ),
+                                        barrierDismissible: false);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(6),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.orange,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: Get.height * 0.02),
+                          // Name Text
+                          Obx(
+                            () {
+                              return Text(
+                                controller.userName.value,
+                                style: TextStyle(
+                                  fontSize:
+                                      (Get.width * 0.05).clamp(16.0, 24.0),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            },
+                          ),
+                          SizedBox(height: Get.height * 0.08),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: controller.materials.length,
+                            itemBuilder: (context, index) {
+                              final item = controller.materials[index];
+                              return MenuItemlist(
+                                title: item.title,
+                                icon: item.icon,
+                                onTap: () {
+                                  if (index == 0) {
+                                    Get.dialog(
+                                        EditNameDialog(
+                                          controller: controller,
+                                        ),
+                                        barrierDismissible: false);
+                                  } else if (index == 1) {
+                                    // Handle about us
+                                  } else if (index == 2) {
+                                    // Handle source and reference
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

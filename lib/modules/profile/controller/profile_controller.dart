@@ -16,6 +16,10 @@ class ProfileController extends GetxController {
     loadAvatar();
     loadName();
   }
+  Future<void> updateAvatar(String newAvatarPath) async {
+  await _secureStorage.write(key: 'avatar', value: newAvatarPath);
+  avatarPath.value = newAvatarPath;
+}
 
   Future<void> loadAvatar() async {
     String? savedAvatar = await _secureStorage.read(key: 'avatar');
