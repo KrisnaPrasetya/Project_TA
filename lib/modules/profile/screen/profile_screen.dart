@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/profile/controller/profile_controller.dart';
+import 'package:project_ta/modules/profile/widget/edit_avatar.dart';
+import 'package:project_ta/modules/profile/widget/edit_name.dart';
+import 'package:project_ta/modules/profile/widget/menu_itemlist.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -19,16 +23,8 @@ class ProfileScreen extends StatelessWidget {
               backgroundColor: Colors.white,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () => Get.back(),
+                onPressed: () => Get.offAllNamed(AppRoutes.home),
               ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {
-                    // Handle settings tap
-                  },
-                ),
-              ],
               automaticallyImplyLeading: false,
             ),
           ),
@@ -41,7 +37,6 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Profile Picture Container
                         Stack(
                           alignment: Alignment.center,
                           children: [
@@ -73,13 +68,12 @@ class ProfileScreen extends StatelessWidget {
                                 }
                               }),
                             ),
-                            // Edit Icon Badge
                             Positioned(
                               bottom: 5,
                               right: 5,
                               child: GestureDetector(
                                 onTap: () {
-                                  // Handle edit avatar
+                                  Get.dialog(EditAvatarDialog());
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(6),
@@ -99,15 +93,43 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         SizedBox(height: Get.height * 0.02),
                         // Name Text
-                        Obx(() {
-                          return Text(
-                            controller.userName.value,
-                            style: TextStyle(
-                              fontSize: (Get.width * 0.05).clamp(16.0, 24.0),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          );
-                        }),
+                        Obx(
+                          () {
+                            return Text(
+                              controller.userName.value,
+                              style: TextStyle(
+                                fontSize: (Get.width * 0.05).clamp(16.0, 24.0),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: Get.height * 0.08),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.materials.length,
+                          itemBuilder: (context, index) {
+                            final item = controller.materials[index];
+                            return MenuItemlist(
+                              title: item.title,
+                              icon: item.icon,
+                              onTap: () {
+                                if (index == 0) {
+                                  Get.dialog(
+                                      EditNameDialog(
+                                        controller: controller,
+                                      ),
+                                      barrierDismissible: false);
+                                } else if (index == 1) {
+                                  // Handle about us
+                                } else if (index == 2) {
+                                  // Handle source and reference
+                                }
+                              },
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

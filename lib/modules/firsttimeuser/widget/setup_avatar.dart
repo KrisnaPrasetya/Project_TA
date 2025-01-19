@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/firsttimeuser/controller/firsttime_user_controller.dart';
 import 'package:project_ta/widgets/custom_button.dart';
 
@@ -15,17 +14,17 @@ class SetupAvatarWidget extends StatelessWidget {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: SingleChildScrollView( 
+      child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Column(
             children: [
-              SizedBox(height: Get.height * 0.02), // Responsive spacing
+              SizedBox(height: Get.height * 0.02),
               Obx(() => Container(
-                    width: Get.width * 0.25, // Responsive width
-                    height: Get.width * 0.25, // Keep aspect ratio
+                    width: Get.width * 0.25,
+                    height: Get.width * 0.25,
                     decoration: BoxDecoration(
                       color: HexColor("#9DF4E6"),
                       borderRadius: BorderRadius.circular(Get.width * 0.125),
@@ -42,14 +41,70 @@ class SetupAvatarWidget extends StatelessWidget {
                           )
                         : CircleAvatar(
                             radius: Get.width * 0.11,
-                            backgroundImage: AssetImage(controller.avatar.value),
+                            backgroundImage:
+                                AssetImage(controller.avatar.value),
                           ),
                   )),
               SizedBox(height: Get.height * 0.02),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 4,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: TextField(
+                        controller: controller.nameController,
+                        maxLength: 30, // Membatasi maksimal 30 karakter
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: Get.width * 0.04,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "Ketik nama kamu disini",
+                          hintStyle: TextStyle(
+                            color: Colors.black54,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: Get.height * 0.02,
+                            horizontal: Get.width * 0.04,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          counterText: "", // Hilangkan counter default
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: Get.height * 0.06),
               Text(
                 "Pilih avatar kamu",
                 style: TextStyle(
-                  fontSize: Get.width * 0.045,
+                  fontSize: Get.width * 0.048,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -93,68 +148,6 @@ class SetupAvatarWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: Get.height * 0.05),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Nama Kamu",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Get.width * 0.04,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.01),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 4,
-                            offset: Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: TextField(
-                        controller: controller.nameController,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: Get.width * 0.04,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: "Ketik nama kamu disini",
-                          hintStyle: TextStyle(
-                            color: Colors.black54,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                            vertical: Get.height * 0.02,
-                            horizontal: Get.width * 0.04,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.005),
-                  ],
-                ),
-              ),
               SizedBox(height: Get.height * 0.1),
               CustomButton(
                 width: Get.width * 0.8,

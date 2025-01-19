@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -5,6 +6,9 @@ class ProfileController extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
   RxString avatarPath = ''.obs;
   RxString userName = ''.obs;
+      RxString errorMessage = ''.obs; 
+
+  TextEditingController nameController = TextEditingController();
 
   @override
   void onInit() {
@@ -15,11 +19,44 @@ class ProfileController extends GetxController {
 
   Future<void> loadAvatar() async {
     String? savedAvatar = await _secureStorage.read(key: 'avatar');
-    avatarPath.value = savedAvatar ?? ''; 
+    avatarPath.value = savedAvatar ?? '';
   }
 
   Future<void> loadName() async {
     String? savedName = await _secureStorage.read(key: 'name');
     userName.value = savedName ?? 'User';
   }
+
+  Future<void> updateName(String newName) async {
+    if (newName.isNotEmpty) {
+      await _secureStorage.write(key: 'name', value: newName);
+      userName.value = newName;
+      nameController.clear();
+    }
+  }
+
+  final List<ItemProfile> materials = [
+    ItemProfile(
+      icon: 'assets/images/pofile/edit_nama.svg',
+      title: "Ganti Nama kamu",
+    ),
+    ItemProfile(
+      icon: 'assets/images/pofile/tentang_kami.svg',
+      title: "Tentang Kami",
+    ),
+    ItemProfile(
+      icon: 'assets/images/pofile/referensi.svg',
+      title: "Sumber & Referensi",
+    ),
+  ];
+}
+
+class ItemProfile {
+  final String icon;
+  final String title;
+
+  ItemProfile({
+    required this.icon,
+    required this.title,
+  });
 }

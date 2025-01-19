@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:project_ta/modules/hompage/controller/homepage_menu_controller.dart';
 import 'package:project_ta/modules/hompage/widgets/user_details.dart';
 
 class CustomHeader extends StatelessWidget {
-  const CustomHeader({super.key});
+   final HomepageMenuController controller;
 
-  final _secureStorage = const FlutterSecureStorage();
+  const CustomHeader({super.key,required this.controller});
 
-  Future<String> _loadName() async {
-    String? name = await _secureStorage.read(key: 'name');
-    return name ?? 'User';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +32,7 @@ class CustomHeader extends StatelessWidget {
             top: Get.height * 0.08,
             left: Get.width * 0.04,
             right: Get.width * 0.04,
-            child: UserDetailsWidget(),
+            child: UserDetailsWidget(controller: controller,),
           ),
           Positioned(
             top: Get.height * 0.18,
@@ -63,7 +59,7 @@ class CustomHeader extends StatelessWidget {
                   ),
                   Expanded(
                     child: FutureBuilder<String>(
-                      future: _loadName(),
+                      future: controller.loadName(),
                       builder: (context, snapshot) {
                         String name =
                             snapshot.connectionState == ConnectionState.waiting

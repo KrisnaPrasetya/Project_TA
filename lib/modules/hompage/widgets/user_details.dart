@@ -1,26 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
+import 'package:project_ta/modules/hompage/controller/homepage_menu_controller.dart';
 
 class UserDetailsWidget extends StatelessWidget {
-  const UserDetailsWidget({super.key});
-
-  // Instance of secure storage
-  final _secureStorage = const FlutterSecureStorage();
-
-  // Method to load avatar path
-  Future<String> _loadAvatar() async {
-    String? avatarPath = await _secureStorage.read(key: 'avatar');
-    return avatarPath ?? ''; // Return empty string if no avatar is set
-  }
-
-  // Method to load name
-  Future<String> _loadName() async {
-    String? name = await _secureStorage.read(key: 'name');
-    return name ?? 'User'; // Return "User" if no name is set
-  }
-
+  final HomepageMenuController controller;
+  const UserDetailsWidget({super.key, required this.controller});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,9 +26,8 @@ class UserDetailsWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Profile Icon with FutureBuilder
             FutureBuilder<String>(
-              future: _loadAvatar(),
+              future: controller.loadAvatar(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircleAvatar(
@@ -68,9 +52,8 @@ class UserDetailsWidget extends StatelessWidget {
               },
             ),
             const SizedBox(width: 12),
-            // User Information with FutureBuilder
             FutureBuilder<String>(
-              future: _loadName(),
+              future: controller.loadName(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Text(
@@ -103,7 +86,6 @@ class UserDetailsWidget extends StatelessWidget {
               },
             ),
             const Spacer(),
-            // Badge
             Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(

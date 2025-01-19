@@ -30,11 +30,11 @@ class MateriMenuScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 220, // Sesuaikan tinggi ListView horizontal
+                  height: 220, 
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection:
-                        Axis.horizontal, // Mengatur menjadi horizontal
+                        Axis.horizontal, 
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return ItemListMateri(    
@@ -51,7 +51,7 @@ class MateriMenuScreen extends StatelessWidget {
                               title: "Akan Segera Hadir!",
                               lottieAsset: 'assets/lottie/wrong.json',
                               message:
-                                  "Materi ini sedang dalam tahap pengembangan.",
+                                  "Materi ini sedang da lam tahap pengembangan.",
                               backgroundColor: Colors.red[300]!,
                               textColor: Colors.white,
                             );
