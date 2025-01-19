@@ -6,31 +6,16 @@ class DetailMateriController extends GetxController {
   final List<MaterialProgress> materials = [
     MaterialProgress(
       id: 1,
-      title: "Pengertian Kubus dan Balok",
-      progress: 100,
-    ),
-    MaterialProgress(
-      id: 2,
       title: "Mengonstruksi dan Mengurai Kubus dan Balok",
       progress: 88,
     ),
     MaterialProgress(
-      id: 3,
-      title: "Sifat-Sifat Kubus dan Balok",
-      progress: 63,
-    ),
-    MaterialProgress(
-      id: 4,
+      id: 2,
       title: "Visualisasi Spasial",
       progress: 21,
     ),
     MaterialProgress(
-      id: 5,
-      title: "Volume dan Luas Permukaan",
-      progress: 4,
-    ),
-    MaterialProgress(
-      id: 6,
+      id: 3,
       title: "Lokasi dan Koordinat",
       progress: 4,
     ),

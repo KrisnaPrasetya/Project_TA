@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/quiz/controller/quiz_controller.dart';
+import 'package:project_ta/modules/materipagescreen/controller/materi_page_controller.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/customheader_materi.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/pembelajarandua.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/pembelajaransatu.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/pembelajarantiga.dart';
 
 class MateriPageScreen extends StatelessWidget {
   const MateriPageScreen({super.key});
@@ -8,27 +13,25 @@ class MateriPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int args = Get.arguments ?? 0;
-
-    return GetBuilder<QuizController>(
-      init: QuizController(),
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
+    return GetBuilder<MateriPageController>(
+      init: MateriPageController(),
       builder: (controller) {
         return Scaffold(
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              CustomheaderMateri(args: args,),
               if (args == 0)
-                Center(child: Text('Pengertian Kubus dan Balok'))
+                Pembelajaransatu()
               else if (args == 1)
-                Center(
-                    child: Text('Mengonstruksi dan Mengurai Kubus dan Balok'))
+                Pembelajarandua()
               else if (args == 2)
-                Center(child: Text('Sifat-Sifat Kubus dan Balok'))
-              else if (args == 3)
-                Center(child: Text('Visualisasi Spasial'))
-              else if (args == 4)
-                Center(child: Text('Volume dan Luas Permukaan'))
-              else if (args == 5)
-                Center(child: Text('Lokasi dan Koordinat'))
+                Pembelajarantiga()
               else
                 Center(child: Text('Materi Tidak Ditemukan'))
             ],

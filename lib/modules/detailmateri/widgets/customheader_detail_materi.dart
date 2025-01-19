@@ -11,7 +11,7 @@ class CustomHeaderDetailMateri extends StatelessWidget {
     final controller = Get.find<DetailMateriController>();
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.30,
+      height: Get.height * 0.30,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF009CE1), Color(0xFF006AB5)],
@@ -26,16 +26,16 @@ class CustomHeaderDetailMateri extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            top: 45,
-            left: 16,
-            right: 16,
+            top: Get.height * 0.05,
+            left: Get.width * 0.04,
+            right: Get.width * 0.04,
             child: Row(
               children: [
                 Container(
                   alignment: Alignment.center,
-                  width: Get.width * 0.92,
+                  width: Get.width * 0.90,
                   height: Get.height * 0.23,
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(Get.width * 0.03),
                   decoration: BoxDecoration(
                     image: const DecorationImage(
                       image: AssetImage("assets/images/background_materi1.png"),
@@ -54,8 +54,8 @@ class CustomHeaderDetailMateri extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned(
-                        left: 110,
-                        top: 12,
+                        left: Get.width * 0.28,
+                        top: Get.height * 0.015,
                         child: Text(
                           'Kubus dan Balok',
                           style: TextStyle(
@@ -71,7 +71,7 @@ class CustomHeaderDetailMateri extends StatelessWidget {
                           children: [
                             HeaderProgressIndicator(),
                             CircleAvatar(
-                              radius: 40,
+                              radius: Get.width * 0.10,
                               backgroundColor: Colors.white,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,19 +79,23 @@ class CustomHeaderDetailMateri extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     "assets/images/block_of_cubes.png",
-                                    width: 40,
-                                    height: 40,
+                                    width: Get.width * 0.10,
+                                    height: Get.width * 0.10,
                                   ),
                                   Obx(() => AnimatedFlipCounter(
-                                    duration: const Duration(milliseconds: 1500),
-                                    value: controller.canStartAnimation.value ? 100 : 0,
-                                    suffix: "%",
-                                    textStyle: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Get.width * 0.03,
-                                      color: Colors.green,
-                                    ),
-                                  )),
+                                        duration:
+                                            const Duration(milliseconds: 1500),
+                                        value:
+                                            controller.canStartAnimation.value
+                                                ? 100
+                                                : 0,
+                                        suffix: "%",
+                                        textStyle: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: Get.width * 0.03,
+                                          color: Colors.green,
+                                        ),
+                                      )),
                                 ],
                               ),
                             ),
@@ -112,7 +116,8 @@ class CustomHeaderDetailMateri extends StatelessWidget {
 
 class HeaderProgressIndicator extends StatefulWidget {
   @override
-  State<HeaderProgressIndicator> createState() => _HeaderProgressIndicatorState();
+  State<HeaderProgressIndicator> createState() =>
+      _HeaderProgressIndicatorState();
 }
 
 class _HeaderProgressIndicatorState extends State<HeaderProgressIndicator>
@@ -150,11 +155,11 @@ class _HeaderProgressIndicatorState extends State<HeaderProgressIndicator>
       animation: _animation,
       builder: (context, child) {
         return SizedBox(
-          height: 90,
-          width: 90,
+          height: Get.width * 0.23,
+          width: Get.width * 0.23,
           child: CircularProgressIndicator(
             value: _animation.value,
-            strokeWidth: 5,
+            strokeWidth: Get.width * 0.013,
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(
               Colors.green,

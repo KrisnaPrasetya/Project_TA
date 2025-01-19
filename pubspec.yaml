@@ -20,6 +20,7 @@ dependencies:
   animated_flip_counter: ^0.3.4
   hexcolor: ^3.0.1
   flutter_secure_storage: ^9.2.4
+  youtube_player_flutter: ^9.1.1
 
 
 dev_dependencies:
