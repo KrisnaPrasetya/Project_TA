@@ -21,7 +21,9 @@ class MateriMenuScreen extends StatelessWidget {
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomHeaderMateri(),
+                CustomHeaderMateri(
+                  controller: controller,
+                ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(

@@ -16,15 +16,8 @@ void main() async {
       getPages: AppPages.pages,
       transitionDuration: const Duration(milliseconds: 300),
       title: 'Aplikasi Pembelajaran Matematika',
-      // // Handle unknown routes
-      // unknownRoute: GetPage(
-      //   name: '/home',
-      //   page: () => const HomeScreen(),
-      // ),
     ),
   );
-
-  //Make Status Bar Transparent % Lock Screen to potrait
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.white,

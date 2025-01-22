@@ -7,4 +7,5 @@ class AppRoutes {
   static const String detailMateri = '/detailmateri';
   static const String detailPageMateri = '/detailpagemateri';
   static const String profile = '/profile';
+  static const String cube = '/cube';
 }

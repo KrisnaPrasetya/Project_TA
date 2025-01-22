@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:project_ta/modules/materi/controller/materi_controller.dart';
 
 class CustomHeaderMateri extends StatelessWidget {
-  const CustomHeaderMateri({super.key});
+  final MateriController controller;
+  const CustomHeaderMateri({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +52,20 @@ class CustomHeaderMateri extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Obx(() => Text(
+                              'Hi, ${controller.userName.value}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              ),
+                            )),
                         Text(
-                          'Hi, Vincent',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
+                          'Mau mulai belajar apa kamu hari ini?',
+                          style: TextStyle(fontSize: 12),
                         ),
-                        Text('Mau mulai belajar apa kamu hari ini?',
-                            style: TextStyle(fontSize: 12)),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
