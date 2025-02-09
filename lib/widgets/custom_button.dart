@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
-  final GestureTapCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
   final bool enabled, isOutline;
   final Color color;
@@ -185,7 +185,7 @@ class _CustomButtonState extends State<CustomButton> {
     setState(() {
       _position = widget.topOffset;
     });
-    widget.onPressed();
+    widget.onPressed!();
   }
 }
 

@@ -10,10 +10,11 @@ class CustomheaderMateri extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: Get.height * 0.25,
+      height: Get.height * 0.16,
+      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF1DE9B6), Color(0xFF64FFDA)],
+          colors: [Color(0xFF009CE1), Color(0xFF006AB5)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -22,58 +23,41 @@ class CustomheaderMateri extends StatelessWidget {
           bottomRight: Radius.circular(24),
         ),
       ),
-      child: Stack(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Positioned(
-            top: Get.height * 0.06,
-            left: Get.width * 0.04,
-            right: Get.width * 0.04,
-            child: Container(
-              padding: EdgeInsets.all(16),
-              height: Get.height * 0.15,
-              decoration: BoxDecoration(
+          IconButton(
+            onPressed: () => Get.back(),
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+          ),
+          Flexible(
+            child: Text(
+              _getTitle(args),
+              style: TextStyle(
+                fontSize: Get.width * 0.045, // Responsive font size
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
               ),
-              child: Column(
-                children: [
-                  if (args == 0)
-                    Text(
-                      'Mengonstruksi dan Mengurai Kubus dan Balok',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  else if (args == 1)
-                    Text(
-                      'Visualisasi Spasial',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  else if (args == 2)
-                    Text(
-                      'Pengertian Tabung dan Kerucut',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                ],
-              ),
+              maxLines: 2, // ✅ Allows wrapping to second line
+              softWrap: true, // ✅ Ensures wrapping
+              textAlign: TextAlign.start, // ✅ Aligns text properly
             ),
           ),
         ],
       ),
     );
+  }
+
+  String _getTitle(int index) {
+    switch (index) {
+      case 0:
+        return 'Mengonstruksi dan Mengurai Kubus dan Balok';
+      case 1:
+        return 'Visualisasi Spasial';
+      case 2:
+        return 'Pengertian Tabung dan Kerucut';
+      default:
+        return 'Materi';
+    }
   }
 }

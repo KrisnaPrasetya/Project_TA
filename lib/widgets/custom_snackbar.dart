@@ -19,41 +19,38 @@ class CustomSnackbar {
       colorText: textColor,
       duration: Duration(seconds: 3),
       borderRadius: 10,
-      messageText: Align(
-        alignment: Alignment.center,
-        child: Row(
-          children: [
-            Lottie.asset(
-              lottieAsset,
-              width: 50,
-              height: 50,
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                    ),
+      messageText: Row(
+        children: [
+          Lottie.asset(
+            lottieAsset,
+            width: 50,
+            height: 50,
+          ),
+          const SizedBox(width: 2),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    message,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: textColor,
-                    ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  message,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: textColor,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

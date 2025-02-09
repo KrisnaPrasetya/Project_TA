@@ -8,4 +8,6 @@ class AppRoutes {
   static const String detailPageMateri = '/detailpagemateri';
   static const String profile = '/profile';
   static const String cube = '/cube';
+  static const String quiz = '/kuis';
+  static const String quizDetail = '/kuisdetail';
 }

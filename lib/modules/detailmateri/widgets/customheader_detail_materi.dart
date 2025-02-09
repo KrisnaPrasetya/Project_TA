@@ -54,8 +54,8 @@ class CustomHeaderDetailMateri extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned(
-                        left: Get.width * 0.28,
-                        top: Get.height * 0.015,
+                        left: Get.width * 0.25,
+                        top: Get.height * 0.010,
                         child: Text(
                           'Kubus dan Balok',
                           style: TextStyle(

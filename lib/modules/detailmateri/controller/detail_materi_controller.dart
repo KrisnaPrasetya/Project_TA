@@ -7,7 +7,7 @@ class DetailMateriController extends GetxController {
     MaterialProgress(
       id: 1,
       title: "Mengonstruksi dan Mengurai Kubus dan Balok",
-      progress: 88,
+      progress: 18,
     ),
     MaterialProgress(
       id: 2,

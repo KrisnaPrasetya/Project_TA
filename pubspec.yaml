@@ -42,6 +42,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/pembelajaran_satu/
     - assets/images/avatar/
     - assets/images/pofile/
     - assets/icons/

@@ -1,7 +1,6 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class ItemListMateri extends StatelessWidget {
   final VoidCallback onTap;

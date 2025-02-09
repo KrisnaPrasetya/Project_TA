@@ -28,11 +28,12 @@ class MateriPageScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomheaderMateri(
                   args: args,
                 ),
+                SizedBox(height: Get.height * 0.01),
                 if (args == 0)
                   Pembelajaransatu()
                 else if (args == 1)
@@ -40,10 +41,9 @@ class MateriPageScreen extends StatelessWidget {
                 else if (args == 2)
                   Pembelajarantiga()
                 else
-                  Center(child: Text('Materi Tidak Ditemukan'))              
+                  Center(child: Text('Materi Tidak Ditemukan'))
               ],
             ),
-            
           ),
         );
       },
