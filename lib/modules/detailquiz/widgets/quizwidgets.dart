@@ -63,29 +63,48 @@ class QuizQuestionWidget extends StatelessWidget {
                         child: Center(
                           child: AnimatedContainerButton(
                             width: Get.width * 0.85,
+                            enableAnimation: !controller.isAnswered.value,
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             alignment: Alignment.centerLeft,
-                            onTap: controller.isAnswered.value
-                                ? null
-                                : () {
-                                    controller.answerQuestion(index);
-                                  },
+                            onTap: () {
+                              if (!controller.isAnswered.value) {
+                                controller.answerQuestion(index);
+                              }
+                            },
                             borderColor: controller.isAnswered.value
-                                ? index == question.correctAnswer
-                                    ? HexColor('#22A06B')
-                                    : HexColor('#FF5569')
+                                ? controller.selectedAnswerIndex.value == index
+                                    ? (index == question.correctAnswer
+                                        ? HexColor('#22A06B')
+                                        : HexColor('#FF5569'))
+                                    : HexColor('#E8E8E8')
                                 : HexColor('#E8E8E8'),
                             containerColor: controller.isAnswered.value
-                                ? index == question.correctAnswer
-                                    ? HexColor('#DCFFF1')
-                                    : HexColor('#FFE9EE')
+                                ? controller.selectedAnswerIndex.value == index
+                                    ? (index == question.correctAnswer
+                                        ? HexColor('#DCFFF1')
+                                        : HexColor('#FFE9EE'))
+                                    : Colors.white
                                 : Colors.white,
                             child: Text(
                               question.options[index],
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
+                                fontWeight: controller.isAnswered.value
+                                    ? controller.selectedAnswerIndex.value ==
+                                            index
+                                        ? (index == question.correctAnswer
+                                            ? FontWeight.w600
+                                            : FontWeight.w600)
+                                        : FontWeight.w400
+                                    : FontWeight.w400,
+                                color: controller.isAnswered.value
+                                    ? controller.selectedAnswerIndex.value ==
+                                            index
+                                        ? (index == question.correctAnswer
+                                            ? HexColor('#22A06B')
+                                            : HexColor('#FF5569'))
+                                        : Colors.black
+                                    : Colors.black,
                               ),
                             ),
                           ),
