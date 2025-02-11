@@ -15,7 +15,7 @@ class QuizScreen extends StatelessWidget {
         return PopScope(
           canPop: false,
           child: Scaffold(
-            backgroundColor: Colors.grey[200],
+            backgroundColor: Colors.grey[100],
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

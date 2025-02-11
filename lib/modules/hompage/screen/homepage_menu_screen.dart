@@ -21,7 +21,9 @@ class HomepageMenuScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 CustomHeader(controller: controller,),
+                CustomHeader(
+                  controller: controller,
+                ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

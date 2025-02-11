@@ -13,6 +13,7 @@ class QuizdetailScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.white,
             title: controller.materialId == 1
                 ? Text('Kuis 1')
                 : controller.materialId == 2
@@ -23,6 +24,7 @@ class QuizdetailScreen extends StatelessWidget {
               onPressed: () => Get.back(),
             ),
           ),
+          backgroundColor: Colors.grey[100],
           body: SafeArea(
             child: QuizQuestionWidget(controller: controller),
           ),
