@@ -21,7 +21,29 @@ class QuizdetailScreen extends StatelessWidget {
                     : Text('Kuis 3'),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
-              onPressed: () => Get.back(),
+              onPressed: () async {
+                final bool confirmExit = await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Batalkan Kuis?'),
+                    content: Text('Progress tidak akan disimpan.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Get.back(result: false),
+                        child: Text('Tidak'),
+                      ),
+                      TextButton(
+                        onPressed: () => Get.back(result: true),
+                        child: Text('Ya'),
+                      ),
+                    ],
+                  ),
+                );
+
+                if (confirmExit == true) {
+                  Get.back();
+                }
+              },
             ),
           ),
           backgroundColor: Colors.grey[100],

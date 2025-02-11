@@ -2,18 +2,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 class QuizController extends GetxController {
-  final _secureStorage = const FlutterSecureStorage();
+    final _secureStorage = const FlutterSecureStorage();
   final RxBool canStartAnimation = false.obs;
+  final RxList<KuisProgress> materials = <KuisProgress>[].obs;
+
 
   bool isLearning = true;
   var userName = 'User'.obs;
 
-  @override
-  void onInit() {
-    loadName();
-    initAnimation();
-    super.onInit();
-  }
 
   Future<void> loadName() async {
     String? name = await _secureStorage.read(key: 'name');
@@ -24,24 +20,48 @@ class QuizController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  @override
+  void onInit() {
+    super.onInit();
+    loadName();
+    loadScores().then((_) => initAnimation());
+  }
 
-  final List<KuisProgress> materials = [
-    KuisProgress(
-      id: 1,
-      title: "Mengonstruksi dan Mengurai Kubus dan Balok",
-      progress: 18,
-    ),
-    KuisProgress(
-      id: 2,
-      title: "Visualisasi Spasial",
-      progress: 21,
-    ),
-    KuisProgress(
-      id: 3,
-      title: "Lokasi dan Koordinat",
-      progress: 4,
-    ),
-  ];
+  Future<void> loadScores() async {
+    final List<KuisProgress> updatedMaterials = [];
+    
+    for (int i = 1; i <= 3; i++) {
+      final key = 'quiz_${i}_points';
+      final scoreStr = await _secureStorage.read(key: key);
+      final score = int.tryParse(scoreStr ?? '0') ?? 0;
+
+      String title;
+      switch (i) {
+        case 1:
+          title = "Mengonstruksi dan Mengurai Kubus dan Balok";
+          break;
+        case 2:
+          title = "Visualisasi Spasial";
+          break;
+        case 3:
+          title = "Lokasi dan Koordinat";
+          break;
+        default:
+          title = "Unknown Material";
+      }
+
+      updatedMaterials.add(
+        KuisProgress(
+          id: i,
+          title: title,
+          progress: score.toDouble(),
+        ),
+      );
+    }
+
+    materials.assignAll(updatedMaterials);
+    update();
+  }
 
   Future<void> initAnimation() async {
     await Future.delayed(const Duration(milliseconds: 100));

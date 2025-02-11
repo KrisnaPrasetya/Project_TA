@@ -181,25 +181,28 @@ class QuizQuestionWidget extends StatelessWidget {
                       ),
                     ),
                     Center(
-                      child: CustomButton(
-                        width: Get.width * 0.8,
-                        color: Colors.green,
-                        onPressed: controller.currentQuestionIndex.value <
-                                controller.questions.length - 1
-                            ? () => controller.nextQuestion()
-                            : () => Get.back(),
-                        child: Text(
-                          controller.currentQuestionIndex.value <
-                                  controller.questions.length - 1
-                              ? "Pertanyaan Selanjutnya"
-                              : "Selesai",
-                          style: TextStyle(
-                            fontSize: Get.width * 0.04,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                      child:CustomButton(
+  width: Get.width * 0.8,
+  color: Colors.green,
+  onPressed: controller.currentQuestionIndex.value <
+          controller.questions.length - 1
+      ? () => controller.nextQuestion()
+      : () async {
+          await controller.saveScore(); // Simpan skor
+          Get.back();
+        },
+  child: Text(
+    controller.currentQuestionIndex.value <
+            controller.questions.length - 1
+        ? "Pertanyaan Selanjutnya"
+        : "Selesai",
+    style: TextStyle(
+      fontSize: Get.width * 0.04,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+  ),
+),
                     ),
                     SizedBox(height: Get.height * 0.03),
                   ],

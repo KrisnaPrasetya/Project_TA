@@ -104,7 +104,13 @@ class _KuisItemsState extends State<KuisItems>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(Get.width * 0.025),
                     child: AnimatedBuilder(
-                      animation: _progressAnimation,
+                      animation: _progressAnimation = Tween<double>(
+                        begin: 0,
+                        end: widget.material.progress / 100,
+                      ).animate(CurvedAnimation(
+                        parent: _controller,
+                        curve: Curves.easeInOut,
+                      )),
                       builder: (context, child) {
                         return LinearProgressIndicator(
                           value: _progressAnimation.value,
@@ -124,7 +130,7 @@ class _KuisItemsState extends State<KuisItems>
                       value: controller.canStartAnimation.value
                           ? widget.material.progress.toInt()
                           : 0,
-                      suffix: "%",
+                      suffix: " Poin",
                       textStyle: TextStyle(
                         color: _getProgressColor(widget.material.progress),
                         fontWeight: FontWeight.bold,
