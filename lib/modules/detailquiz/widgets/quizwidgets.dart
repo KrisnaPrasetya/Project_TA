@@ -49,7 +49,7 @@ class QuizQuestionWidget extends StatelessWidget {
                     Text(
                       question.question,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.left,
@@ -63,6 +63,7 @@ class QuizQuestionWidget extends StatelessWidget {
                         child: Center(
                           child: AnimatedContainerButton(
                             width: Get.width * 0.85,
+                            height: Get.height * 0.06,
                             enableAnimation: !controller.isAnswered.value,
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             alignment: Alignment.centerLeft,
@@ -152,8 +153,8 @@ class QuizQuestionWidget extends StatelessWidget {
                           AnimatedContainerButton(
                             onTap: () {},
                             padding: EdgeInsets.symmetric(horizontal: 6),
-                            width: Get.width * 0.23,
-                            height: Get.height * 0.04,
+                            width: Get.width * 0.27,
+                            height: Get.height * 0.05,
                             enableAnimation: false,
                             alignment: Alignment.centerLeft,
                             borderColor: HexColor('#22A06B'),
@@ -181,28 +182,28 @@ class QuizQuestionWidget extends StatelessWidget {
                       ),
                     ),
                     Center(
-                      child:CustomButton(
-  width: Get.width * 0.8,
-  color: Colors.green,
-  onPressed: controller.currentQuestionIndex.value <
-          controller.questions.length - 1
-      ? () => controller.nextQuestion()
-      : () async {
-          await controller.saveScore(); // Simpan skor
-          Get.back();
-        },
-  child: Text(
-    controller.currentQuestionIndex.value <
-            controller.questions.length - 1
-        ? "Pertanyaan Selanjutnya"
-        : "Selesai",
-    style: TextStyle(
-      fontSize: Get.width * 0.04,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    ),
-  ),
-),
+                      child: CustomButton(
+                        width: Get.width * 0.8,
+                        color: Colors.green,
+                        onPressed: controller.currentQuestionIndex.value <
+                                controller.questions.length - 1
+                            ? () => controller.nextQuestion()
+                            : () async {
+                                await controller.saveScore(); // Simpan skor
+                                Get.back();
+                              },
+                        child: Text(
+                          controller.currentQuestionIndex.value <
+                                  controller.questions.length - 1
+                              ? "Pertanyaan Selanjutnya"
+                              : "Selesai",
+                          style: TextStyle(
+                            fontSize: Get.width * 0.04,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: Get.height * 0.03),
                   ],
