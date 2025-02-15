@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:project_ta/modules/detailquiz/controller/quizdetail_controller.dart';
 import 'package:project_ta/modules/detailquiz/widgets/quizwidgets.dart';
 import 'package:project_ta/modules/quiz/controller/quiz_controller.dart';
+import 'package:project_ta/widgets/custom_button.dart';
 
 class QuizdetailScreen extends StatelessWidget {
   const QuizdetailScreen({super.key});
@@ -26,19 +27,52 @@ class QuizdetailScreen extends StatelessWidget {
                 final bool confirmExit = await showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Batalkan Kuis?'),
-                    content: Text('Progress tidak akan disimpan.'),
+                    title: Text(
+                      'Apakah ingin kembali ?',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                    content: Text(
+                      'Jika kamu kembali progress tidak akan disimpan.',
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
                     actions: [
-                      TextButton(
-                        onPressed: () => Get.back(result: false),
-                        child: Text('Tidak'),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          await Get.find<QuizController>().refreshQuizPage();
-                          Get.back(result: true);
-                        },
-                        child: Text('Ya'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CustomButton(
+                            width: 120,
+                            height: 45,
+                            onPressed: () => Get.back(result: false),
+                            color: Colors.green,
+                            child: Text(
+                              'Tidak',
+                              style: TextStyle(
+                                fontSize: Get.width * 0.04,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          CustomButton(
+                            width: 120,
+                            height: 45,
+                            onPressed: () async {
+                              await Get.find<QuizController>()
+                                  .refreshQuizPage();
+                              Get.back(result: true);
+                            },
+                            color: Colors.red,
+                            child: Text(
+                              'Ya',
+                              style: TextStyle(
+                                fontSize: Get.width * 0.04,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
