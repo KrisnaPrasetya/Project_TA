@@ -8,7 +8,7 @@ class CustomHeaderDetailMateri extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<DetailMateriController>();
+    final controller = Get.find<MateriPageController>();
     return Container(
       width: double.infinity,
       height: Get.height * 0.30,
@@ -137,7 +137,7 @@ class _HeaderProgressIndicatorState extends State<HeaderProgressIndicator>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    final controller = Get.find<DetailMateriController>();
+    final controller = Get.find<MateriPageController>();
     ever(controller.canStartAnimation, (bool canStart) {
       if (canStart) _controller.forward();
     });

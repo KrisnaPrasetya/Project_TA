@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class DetailMateriController extends GetxController {
+class MateriPageController extends GetxController {
   final RxBool canStartAnimation = false.obs;
 
   final List<MaterialProgress> materials = [

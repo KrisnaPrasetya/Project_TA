@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     final List<Widget> homeWidgets = [
       QuizScreen(),
       HomepageMenuScreen(),
-      DetailScreen()
+      MateriPageScreen()
     ];
 
     return GetBuilder<HomeController>(
@@ -24,10 +24,9 @@ class HomeScreen extends StatelessWidget {
           body: Obx(() => homeWidgets[controller.navIndex]),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Obx(() =>
-              _buildCenterFloatingButton(controller)),
-          bottomNavigationBar:
-              Obx(() => _buildBottomNavBar(controller)),
+          floatingActionButton:
+              Obx(() => _buildCenterFloatingButton(controller)),
+          bottomNavigationBar: Obx(() => _buildBottomNavBar(controller)),
         );
       },
     );
@@ -35,8 +34,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildCenterFloatingButton(HomeController controller) {
     return AnimatedContainer(
-      duration:
-          const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       height: 80,
       width: 80,
       decoration: BoxDecoration(

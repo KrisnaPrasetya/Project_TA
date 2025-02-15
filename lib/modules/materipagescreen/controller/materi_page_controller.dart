@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class MateriPageController extends GetxController {
+class DetailMateriController extends GetxController {
   // Add your controller variables and methods here
 
   @override

@@ -6,8 +6,8 @@ import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/detailmateri/controller/detail_materi_controller.dart';
 import 'package:project_ta/modules/detailmateri/widgets/customheader_detail_materi.dart';
 
-class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+class MateriPageScreen extends StatelessWidget {
+  const MateriPageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class DetailScreen extends StatelessWidget {
       ),
     );
 
-    return GetBuilder<DetailMateriController>(
-      init: DetailMateriController(),
+    return GetBuilder<MateriPageController>(
+      init: MateriPageController(),
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.grey[100],
@@ -105,7 +105,7 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
       curve: Curves.easeInOut,
     ));
 
-    final mainController = Get.find<DetailMateriController>();
+    final mainController = Get.find<MateriPageController>();
     ever(mainController.canStartAnimation, (bool canStart) {
       if (canStart) _controller.forward();
     });
@@ -129,7 +129,7 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<DetailMateriController>();
+    final controller = Get.find<MateriPageController>();
 
     return GestureDetector(
       onTap: () => Get.toNamed(AppRoutes.detailPageMateri,

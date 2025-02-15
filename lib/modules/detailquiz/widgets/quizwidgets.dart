@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project_ta/modules/detailquiz/controller/quizdetail_controller.dart';
 import 'package:project_ta/widgets/custom_button.dart';
 import 'package:project_ta/widgets/custom_container.dart';
@@ -59,7 +61,7 @@ class QuizQuestionWidget extends StatelessWidget {
                       question.options.length,
                       (index) => Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                         child: Center(
                           child: AnimatedContainerButton(
                             width: Get.width * 0.85,
@@ -86,27 +88,49 @@ class QuizQuestionWidget extends StatelessWidget {
                                         : HexColor('#FFE9EE'))
                                     : Colors.white
                                 : Colors.white,
-                            child: Text(
-                              question.options[index],
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: controller.isAnswered.value
-                                    ? controller.selectedAnswerIndex.value ==
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    question.options[index],
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: controller.isAnswered.value
+                                          ? controller.selectedAnswerIndex
+                                                      .value ==
+                                                  index
+                                              ? (index == question.correctAnswer
+                                                  ? FontWeight.w600
+                                                  : FontWeight.w600)
+                                              : FontWeight.w400
+                                          : FontWeight.w400,
+                                      color: controller.isAnswered.value
+                                          ? controller.selectedAnswerIndex
+                                                      .value ==
+                                                  index
+                                              ? (index == question.correctAnswer
+                                                  ? HexColor('#22A06B')
+                                                  : HexColor('#FF5569'))
+                                              : Colors.black
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                ),
+                                controller.isAnswered.value &&
+                                        controller.selectedAnswerIndex.value ==
                                             index
-                                        ? (index == question.correctAnswer
-                                            ? FontWeight.w600
-                                            : FontWeight.w600)
-                                        : FontWeight.w400
-                                    : FontWeight.w400,
-                                color: controller.isAnswered.value
                                     ? controller.selectedAnswerIndex.value ==
-                                            index
-                                        ? (index == question.correctAnswer
-                                            ? HexColor('#22A06B')
-                                            : HexColor('#FF5569'))
-                                        : Colors.black
-                                    : Colors.black,
-                              ),
+                                            question.correctAnswer
+                                        ? Lottie.asset(
+                                            'assets/lottie/correct2.json',
+                                            repeat: false)
+                                        : Lottie.asset(
+                                            'assets/lottie/wrong.json',
+                                            width: 25,
+                                            height: 25,
+                                            repeat: false)
+                                    : SizedBox.shrink()
+                              ],
                             ),
                           ),
                         ),
@@ -189,7 +213,7 @@ class QuizQuestionWidget extends StatelessWidget {
                                 controller.questions.length - 1
                             ? () => controller.nextQuestion()
                             : () async {
-                                await controller.saveScore(); // Simpan skor
+                                await controller.saveScore();
                                 Get.back();
                               },
                         child: Text(
