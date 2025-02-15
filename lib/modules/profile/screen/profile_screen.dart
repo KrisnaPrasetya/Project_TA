@@ -85,6 +85,9 @@ class ProfileScreen extends StatelessWidget {
                                         barrierDismissible: false);
                                   },
                                   child: Container(
+                                    width: (Get.width * 0.08).clamp(30.0, 40.0),
+                                    height:
+                                        (Get.width * 0.08).clamp(30.0, 40.0),
                                     padding: const EdgeInsets.all(6),
                                     decoration: const BoxDecoration(
                                       color: Colors.orange,
