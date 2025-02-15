@@ -25,6 +25,7 @@ class DetailMateriScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
+            controller: controller.scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
