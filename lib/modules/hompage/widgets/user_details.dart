@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/hompage/controller/homepage_menu_controller.dart';
@@ -52,39 +53,42 @@ class UserDetailsWidget extends StatelessWidget {
               },
             ),
             const SizedBox(width: 12),
-            FutureBuilder<String>(
-              future: controller.loadName(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Text(
-                    'Loading...',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                } else if (snapshot.hasData) {
-                  return Text(
-                    snapshot.data!,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                } else {
-                  return const Text(
-                    'User',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                }
-              },
+            Expanded(
+              child: FutureBuilder<String>(
+                future: controller.loadName(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text(
+                      'Loading...',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    return Text(
+                      snapshot.data!,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  } else {
+                    return const Text(
+                      'User',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }
+                },
+              ),
             ),
+            Icon(Icons.settings, color: Colors.white),
           ],
         ),
       ),
