@@ -2,14 +2,12 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 class QuizController extends GetxController {
-    final _secureStorage = const FlutterSecureStorage();
+  final _secureStorage = const FlutterSecureStorage();
   final RxBool canStartAnimation = false.obs;
   final RxList<KuisProgress> materials = <KuisProgress>[].obs;
 
-
   bool isLearning = true;
   var userName = 'User'.obs;
-
 
   Future<void> loadName() async {
     String? name = await _secureStorage.read(key: 'name');
@@ -20,11 +18,36 @@ class QuizController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  @override
+
+@override
   void onInit() {
     super.onInit();
     loadName();
-    loadScores().then((_) => initAnimation());
+    initializeQuizData();
+  }
+
+  Future<void> initializeQuizData() async {
+    // Reset animation state
+    canStartAnimation.value = false;
+    
+    // Load scores
+    await loadScores();
+    
+    // Delay sedikit lebih lama untuk memastikan widget sudah ter-render
+    await Future.delayed(const Duration(milliseconds: 200));
+    
+    // Trigger animation
+    canStartAnimation.value = true;
+    update();
+  }
+
+  Future<void> refreshQuizPage() async {
+    // Reset state
+    canStartAnimation.value = false;
+    materials.clear();
+    
+    // Reinitialize
+    await initializeQuizData();
   }
 
   Future<void> loadScores() async {
@@ -63,9 +86,11 @@ class QuizController extends GetxController {
     update();
   }
 
-  Future<void> initAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 100));
-    canStartAnimation.value = true;
+  @override 
+  void onReady() {
+    super.onReady();
+    // Memastikan animasi dimulai ketika widget sudah siap
+    initializeQuizData();
   }
 }
 

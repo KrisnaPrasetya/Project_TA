@@ -1,6 +1,5 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/quiz/controller/quiz_controller.dart';
@@ -21,10 +20,15 @@ class _KuisItemsState extends State<KuisItems>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _progressAnimation;
+  bool _isFirstBuild = true;
 
   @override
   void initState() {
     super.initState();
+    _initializeAnimation();
+  }
+
+  void _initializeAnimation() {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
@@ -38,10 +42,47 @@ class _KuisItemsState extends State<KuisItems>
       curve: Curves.easeInOut,
     ));
 
+    // Reset state for animation
+    _isFirstBuild = true;
+
+    // Listen to controller changes
     final mainController = Get.find<QuizController>();
     ever(mainController.canStartAnimation, (bool canStart) {
-      if (canStart) _controller.forward();
+      if (canStart && mounted) {
+        _startAnimation();
+      }
     });
+  }
+
+  void _startAnimation() {
+    if (_isFirstBuild) {
+      _controller.forward();
+      _isFirstBuild = false;
+    } else {
+      // Reset and start animation for subsequent builds
+      _controller.reset();
+      _updateProgressAnimation();
+      _controller.forward();
+    }
+  }
+
+  void _updateProgressAnimation() {
+    _progressAnimation = Tween<double>(
+      begin: 0,
+      end: widget.material.progress / 100,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void didUpdateWidget(KuisItems oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.material.progress != widget.material.progress) {
+      _updateProgressAnimation();
+      _controller.forward(from: 0);
+    }
   }
 
   @override
@@ -54,23 +95,25 @@ class _KuisItemsState extends State<KuisItems>
     if (progress >= 80) {
       return Colors.green;
     } else if (progress >= 50) {
-      return Colors.amber;
+      return Colors.orange;
     } else {
-      return Colors.amber[200]!;
+      return Colors.red[200]!;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<QuizController>();
-
     return GestureDetector(
-      onTap: () {
-        print('Material ID: ${widget.material.id}');
-        Get.toNamed(
+      onTap: () async {
+        final result = await Get.toNamed(
           AppRoutes.quizDetail,
           arguments: {'id': widget.material.id},
         );
+
+        // Re-initialize animation after navigation
+        if (result == true) {
+          _initializeAnimation();
+        }
       },
       child: Container(
         margin: EdgeInsets.only(bottom: Get.height * 0.02),
@@ -104,13 +147,7 @@ class _KuisItemsState extends State<KuisItems>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(Get.width * 0.025),
                     child: AnimatedBuilder(
-                      animation: _progressAnimation = Tween<double>(
-                        begin: 0,
-                        end: widget.material.progress / 100,
-                      ).animate(CurvedAnimation(
-                        parent: _controller,
-                        curve: Curves.easeInOut,
-                      )),
+                      animation: _progressAnimation,
                       builder: (context, child) {
                         return LinearProgressIndicator(
                           value: _progressAnimation.value,
@@ -127,7 +164,7 @@ class _KuisItemsState extends State<KuisItems>
                 SizedBox(width: Get.width * 0.02),
                 Obx(() => AnimatedFlipCounter(
                       duration: const Duration(milliseconds: 1500),
-                      value: controller.canStartAnimation.value
+                      value: Get.find<QuizController>().canStartAnimation.value
                           ? widget.material.progress.toInt()
                           : 0,
                       suffix: " Poin",

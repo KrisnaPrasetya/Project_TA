@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/modules/detailquiz/controller/quizdetail_controller.dart';
 import 'package:project_ta/modules/detailquiz/widgets/quizwidgets.dart';
+import 'package:project_ta/modules/quiz/controller/quiz_controller.dart';
 
 class QuizdetailScreen extends StatelessWidget {
   const QuizdetailScreen({super.key});
@@ -33,7 +34,10 @@ class QuizdetailScreen extends StatelessWidget {
                         child: Text('Tidak'),
                       ),
                       TextButton(
-                        onPressed: () => Get.back(result: true),
+                        onPressed: () async {
+                          await Get.find<QuizController>().refreshQuizPage();
+                          Get.back(result: true);
+                        },
                         child: Text('Ya'),
                       ),
                     ],
