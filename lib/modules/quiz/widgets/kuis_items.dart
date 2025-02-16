@@ -1,4 +1,3 @@
-import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
@@ -36,16 +35,14 @@ class _KuisItemsState extends State<KuisItems>
 
     _progressAnimation = Tween<double>(
       begin: 0,
-      end: widget.material.progress / 100,
+      end: widget.material.progress,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
     ));
 
-    // Reset state for animation
     _isFirstBuild = true;
 
-    // Listen to controller changes
     final mainController = Get.find<QuizController>();
     ever(mainController.canStartAnimation, (bool canStart) {
       if (canStart && mounted) {
@@ -59,7 +56,6 @@ class _KuisItemsState extends State<KuisItems>
       _controller.forward();
       _isFirstBuild = false;
     } else {
-      // Reset and start animation for subsequent builds
       _controller.reset();
       _updateProgressAnimation();
       _controller.forward();
@@ -69,7 +65,7 @@ class _KuisItemsState extends State<KuisItems>
   void _updateProgressAnimation() {
     _progressAnimation = Tween<double>(
       begin: 0,
-      end: widget.material.progress / 100,
+      end: widget.material.progress,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -110,7 +106,6 @@ class _KuisItemsState extends State<KuisItems>
           arguments: {'id': widget.material.id},
         );
 
-        // Re-initialize animation after navigation
         if (result == true) {
           _initializeAnimation();
         }
@@ -150,7 +145,7 @@ class _KuisItemsState extends State<KuisItems>
                       animation: _progressAnimation,
                       builder: (context, child) {
                         return LinearProgressIndicator(
-                          value: _progressAnimation.value,
+                          value: _progressAnimation.value / 100,
                           backgroundColor: Colors.grey[200],
                           valueColor: AlwaysStoppedAnimation<Color>(
                             _getProgressColor(widget.material.progress),
@@ -162,18 +157,19 @@ class _KuisItemsState extends State<KuisItems>
                   ),
                 ),
                 SizedBox(width: Get.width * 0.02),
-                Obx(() => AnimatedFlipCounter(
-                      duration: const Duration(milliseconds: 1500),
-                      value: Get.find<QuizController>().canStartAnimation.value
-                          ? widget.material.progress.toInt()
-                          : 0,
-                      suffix: " Poin",
-                      textStyle: TextStyle(
+                AnimatedBuilder(
+                  animation: _progressAnimation,
+                  builder: (context, child) {
+                    return Text(
+                      '${_progressAnimation.value.toInt()} Poin',
+                      style: TextStyle(
                         color: _getProgressColor(widget.material.progress),
                         fontWeight: FontWeight.bold,
                         fontSize: Get.width * 0.03,
                       ),
-                    )),
+                    );
+                  },
+                ),
               ],
             ),
           ],

@@ -72,6 +72,7 @@ class MateriPageScreen extends StatelessWidget {
   }
 }
 
+
 class AnimatedMaterialItem extends StatefulWidget {
   final MaterialProgress material;
 
@@ -88,10 +89,13 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _progressAnimation;
+  double _previousProgress = 0;
 
   @override
   void initState() {
     super.initState();
+    _previousProgress = widget.material.progress;
+    
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
@@ -105,10 +109,30 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
       curve: Curves.easeInOut,
     ));
 
-    final mainController = Get.find<MateriPageController>();
-    ever(mainController.canStartAnimation, (bool canStart) {
-      if (canStart) _controller.forward();
+    // Delay animation start to make it visible
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (mounted) {
+        _controller.forward();
+      }
     });
+  }
+
+  @override
+  void didUpdateWidget(AnimatedMaterialItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.material.progress != widget.material.progress) {
+      // Animate from previous value to new value
+      _progressAnimation = Tween<double>(
+        begin: _previousProgress / 100,
+        end: widget.material.progress / 100,
+      ).animate(CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ));
+      
+      _previousProgress = widget.material.progress;
+      _controller.forward(from: 0);
+    }
   }
 
   @override
@@ -129,75 +153,84 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MateriPageController>();
+    return Obx(() {
+      final controller = Get.find<MateriPageController>();
+      final currentMaterial = controller.materials.firstWhere(
+        (m) => m.id == widget.material.id,
+        orElse: () => widget.material,
+      );
 
-    return GestureDetector(
-      onTap: () => Get.toNamed(AppRoutes.detailPageMateri,
-          arguments: controller.materials.indexOf(widget.material)),
-      child: Container(
-        margin: EdgeInsets.only(bottom: Get.height * 0.02),
-        padding: EdgeInsets.all(Get.width * 0.04),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(Get.width * 0.04),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: Get.width * 0.002,
-              blurRadius: Get.width * 0.01,
-              offset: Offset(0, Get.height * 0.002),
-            ),
-          ],
+      return GestureDetector(
+        onTap: () => Get.toNamed(
+          AppRoutes.detailPageMateri,
+          arguments: controller.materials.indexOf(currentMaterial),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '${widget.material.id}: ${widget.material.title}',
-              style: TextStyle(
-                fontSize: Get.width * 0.035,
-                fontWeight: FontWeight.w500,
+        child: Container(
+          margin: EdgeInsets.only(bottom: Get.height * 0.02),
+          padding: EdgeInsets.all(Get.width * 0.04),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(Get.width * 0.04),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                spreadRadius: Get.width * 0.002,
+                blurRadius: Get.width * 0.01,
+                offset: Offset(0, Get.height * 0.002),
               ),
-            ),
-            SizedBox(height: Get.height * 0.01),
-            Row(
-              children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(Get.width * 0.025),
-                    child: AnimatedBuilder(
-                      animation: _progressAnimation,
-                      builder: (context, child) {
-                        return LinearProgressIndicator(
-                          value: _progressAnimation.value,
-                          backgroundColor: Colors.grey[200],
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            _getProgressColor(widget.material.progress),
-                          ),
-                          minHeight: Get.height * 0.008,
-                        );
-                      },
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${currentMaterial.id}: ${currentMaterial.title}',
+                style: TextStyle(
+                  fontSize: Get.width * 0.035,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(height: Get.height * 0.01),
+              Row(
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(Get.width * 0.025),
+                      child: AnimatedBuilder(
+                        animation: _progressAnimation,
+                        builder: (context, child) {
+                          return LinearProgressIndicator(
+                            value: _progressAnimation.value,
+                            backgroundColor: Colors.grey[200],
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              _getProgressColor(currentMaterial.progress),
+                            ),
+                            minHeight: Get.height * 0.008,
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: Get.width * 0.02),
-                Obx(() => AnimatedFlipCounter(
-                      duration: const Duration(milliseconds: 1500),
-                      value: controller.canStartAnimation.value
-                          ? widget.material.progress.toInt()
-                          : 0,
-                      suffix: "%",
-                      textStyle: TextStyle(
-                        color: _getProgressColor(widget.material.progress),
-                        fontWeight: FontWeight.bold,
-                        fontSize: Get.width * 0.03,
-                      ),
-                    )),
-              ],
-            ),
-          ],
+                  SizedBox(width: Get.width * 0.02),
+                  AnimatedBuilder(
+                    animation: _progressAnimation,
+                    builder: (context, child) {
+                      return Text(
+                        '${(_progressAnimation.value * 100).toInt()}%',
+                        style: TextStyle(
+                          color: _getProgressColor(currentMaterial.progress),
+                          fontWeight: FontWeight.bold,
+                          fontSize: Get.width * 0.03,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

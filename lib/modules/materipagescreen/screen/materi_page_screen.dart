@@ -6,42 +6,42 @@ import 'package:project_ta/modules/materipagescreen/widgets/customheader_materi.
 import 'package:project_ta/modules/materipagescreen/widgets/pembelajarandua.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/pembelajaransatu.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/pembelajarantiga.dart';
-
 class DetailMateriScreen extends StatelessWidget {
   const DetailMateriScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final int args = Get.arguments ?? 0;
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-      ),
-    );
+    
     return GetBuilder<DetailMateriController>(
       init: DetailMateriController(),
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: SingleChildScrollView(
-            controller: controller.scrollController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomheaderMateri(
-                  args: args,
-                ),
-                SizedBox(height: Get.height * 0.01),
-                if (args == 0)
-                  Pembelajaransatu()
-                else if (args == 1)
-                  Pembelajarandua()
-                else if (args == 2)
-                  Pembelajarantiga()
-                else
-                  Center(child: Text('Materi Tidak Ditemukan'))
-              ],
+          body: NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              // Trigger rebuild saat scroll
+              controller.update();
+              return false;
+            },
+            child: SingleChildScrollView(
+              controller: controller.scrollController,
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomheaderMateri(args: args),
+                  SizedBox(height: Get.height * 0.01),
+                  if (args == 0)
+                    const Pembelajaransatu() 
+                  else if (args == 1)
+                    const Pembelajarandua()
+                  else if (args == 2)
+                    const Pembelajarantiga()
+                  else
+                    const Center(child: Text('Materi Tidak Ditemukan'))
+                ],
+              ),
             ),
           ),
         );
