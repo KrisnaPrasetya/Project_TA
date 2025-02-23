@@ -113,13 +113,12 @@ class QuizdetailScreen extends StatelessWidget {
                     ? AlwaysScrollableScrollPhysics()
                     : NeverScrollableScrollPhysics(),
                 child: Container(
-                  height: controller.isAnswered.value
-                      ? null // Let it adjust based on content
-                      : Get.height * 2,
+                  height: controller.isAnswered.value ? null : Get.height * 2,
                   constraints: BoxConstraints(
                     minHeight: Get.height,
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
                         height: () {
@@ -140,6 +139,8 @@ class QuizdetailScreen extends StatelessWidget {
                                 width: Get.width,
                                 child: Obx(() {
                                   return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(height: Get.height * 0.04),
                                       Center(
@@ -498,6 +499,94 @@ class QuizdetailScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            Positioned(
+                              top: 40,
+                              left: 5,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.arrow_back_ios_new,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () async {
+                                      final bool confirmExit = await showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                          title: Text(
+                                            'Apakah ingin kembali ?',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          content: Text(
+                                            'Jika kamu kembali progress tidak akan disimpan.',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          actions: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                CustomButton(
+                                                  width: 120,
+                                                  height: 45,
+                                                  onPressed: () =>
+                                                      Get.back(result: false),
+                                                  color: Colors.green,
+                                                  child: Text(
+                                                    'Tidak',
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                          Get.width * 0.04,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                                CustomButton(
+                                                  width: 120,
+                                                  height: 45,
+                                                  onPressed: () async {
+                                                    await Get.find<
+                                                            QuizController>()
+                                                        .refreshQuizPage();
+                                                    Get.back(result: true);
+                                                  },
+                                                  color: Colors.red,
+                                                  child: Text(
+                                                    'Ya',
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                          Get.width * 0.04,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      );
+
+                                      if (confirmExit == true) {
+                                        Get.back();
+                                      }
+                                    },
+                                  ),
+                                  Text('Kembali',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
