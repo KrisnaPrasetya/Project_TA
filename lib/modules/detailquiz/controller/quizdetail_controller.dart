@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -34,10 +33,10 @@ class QuizdetailController extends GetxController {
     if (!isAnswered.value) {
       selectedAnswerIndex.value = selectedAnswer;
       isAnswered.value = true;
-      if (selectedAnswer ==
-          questions[currentQuestionIndex.value].correctAnswer) {
-        score.value += 20; // Tambah 20 poin per jawaban benar
+      if (selectedAnswer == questions[currentQuestionIndex.value].correctAnswer) {
+        score.value += 20;
       }
+      update(); // Tambahkan ini
     }
   }
 
@@ -46,6 +45,7 @@ class QuizdetailController extends GetxController {
       currentQuestionIndex.value++;
       isAnswered.value = false;
       selectedAnswerIndex.value = -1;
+      update(); // Tambahkan ini
 
       scrollController.animateTo(
         0,
@@ -56,21 +56,17 @@ class QuizdetailController extends GetxController {
   }
 
   Future<void> saveScore() async {
-    // Hanya simpan jika semua soal dijawab
     if (currentQuestionIndex.value == questions.length - 1) {
       final key = 'quiz_${materialId}_points';
       final storedScore = await _secureStorage.read(key: key);
       final currentScore = score.value;
 
-      // Ambil nilai tertinggi
       final highestScore = max(
         currentScore,
         int.tryParse(storedScore ?? '0') ?? 0,
       );
 
       await _secureStorage.write(key: key, value: highestScore.toString());
-
-      // Paksa update data di QuizPageScreen
       Get.find<QuizController>().loadScores();
     }
   }
@@ -80,5 +76,6 @@ class QuizdetailController extends GetxController {
     score.value = 0;
     isAnswered.value = false;
     selectedAnswerIndex.value = -1;
+    update(); // Tambahkan ini
   }
 }

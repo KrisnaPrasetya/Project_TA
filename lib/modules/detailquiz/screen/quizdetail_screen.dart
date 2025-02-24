@@ -17,11 +17,71 @@ class QuizdetailScreen extends StatelessWidget {
     return GetBuilder<QuizdetailController>(
       init: QuizdetailController(),
       builder: (controller) {
-        final question =
-            controller.questions[controller.currentQuestionIndex.value];
-        return Scaffold(
-          backgroundColor: Colors.grey[100],
-          body: Obx(() => SingleChildScrollView(
+        return Obx(() {
+          final question =
+              controller.questions[controller.currentQuestionIndex.value];
+          return PopScope(
+            // ignore: deprecated_member_use
+            onPopInvoked: (didPop) async {
+              final bool confirmExit = await showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text(
+                    'Apakah ingin kembali ?',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  content: Text(
+                    'Jika kamu kembali progress tidak akan disimpan.',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomButton(
+                          width: 120,
+                          height: 45,
+                          onPressed: () => Get.back(result: false),
+                          color: Colors.green,
+                          child: Text(
+                            'Tidak',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.04,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        CustomButton(
+                          width: 120,
+                          height: 45,
+                          onPressed: () async {
+                            await Get.find<QuizController>().refreshQuizPage();
+                            Get.back(result: true);
+                          },
+                          color: Colors.red,
+                          child: Text(
+                            'Ya',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.04,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+
+              if (confirmExit == true) {
+                Get.back();
+              }
+            },
+            child: Scaffold(
+              backgroundColor: Colors.grey[100],
+              body: SingleChildScrollView(
                 controller: controller.scrollController,
                 physics: controller.isAnswered.value
                     ? AlwaysScrollableScrollPhysics()
@@ -59,8 +119,7 @@ class QuizdetailScreen extends StatelessWidget {
                                       SizedBox(height: Get.height * 0.04),
                                       Center(
                                         child: AnimatedContainer(
-                                          duration:
-                                              Duration(milliseconds: 1000),
+                                          duration: Duration(milliseconds: 1000),
                                           width: Get.width * 0.95,
                                           decoration: BoxDecoration(
                                               color: Colors.white,
@@ -101,9 +160,9 @@ class QuizdetailScreen extends StatelessWidget {
                                                     (index) => Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
-                                                              horizontal: Get
-                                                                      .width *
-                                                                  0.02,
+                                                              horizontal:
+                                                                  Get.width *
+                                                                      0.02,
                                                               vertical:
                                                                   Get.height *
                                                                       0.01),
@@ -112,8 +171,8 @@ class QuizdetailScreen extends StatelessWidget {
                                                             AnimatedContainerButton(
                                                           width:
                                                               Get.width * 0.85,
-                                                          height:
-                                                              Get.height * 0.06,
+                                                          height: Get.height *
+                                                              0.06,
                                                           enableAnimation:
                                                               !controller
                                                                   .isAnswered
@@ -166,40 +225,38 @@ class QuizdetailScreen extends StatelessWidget {
                                                             children: [
                                                               Expanded(
                                                                 child: Text(
-                                                                  question.options[
+                                                                  question
+                                                                          .options[
                                                                       index],
                                                                   style:
                                                                       TextStyle(
-                                                                    fontSize:
-                                                                        Get.width *
-                                                                            0.04,
+                                                                    fontSize: Get
+                                                                            .width *
+                                                                        0.04,
                                                                     fontWeight: controller
                                                                             .isAnswered
                                                                             .value
                                                                         ? controller.selectedAnswerIndex.value ==
                                                                                 index
-                                                                            ? (index == question.correctAnswer
-                                                                                ? FontWeight.w600
-                                                                                : FontWeight.w600)
+                                                                            ? (index == question.correctAnswer ? FontWeight.w600 : FontWeight.w600)
                                                                             : FontWeight.w400
-                                                                        : FontWeight.w400,
+                                                                        : FontWeight
+                                                                            .w400,
                                                                     color: controller
                                                                             .isAnswered
                                                                             .value
                                                                         ? controller.selectedAnswerIndex.value ==
                                                                                 index
-                                                                            ? (index == question.correctAnswer
-                                                                                ? HexColor('#22A06B')
-                                                                                : HexColor('#FF5569'))
+                                                                            ? (index == question.correctAnswer ? HexColor('#22A06B') : HexColor('#FF5569'))
                                                                             : Colors.black
-                                                                        : Colors.black,
+                                                                        : Colors
+                                                                            .black,
                                                                   ),
                                                                 ),
                                                               ),
                                                               controller.isAnswered
                                                                           .value &&
-                                                                      controller
-                                                                              .selectedAnswerIndex
+                                                                      controller.selectedAnswerIndex
                                                                               .value ==
                                                                           index
                                                                   ? controller.selectedAnswerIndex
@@ -212,11 +269,14 @@ class QuizdetailScreen extends StatelessWidget {
                                                                           repeat:
                                                                               false,
                                                                         )
-                                                                      : Lottie.asset(
+                                                                      : Lottie
+                                                                          .asset(
                                                                           'assets/lottie/wrong.json',
-                                                                          width: Get.width *
+                                                                          width: Get
+                                                                                  .width *
                                                                               0.06,
-                                                                          height: Get.height *
+                                                                          height: Get
+                                                                                  .height *
                                                                               0.03,
                                                                           repeat:
                                                                               false)
@@ -240,8 +300,8 @@ class QuizdetailScreen extends StatelessWidget {
                                                         height:
                                                             Get.height * 0.02),
                                                     Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
+                                                      padding: EdgeInsets
+                                                          .symmetric(
                                                               horizontal:
                                                                   Get.width *
                                                                       0.04),
@@ -425,7 +485,8 @@ class QuizdetailScreen extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                     onPressed: () async {
-                                      final bool confirmExit = await showDialog(
+                                      final bool confirmExit =
+                                          await showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
                                           title: Text(
@@ -507,8 +568,10 @@ class QuizdetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              )),
-        );
+              ),
+            ),
+          );
+        });
       },
     );
   }

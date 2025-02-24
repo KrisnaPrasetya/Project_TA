@@ -3,14 +3,14 @@ class Question {
   final List<String> options;
   final int correctAnswer;
   final String explanation;
-  final String gambarKuis;
+  // final String gambarKuis;
 
   Question({
     required this.question,
     required this.options,
     required this.correctAnswer,
     required this.explanation,
-    required this.gambarKuis,
+    // required this.gambarKuis,
   });
 }
 
@@ -26,14 +26,14 @@ class QuizData {
             "D. Sisi kubus"
           ],
           correctAnswer: 0,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Jaring-jaring kubus adalah rangkaian persegi yang jika dilipat akan membentuk kubus."),
       Question(
           question: "Berapa jumlah sisi pada sebuah balok?",
           options: ["A. 4 sisi", "B. 6 sisi", "C. 8 sisi", "D. 12 sisi"],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Balok memiliki 6 sisi yang terdiri dari 3 pasang sisi yang berhadapan."),
       Question(
@@ -45,7 +45,7 @@ class QuizData {
             "D. Memiliki 8 titik sudut"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Kubus memiliki 12 rusuk yang sama panjang sebagai salah satu ciri khasnya."),
       Question(
@@ -57,7 +57,7 @@ class QuizData {
             "D. Sisi x Sisi x Sisi"
           ],
           correctAnswer: 3,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Volume kubus dihitung dengan mengalikan sisi sebanyak 3 kali (sisi³)."),
       Question(
@@ -69,7 +69,7 @@ class QuizData {
             "D. Jumlah titik sudut"
           ],
           correctAnswer: 2,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Perbedaan utama adalah kubus memiliki semua rusuk sama panjang, sedangkan balok memiliki rusuk dengan panjang yang dapat berbeda."),
     ],
@@ -83,7 +83,7 @@ class QuizData {
             "D. Kemampuan mengukur jarak"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Visualisasi spasial adalah kemampuan untuk memanipulasi dan membayangkan objek dalam pikiran."),
       Question(
@@ -95,7 +95,7 @@ class QuizData {
             "D. Mengukur objek"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Merotasi objek 3D dalam pikiran dilakukan dengan membayangkan objek dari berbagai sudut pandang."),
       Question(
@@ -107,7 +107,7 @@ class QuizData {
             "D. Tidak ada manfaat"
           ],
           correctAnswer: 2,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Kemampuan visualisasi spasial bermanfaat dalam berbagai bidang seperti arsitektur, teknik, dan seni."),
       Question(
@@ -120,7 +120,7 @@ class QuizData {
             "D. Menulis"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Kemampuan visualisasi spasial dapat ditingkatkan melalui latihan rutin dengan puzzle dan permainan yang melibatkan manipulasi objek."),
       Question(
@@ -132,7 +132,7 @@ class QuizData {
             "D. Hanya untuk mengukur"
           ],
           correctAnswer: 2,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Visualisasi spasial sangat membantu dalam pemahaman konsep geometri karena memungkinkan kita membayangkan bentuk dan ruang."),
     ],
@@ -146,7 +146,7 @@ class QuizData {
             "D. Jarak tempuh"
           ],
           correctAnswer: 2,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Koordinat adalah pasangan nilai yang menunjukkan lokasi spesifik pada sistem koordinat."),
       Question(
@@ -158,7 +158,7 @@ class QuizData {
             "D. Menggunakan warna"
           ],
           correctAnswer: 2,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Lokasi pada bidang koordinat ditentukan menggunakan pasangan nilai (x,y) yang menunjukkan posisi horizontal dan vertikal."),
       Question(
@@ -170,7 +170,7 @@ class QuizData {
             "D. Menunjukkan warna"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Sumbu x pada sistem koordinat berfungsi untuk menunjukkan posisi horizontal (mendatar)."),
       Question(
@@ -182,7 +182,7 @@ class QuizData {
             "D. Mengukur dengan penggaris"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Jarak antara dua titik dapat ditentukan menggunakan rumus jarak antara dua titik pada bidang koordinat."),
       Question(
@@ -194,7 +194,7 @@ class QuizData {
             "D. Jenis sudut"
           ],
           correctAnswer: 1,
-          gambarKuis: '',
+          // gambarKuis: '',
           explanation:
               "Kuadran adalah bagian dari bidang koordinat yang dibagi oleh sumbu x dan y menjadi empat bagian."),
     ],
