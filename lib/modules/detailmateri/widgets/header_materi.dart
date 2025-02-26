@@ -137,71 +137,79 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
                               ),
                             ),
                           ),
-                          Center(
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SizedBox(
-                                  height: Get.width * 0.23,
-                                  width: Get.width * 0.23,
-                                  child: AnimatedBuilder(
-                                    animation: _progressAnimation,
-                                    builder: (context, child) {
-                                      return CircularProgressIndicator(
-                                        value: _progressAnimation.value,
-                                        strokeWidth: Get.width * 0.013,
-                                        backgroundColor: Colors.grey[300],
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          (_progressAnimation.value >= 0.80)
-                                              ? Colors.green
-                                              : (_progressAnimation.value >=
-                                                      0.50)
-                                                  ? const Color(0xFF28A745)
-                                                  : Colors.red[200]!,
+                          Positioned(
+                            left: Get.width * 0.315,
+                            top: Get.height * 0.060,
+                            child: Center(
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: Get.width * 0.23,
+                                    width: Get.width * 0.23,
+                                    child: AnimatedBuilder(
+                                      animation: _progressAnimation,
+                                      builder: (context, child) {
+                                        return CircularProgressIndicator(
+                                          value: _progressAnimation.value,
+                                          strokeWidth: Get.width * 0.013,
+                                          backgroundColor: Colors.grey[300],
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            (_progressAnimation.value >= 0.80)
+                                                ? Colors.green
+                                                : (_progressAnimation.value >=
+                                                        0.50)
+                                                    ? const Color(0xFF28A745)
+                                                    : Colors.red[200]!,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  CircleAvatar(
+                                    radius: Get.width * 0.10,
+                                    backgroundColor: Colors.white,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          imageAsset,
+                                          width: Get.width * 0.10,
+                                          height: Get.width * 0.10,
                                         ),
-                                      );
-                                    },
+                                        AnimatedBuilder(
+                                          animation: _progressAnimation,
+                                          builder: (context, child) {
+                                            return Text(
+                                              '${(_progressAnimation.value * 100).toInt()}%',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: Get.width * 0.04,
+                                                color:
+                                                    (_progressAnimation.value *
+                                                                100) >=
+                                                            80
+                                                        ? Colors.green
+                                                        : (_progressAnimation
+                                                                        .value *
+                                                                    100) >=
+                                                                50
+                                                            ? const Color(
+                                                                0xFF28A745)
+                                                            : Colors.red[200]!,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                CircleAvatar(
-                                  radius: Get.width * 0.10,
-                                  backgroundColor: Colors.white,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        imageAsset,
-                                        width: Get.width * 0.10,
-                                        height: Get.width * 0.10,
-                                      ),
-                                      AnimatedBuilder(
-                                        animation: _progressAnimation,
-                                        builder: (context, child) {
-                                          return Text(
-                                            '${(_progressAnimation.value * 100).toInt()}%',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: Get.width * 0.04,
-                                              color: (_progressAnimation.value *
-                                                          100) >=
-                                                      80
-                                                  ? Colors.green
-                                                  : (_progressAnimation.value *
-                                                              100) >=
-                                                          50
-                                                      ? const Color(0xFF28A745)
-                                                      : Colors.red[200]!,
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],

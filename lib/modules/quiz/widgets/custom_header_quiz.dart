@@ -97,12 +97,12 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
           ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.08,
-            left: MediaQuery.of(context).size.width * 0.32,
+            left: MediaQuery.of(context).size.width * 0.30,
             child: Text(
               'Informasi Poin Kamu',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -178,38 +178,37 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
             top: MediaQuery.of(context).size.height * 0.24,
             left: MediaQuery.of(context).size.width * 0.26,
             child: Obx(() => Row(
-              children: [
-                Text(
-                  'Total Poin Kamu ',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 40, 32, 9),
-                  ),
-                ),
-                AnimatedBuilder(
-                  animation: _progressAnimation,
-                  builder: (context, child) {
-                    // Show actual total points from controller
-                    return Text(
-                      '${widget.controller.totalPoints.value} ',
+                  children: [
+                    Text(
+                      'Total Poin Kamu ',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
                         color: Color.fromARGB(255, 40, 32, 9),
                       ),
-                    );
-                  },
-                ),
-                Text(
-                  'dari ${widget.controller.maxPoints.value}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[700],
-                  ),
-                ),
-              ],
-            )),
+                    ),
+                    AnimatedBuilder(
+                      animation: _progressAnimation,
+                      builder: (context, child) {
+                        // Show actual total points from controller
+                        return Text(
+                          '${widget.controller.totalPoints.value} ',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 40, 32, 9),
+                          ),
+                        );
+                      },
+                    ),
+                    Text(
+                      'dari ${widget.controller.maxPoints.value}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                )),
           ),
         ],
       ),
