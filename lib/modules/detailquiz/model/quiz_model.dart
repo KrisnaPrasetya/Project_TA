@@ -32,14 +32,19 @@ class QuizData {
               "Bayangkan kalau kita membuka kotak susu dan meratakannya. Itu akan menjadi jaring-jaring kubus!"),
       Question(
           question: "Berapa banyak sisi yang dimiliki oleh sebuah balok?",
-          options: ["A. 4", "B. 5", "C. 6", "D. 8"],
+          options: ["A. 4 Sisi", "B. 5 Sisi", "C. 6 Sisi", "D. 8 Sisi"],
           correctAnswer: 2,
           gambarKuis: '',
           explanation:
               "Balok memiliki 6 sisi yang berbentuk persegi panjang. Sama seperti kardus sepatu!"),
       Question(
           question: "Sebuah kubus memiliki berapa titik sudut?",
-          options: ["A. 6", "B. 8", "C. 10", "D. 12"],
+          options: [
+            "A. 6 Titik sudut",
+            "B. 8 Titik sudut",
+            "C. 10 Titik sudut",
+            "D. 12 Titik sudut"
+          ],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
@@ -47,7 +52,12 @@ class QuizData {
       Question(
           question:
               "Jika sebuah balok diurai menjadi bagian-bagiannya, berapa banyak rusuk yang terlihat?",
-          options: ["A. 10", "B. 12", "C. 14", "D. 16"],
+          options: [
+            "A. 10 Rusuk",
+            "B. 12 Titik sudut",
+            "C. 14 Titik sudut",
+            "D. 16 Titik sudut"
+          ],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
