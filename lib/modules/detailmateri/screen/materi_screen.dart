@@ -84,17 +84,19 @@ class AnimatedMaterialItem extends StatefulWidget {
   @override
   State<AnimatedMaterialItem> createState() => _AnimatedMaterialItemState();
 }
-
+// In the AnimatedMaterialItem class, let's fix the Obx usage
 class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _progressAnimation;
   double _previousProgress = 0;
+  late MaterialProgress currentMaterial;
 
   @override
   void initState() {
     super.initState();
     _previousProgress = widget.material.progress;
+    currentMaterial = widget.material;
     
     _controller = AnimationController(
       vsync: this,
@@ -120,17 +122,25 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
   @override
   void didUpdateWidget(AnimatedMaterialItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.material.progress != widget.material.progress) {
+    
+    // Get updated material data without Obx
+    final controller = Get.find<MateriPageController>();
+    currentMaterial = controller.materials.firstWhere(
+      (m) => m.id == widget.material.id,
+      orElse: () => widget.material,
+    );
+    
+    if (oldWidget.material.progress != currentMaterial.progress) {
       // Animate from previous value to new value
       _progressAnimation = Tween<double>(
         begin: _previousProgress / 100,
-        end: widget.material.progress / 100,
+        end: currentMaterial.progress / 100,
       ).animate(CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
       ));
       
-      _previousProgress = widget.material.progress;
+      _previousProgress = currentMaterial.progress;
       _controller.forward(from: 0);
     }
   }
@@ -153,84 +163,76 @@ class _AnimatedMaterialItemState extends State<AnimatedMaterialItem>
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final controller = Get.find<MateriPageController>();
-      final currentMaterial = controller.materials.firstWhere(
-        (m) => m.id == widget.material.id,
-        orElse: () => widget.material,
-      );
-
-      return GestureDetector(
-        onTap: () => Get.toNamed(
-          AppRoutes.detailPageMateri,
-          arguments: controller.materials.indexOf(currentMaterial),
+    return GestureDetector(
+      onTap: () => Get.toNamed(
+        AppRoutes.detailPageMateri,
+        arguments: Get.find<MateriPageController>().materials.indexOf(currentMaterial),
+      ),
+      child: Container(
+        margin: EdgeInsets.only(bottom: Get.height * 0.02),
+        padding: EdgeInsets.all(Get.width * 0.04),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(Get.width * 0.04),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: Get.width * 0.002,
+              blurRadius: Get.width * 0.01,
+              offset: Offset(0, Get.height * 0.002),
+            ),
+          ],
         ),
-        child: Container(
-          margin: EdgeInsets.only(bottom: Get.height * 0.02),
-          padding: EdgeInsets.all(Get.width * 0.04),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(Get.width * 0.04),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: Get.width * 0.002,
-                blurRadius: Get.width * 0.01,
-                offset: Offset(0, Get.height * 0.002),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${currentMaterial.id}: ${currentMaterial.title}',
+              style: TextStyle(
+                fontSize: Get.width * 0.035,
+                fontWeight: FontWeight.w500,
               ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${currentMaterial.id}: ${currentMaterial.title}',
-                style: TextStyle(
-                  fontSize: Get.width * 0.035,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: Get.height * 0.01),
-              Row(
-                children: [
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(Get.width * 0.025),
-                      child: AnimatedBuilder(
-                        animation: _progressAnimation,
-                        builder: (context, child) {
-                          return LinearProgressIndicator(
-                            value: _progressAnimation.value,
-                            backgroundColor: Colors.grey[200],
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              _getProgressColor(currentMaterial.progress),
-                            ),
-                            minHeight: Get.height * 0.008,
-                          );
-                        },
-                      ),
+            ),
+            SizedBox(height: Get.height * 0.01),
+            Row(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(Get.width * 0.025),
+                    child: AnimatedBuilder(
+                      animation: _progressAnimation,
+                      builder: (context, child) {
+                        return LinearProgressIndicator(
+                          value: _progressAnimation.value,
+                          backgroundColor: Colors.grey[200],
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            _getProgressColor(currentMaterial.progress),
+                          ),
+                          minHeight: Get.height * 0.008,
+                        );
+                      },
                     ),
                   ),
-                  SizedBox(width: Get.width * 0.02),
-                  AnimatedBuilder(
-                    animation: _progressAnimation,
-                    builder: (context, child) {
-                      return Text(
-                        '${(_progressAnimation.value * 100).toInt()}%',
-                        style: TextStyle(
-                          color: _getProgressColor(currentMaterial.progress),
-                          fontWeight: FontWeight.bold,
-                          fontSize: Get.width * 0.03,
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                SizedBox(width: Get.width * 0.02),
+                AnimatedBuilder(
+                  animation: _progressAnimation,
+                  builder: (context, child) {
+                    return Text(
+                      '${(_progressAnimation.value * 100).toInt()}%',
+                      style: TextStyle(
+                        color: _getProgressColor(currentMaterial.progress),
+                        fontWeight: FontWeight.bold,
+                        fontSize: Get.width * 0.03,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

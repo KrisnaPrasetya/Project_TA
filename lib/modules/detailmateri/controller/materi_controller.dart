@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class MateriPageController extends GetxController {
   final RxBool canStartAnimation = false.obs;
   final RxList<MaterialProgress> materials = <MaterialProgress>[].obs;
+  final RxDouble totalProgress = 0.0.obs; // Added total progress
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   @override
@@ -49,12 +50,30 @@ class MateriPageController extends GetxController {
           }
         }
       }
+      // Calculate total progress after loading all materials
+      _calculateTotalProgress();
       // Trigger UI update
       materials.refresh();
       update();
     } catch (e) {
       print('Error loading progress: $e');
     }
+  }
+
+  // New method to calculate total progress
+  void _calculateTotalProgress() {
+    if (materials.isEmpty) {
+      totalProgress.value = 0.0;
+      return;
+    }
+    
+    double sum = 0.0;
+    for (var material in materials) {
+      sum += material.progress;
+    }
+    
+    // Average progress across all materials
+    totalProgress.value = sum / materials.length;
   }
 
   Future<void> updateProgress(int materialId, double newProgress) async {
@@ -73,6 +92,9 @@ class MateriPageController extends GetxController {
           key: 'progress_material_$materialId',
           value: newProgress.toString(),
         );
+
+        // Calculate the updated total progress
+        _calculateTotalProgress();
 
         // Trigger UI updates
         materials.refresh();
