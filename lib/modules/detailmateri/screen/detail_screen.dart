@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/detailmateri/controller/detail_materi_controller.dart';
-import 'package:project_ta/modules/detailmateri/widgets/customheader_detail_materi.dart';
+import 'package:project_ta/modules/detailmateri/widgets/header_materi.dart';
 
 class MateriPageScreen extends StatelessWidget {
   const MateriPageScreen({super.key});
