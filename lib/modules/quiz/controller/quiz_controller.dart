@@ -5,6 +5,11 @@ class QuizController extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
   final RxBool canStartAnimation = false.obs;
   final RxList<KuisProgress> materials = <KuisProgress>[].obs;
+  
+  // Add total points properties
+  final RxInt totalPoints = 0.obs;
+  final RxInt maxPoints = 300.obs; // Assuming max is 300 as seen in your header
+  final RxDouble progressPercentage = 0.0.obs;
 
   bool isLearning = true;
   var userName = 'User'.obs;
@@ -33,6 +38,9 @@ class QuizController extends GetxController {
     // Load scores
     await loadScores();
     
+    // Calculate total points and percentage
+    _calculateTotalPoints();
+    
     // Delay sedikit lebih lama untuk memastikan widget sudah ter-render
     await Future.delayed(const Duration(milliseconds: 200));
     
@@ -41,10 +49,24 @@ class QuizController extends GetxController {
     update();
   }
 
+  // Add method to calculate total points
+  void _calculateTotalPoints() {
+    int total = 0;
+    for (var material in materials) {
+      total += material.progress.toInt();
+    }
+    
+    totalPoints.value = total;
+    progressPercentage.value = (total / maxPoints.value);
+    update();
+  }
+
   Future<void> refreshQuizPage() async {
     // Reset state
     canStartAnimation.value = false;
     materials.clear();
+    totalPoints.value = 0;
+    progressPercentage.value = 0.0;
     
     // Reinitialize
     await initializeQuizData();
@@ -83,6 +105,7 @@ class QuizController extends GetxController {
     }
 
     materials.assignAll(updatedMaterials);
+    _calculateTotalPoints(); // Calculate totals after loading scores
     update();
   }
 

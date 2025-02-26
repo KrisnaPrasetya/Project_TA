@@ -16,11 +16,6 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
   late AnimationController _animationController;
   late Animation<double> _progressAnimation;
 
-  // Data for circular progress
-  final double finalProgress = 0.75; // 75% progress
-  final int dummyCurrentScore = 120;
-  final int dummyMaxScore = 300;
-
   @override
   void initState() {
     super.initState();
@@ -31,17 +26,29 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
       duration: const Duration(milliseconds: 1500), // Animation duration
     );
 
-    // Create progress animation from 0 to final value
+    // Create progress animation from 0 to current percentage
+    updateProgressAnimation();
+
+    // Setup listener to update progress when controller changes
+    widget.controller.progressPercentage.listen((value) {
+      if (mounted) {
+        updateProgressAnimation();
+        _animationController.forward(from: 0);
+      }
+    });
+
+    // Start the animation when widget is built
+    _animationController.forward();
+  }
+
+  void updateProgressAnimation() {
     _progressAnimation = Tween<double>(
       begin: 0.0,
-      end: finalProgress,
+      end: widget.controller.progressPercentage.value,
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
-
-    // Start the animation when widget is built
-    _animationController.forward();
   }
 
   @override
@@ -170,7 +177,7 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
           Positioned(
             top: MediaQuery.of(context).size.height * 0.24,
             left: MediaQuery.of(context).size.width * 0.26,
-            child: Row(
+            child: Obx(() => Row(
               children: [
                 Text(
                   'Total Poin Kamu ',
@@ -183,13 +190,9 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
                 AnimatedBuilder(
                   animation: _progressAnimation,
                   builder: (context, child) {
-                    // Animate the score text as well
-                    final currentScore = (dummyCurrentScore *
-                            _progressAnimation.value /
-                            finalProgress)
-                        .toInt();
+                    // Show actual total points from controller
                     return Text(
-                      '$currentScore ',
+                      '${widget.controller.totalPoints.value} ',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -199,14 +202,14 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
                   },
                 ),
                 Text(
-                  'dari $dummyMaxScore',
+                  'dari ${widget.controller.maxPoints.value}',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[700],
                   ),
                 ),
               ],
-            ),
+            )),
           ),
         ],
       ),
