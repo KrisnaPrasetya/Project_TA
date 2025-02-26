@@ -12,9 +12,25 @@ class AboutUsScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Tentang Kami'),
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+            title: const Text(
+              'Tentang Kami',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
             elevation: 0,
             backgroundColor: Theme.of(context).primaryColor,
+            leadingWidth: 30, // Adjust the leading width to remove space
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -43,15 +59,6 @@ class AboutUsScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Text(
-            'Tim Kami',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 10),
           const Text(
             'Kenali anggota tim yang berdedikasi untuk memberikan layanan terbaik',
             textAlign: TextAlign.center,
@@ -103,7 +110,7 @@ class AboutUsScreen extends StatelessWidget {
           Text(
             member.name,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -117,14 +124,14 @@ class AboutUsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          Text(
-            member.description,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[800],
-            ),
-          ),
+          // Text(
+          //   member.description,
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //     fontSize: 14,
+          //     color: Colors.grey[800],
+          //   ),
+          // ),
           const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

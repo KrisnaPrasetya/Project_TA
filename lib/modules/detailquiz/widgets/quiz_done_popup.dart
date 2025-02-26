@@ -84,8 +84,8 @@ class QuizCompletionDialog extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned(
-                      top: 25,
-                      left: 33,
+                      top: Get.width * 0.065,
+                      left: Get.width * 0.072,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

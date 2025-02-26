@@ -88,7 +88,7 @@ class QuizData {
       Question(
           question: "Jika balok diputar ke samping, bagaimana bentuknya?",
           options: [
-            "A. Tetap balok",
+            "A. Menjadi Persegi Panjang",
             "B. Menjadi kubus",
             "C. Menjadi lingkaran",
             "D. Menjadi segitiga"
@@ -99,7 +99,7 @@ class QuizData {
               "Balok tetap balok, meskipun diputar ke berbagai arah. Seperti kalau kita memutar kotak bekal!"),
       Question(
           question:
-              "Jika kita melihat sebuah kubus dari sudut tertentu, bentuk yang terlihat adalah...?",
+              "Jika kita melihat sebuah kubus dari sudut miring, bentuk yang terlihat adalah...?",
           options: [
             "A. Tetap kubus",
             "B. Seperti dua persegi bertumpuk",
@@ -109,13 +109,13 @@ class QuizData {
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
-              "Kadang, kalau kita melihat kubus dari sudut, bentuknya terlihat seperti dua persegi bertumpuk!"),
+              "Kadang, kalau kita melihat kubus dari miring, bentuknya terlihat seperti dua persegi bertumpuk!"),
       Question(
           question:
               "Apa yang terjadi jika balok dipotong secara diagonal dari ujung ke ujung?",
           options: [
             "A. Menjadi dua segitiga",
-            "B. Menjadi dua prisma segitiga",
+            "B. Menjadi prisma segitiga",
             "C. Tetap balok",
             "D. Menjadi silinder"
           ],
