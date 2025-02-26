@@ -25,12 +25,14 @@ class ProfileScreen extends StatelessWidget {
               preferredSize: Size.fromHeight(Get.height * 0.08),
               child: AppBar(
                 scrolledUnderElevation: 0,
+                title: const Text('Profile'),
                 backgroundColor: Colors.white,
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () => Get.offAllNamed(AppRoutes.home),
                 ),
                 automaticallyImplyLeading: false,
+                titleSpacing: 0, // Remove padding between title and icon
               ),
             ),
             body: SafeArea(
@@ -135,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                                         ),
                                         barrierDismissible: false);
                                   } else if (index == 1) {
-                                    // Handle about us
+                                    Get.toNamed(AppRoutes.tentangKami);
                                   } else if (index == 2) {
                                     // Handle source and reference
                                   }

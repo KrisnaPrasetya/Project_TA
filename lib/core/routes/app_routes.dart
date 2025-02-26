@@ -10,4 +10,5 @@ class AppRoutes {
   static const String cube = '/cube';
   static const String quiz = '/kuis';
   static const String quizDetail = '/kuisdetail';
+  static const String tentangKami = '/tentangkami';
 }
