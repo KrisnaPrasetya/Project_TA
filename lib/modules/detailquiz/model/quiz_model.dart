@@ -18,185 +18,165 @@ class QuizData {
   static final Map<int, List<Question>> materialQuestions = {
     1: [
       Question(
-          question: "Apa yang dimaksud dengan jaring-jaring kubus?",
+          question:
+              "Apa yang terjadi jika kita membuka seluruh sisi kubus dan meratakannya?",
           options: [
-            "A. Persegi membentuk kubus",
-            "B. Garis yang membentuk kubus",
-            "C. Titik sudut kubus",
-            "D. Sisi kubus"
+            "A. Kubus berubah menjadi lingkaran",
+            "B. Kubus menjadi jaring-jaring",
+            "C. Kubus tetap sama",
+            "D. Kubus menghilang"
+          ],
+          correctAnswer: 1,
+          gambarKuis: '',
+          explanation:
+              "Bayangkan kalau kita membuka kotak susu dan meratakannya. Itu akan menjadi jaring-jaring kubus!"),
+      Question(
+          question: "Berapa banyak sisi yang dimiliki oleh sebuah balok?",
+          options: ["A. 4", "B. 5", "C. 6", "D. 8"],
+          correctAnswer: 2,
+          gambarKuis: '',
+          explanation:
+              "Balok memiliki 6 sisi yang berbentuk persegi panjang. Sama seperti kardus sepatu!"),
+      Question(
+          question: "Sebuah kubus memiliki berapa titik sudut?",
+          options: ["A. 6", "B. 8", "C. 10", "D. 12"],
+          correctAnswer: 1,
+          gambarKuis: '',
+          explanation:
+              "Titik sudut adalah tempat bertemunya tiga sisi kubus. Kalau kamu lihat dadu, ada 8 titik sudut!"),
+      Question(
+          question:
+              "Jika sebuah balok diurai menjadi bagian-bagiannya, berapa banyak rusuk yang terlihat?",
+          options: ["A. 10", "B. 12", "C. 14", "D. 16"],
+          correctAnswer: 1,
+          gambarKuis: '',
+          explanation:
+              "Rusuk adalah garis tepi yang menghubungkan sisi-sisi balok. Kalau kamu melihat bingkai kotak hadiah, ada 12 rusuk!"),
+      Question(
+          question:
+              "Jika kita menyusun dua kubus kecil menjadi satu, bangun ruang yang terbentuk adalah...?",
+          options: ["A. Tetap kubus", "B. Balok", "C. Bola", "D. Prisma"],
+          correctAnswer: 1,
+          gambarKuis: '',
+          explanation:
+              "Dua kubus kecil bisa disusun menjadi balok karena bentuknya lebih panjang!"),
+    ],
+    2: [
+      Question(
+          question:
+              "Jika kubus dilihat dari atas, bentuk yang terlihat adalah...?",
+          options: [
+            "A. Persegi",
+            "B. Segitiga",
+            "C. Lingkaran",
+            "D. Persegi panjang"
           ],
           correctAnswer: 0,
           gambarKuis: '',
           explanation:
-              "Jaring-jaring kubus adalah rangkaian persegi yang jika dilipat akan membentuk kubus."),
+              "Kubus selalu terlihat persegi dari atas, depan, atau samping!"),
       Question(
-          question: "Berapa jumlah sisi pada sebuah balok?",
-          options: ["A. 4 sisi", "B. 6 sisi", "C. 8 sisi", "D. 12 sisi"],
-          correctAnswer: 1,
-          gambarKuis: '',
-          explanation:
-              "Balok memiliki 6 sisi yang terdiri dari 3 pasang sisi yang berhadapan."),
-      Question(
-          question: "Apa ciri khas dari kubus?",
+          question: "Jika balok diputar ke samping, bagaimana bentuknya?",
           options: [
-            "A. Semua sisinya berbeda",
-            "B. Memiliki 12 rusuk sama panjang",
-            "C. Memiliki 4 sisi",
-            "D. Memiliki 8 titik sudut"
+            "A. Tetap balok",
+            "B. Menjadi kubus",
+            "C. Menjadi lingkaran",
+            "D. Menjadi segitiga"
           ],
-          correctAnswer: 1,
+          correctAnswer: 0,
           gambarKuis: '',
           explanation:
-              "Kubus memiliki 12 rusuk yang sama panjang sebagai salah satu ciri khasnya."),
-      Question(
-          question: "Bagaimana cara menghitung volume kubus?",
-          options: [
-            "A. Panjang x Lebar",
-            "B. Panjang x Lebar x Tinggi",
-            "C. Sisi x Sisi",
-            "D. Sisi x Sisi x Sisi"
-          ],
-          correctAnswer: 3,
-          gambarKuis: '',
-          explanation:
-              "Volume kubus dihitung dengan mengalikan sisi sebanyak 3 kali (sisi³)."),
-      Question(
-          question: "Apa perbedaan utama antara kubus dan balok?",
-          options: [
-            "A. Jumlah sisi",
-            "B. Jumlah rusuk",
-            "C. Panjang rusuk yang sama vs berbeda",
-            "D. Jumlah titik sudut"
-          ],
-          correctAnswer: 2,
-          gambarKuis: '',
-          explanation:
-              "Perbedaan utama adalah kubus memiliki semua rusuk sama panjang, sedangkan balok memiliki rusuk dengan panjang yang dapat berbeda."),
-    ],
-    2: [
-      Question(
-          question: "Apa yang dimaksud dengan visualisasi spasial?",
-          options: [
-            "A. Kemampuan melihat objek 2D",
-            "B. Kemampuan memanipulasi objek dalam pikiran",
-            "C. Kemampuan menggambar",
-            "D. Kemampuan mengukur jarak"
-          ],
-          correctAnswer: 1,
-          gambarKuis: '',
-          explanation:
-              "Visualisasi spasial adalah kemampuan untuk memanipulasi dan membayangkan objek dalam pikiran."),
-      Question(
-          question: "Bagaimana cara merotasi objek 3D dalam pikiran?",
-          options: [
-            "A. Menggunakan alat bantu",
-            "B. Membayangkan objek dari berbagai sudut",
-            "C. Menggambar objek",
-            "D. Mengukur objek"
-          ],
-          correctAnswer: 1,
-          gambarKuis: '',
-          explanation:
-              "Merotasi objek 3D dalam pikiran dilakukan dengan membayangkan objek dari berbagai sudut pandang."),
-      Question(
-          question: "Apa manfaat kemampuan visualisasi spasial?",
-          options: [
-            "A. Hanya untuk matematika",
-            "B. Untuk menggambar saja",
-            "C. Membantu dalam berbagai bidang",
-            "D. Tidak ada manfaat"
-          ],
-          correctAnswer: 2,
-          gambarKuis: '',
-          explanation:
-              "Kemampuan visualisasi spasial bermanfaat dalam berbagai bidang seperti arsitektur, teknik, dan seni."),
+              "Balok tetap balok, meskipun diputar ke berbagai arah. Seperti kalau kita memutar kotak bekal!"),
       Question(
           question:
-              "Bagaimana cara meningkatkan kemampuan visualisasi spasial?",
+              "Jika kita melihat sebuah kubus dari sudut tertentu, bentuk yang terlihat adalah...?",
           options: [
-            "A. Membaca buku",
-            "B. Latihan rutin dengan puzzle dan permainan",
-            "C. Menghafal rumus",
-            "D. Menulis"
+            "A. Tetap kubus",
+            "B. Seperti dua persegi bertumpuk",
+            "C. Lingkaran",
+            "D. Segitiga"
           ],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
-              "Kemampuan visualisasi spasial dapat ditingkatkan melalui latihan rutin dengan puzzle dan permainan yang melibatkan manipulasi objek."),
+              "Kadang, kalau kita melihat kubus dari sudut, bentuknya terlihat seperti dua persegi bertumpuk!"),
       Question(
-          question: "Apa hubungan visualisasi spasial dengan geometri?",
+          question:
+              "Apa yang terjadi jika balok dipotong secara diagonal dari ujung ke ujung?",
           options: [
-            "A. Tidak ada hubungan",
-            "B. Hanya untuk menggambar",
-            "C. Membantu pemahaman konsep geometri",
-            "D. Hanya untuk mengukur"
+            "A. Menjadi dua segitiga",
+            "B. Menjadi dua prisma segitiga",
+            "C. Tetap balok",
+            "D. Menjadi silinder"
           ],
-          correctAnswer: 2,
+          correctAnswer: 1,
           gambarKuis: '',
           explanation:
-              "Visualisasi spasial sangat membantu dalam pemahaman konsep geometri karena memungkinkan kita membayangkan bentuk dan ruang."),
+              "Jika kita memotong sabun batangan secara diagonal, bentuk yang terbentuk adalah prisma segitiga!"),
+      Question(
+          question:
+              "Jika kita melihat sebuah kubus dari tiga arah berbeda (atas, depan, samping), bagaimana bentuk yang terlihat?",
+          options: [
+            "A. Selalu sama",
+            "B. Bisa berbeda",
+            "C. Tidak bisa dilihat dari tiga arah",
+            "D. Hanya satu sisi yang bisa terlihat"
+          ],
+          correctAnswer: 1,
+          gambarKuis: '',
+          explanation:
+              "Seperti saat kamu menggambar rumah mainan dari sisi berbeda, kubus juga terlihat berbeda dari tiap arah!"),
     ],
     3: [
       Question(
-          question: "Apa yang dimaksud dengan koordinat?",
-          options: [
-            "A. Angka acak",
-            "B. Posisi pada peta",
-            "C. Pasangan nilai yang menunjukkan lokasi",
-            "D. Jarak tempuh"
-          ],
-          correctAnswer: 2,
-          gambarKuis: '',
-          explanation:
-              "Koordinat adalah pasangan nilai yang menunjukkan lokasi spesifik pada sistem koordinat."),
-      Question(
-          question: "Bagaimana cara menentukan lokasi pada bidang koordinat?",
-          options: [
-            "A. Menggunakan satu angka",
-            "B. Menggunakan huruf",
-            "C. Menggunakan pasangan (x,y)",
-            "D. Menggunakan warna"
-          ],
-          correctAnswer: 2,
-          gambarKuis: '',
-          explanation:
-              "Lokasi pada bidang koordinat ditentukan menggunakan pasangan nilai (x,y) yang menunjukkan posisi horizontal dan vertikal."),
-      Question(
-          question: "Apa fungsi sumbu x pada sistem koordinat?",
-          options: [
-            "A. Menunjukkan tinggi",
-            "B. Menunjukkan posisi horizontal",
-            "C. Menunjukkan waktu",
-            "D. Menunjukkan warna"
-          ],
+          question:
+              "Makassar terletak di petak C2 dalam peta. Jika kita bergerak satu langkah ke kanan, kita ada di petak...?",
+          options: ["A. C1", "B. C3", "C. B2", "D. D2"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
-              "Sumbu x pada sistem koordinat berfungsi untuk menunjukkan posisi horizontal (mendatar)."),
+              "Berpindah ke kanan dalam peta berarti meningkatkan angka kolom!"),
       Question(
-          question: "Bagaimana menentukan jarak antara dua titik?",
-          options: [
-            "A. Menebak",
-            "B. Menggunakan rumus jarak",
-            "C. Menghitung titik",
-            "D. Mengukur dengan penggaris"
-          ],
+          question:
+              "Jika rumah Tigor ada di petak B4 dan sekolahnya di B6, berapa langkah horizontal yang harus ditempuh?",
+          options: ["A. 2", "B. 3", "C. 4", "D. 5"],
+          correctAnswer: 0,
+          gambarKuis: '',
+          explanation: "Dari B4 ke B6, cukup 2 langkah horizontal ke kanan!"),
+      Question(
+          question:
+              "Jika Tigor ada di petak A3 dan ingin ke petak C3, berapa langkah vertikal yang harus dilakukan?",
+          options: ["A. 1", "B. 2", "C. 3", "D. 4"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
-              "Jarak antara dua titik dapat ditentukan menggunakan rumus jarak antara dua titik pada bidang koordinat."),
+              "Pindah ke bawah dalam peta berarti bergerak secara vertikal ke baris yang lebih besar!"),
       Question(
-          question: "Apa yang dimaksud dengan kuadran?",
+          question:
+              "Jika Tenri ada di D5 dan ingin menuju ke B5, bagaimana cara bergeraknya?",
           options: [
-            "A. Bagian dari lingkaran",
-            "B. Bagian dari bidang koordinat",
-            "C. Jenis garis",
-            "D. Jenis sudut"
+            "A. 2 langkah ke atas",
+            "B. 2 langkah ke kanan",
+            "C. 2 langkah ke kiri",
+            "D. 2 langkah ke bawah"
           ],
-          correctAnswer: 1,
+          correctAnswer: 0,
           gambarKuis: '',
           explanation:
-              "Kuadran adalah bagian dari bidang koordinat yang dibagi oleh sumbu x dan y menjadi empat bagian."),
+              "Karena bergerak dari D ke B, kita harus naik 2 langkah ke atas!"),
+      Question(
+          question:
+              "Jika rumah Tigor ada di A1 dan rumah Tenri di C3, bagaimana cara bergeraknya?",
+          options: [
+            "A. 2 langkah ke bawah dan 2 ke kanan",
+            "B. 2 langkah ke atas dan 2 ke kanan",
+            "C. 2 langkah ke kanan dan 2 ke atas",
+            "D. 3 langkah ke kanan dan 1 ke atas"
+          ],
+          correctAnswer: 0,
+          gambarKuis: '',
+          explanation:
+              "Untuk sampai dari A1 ke C3, kita harus turun 2 langkah dan ke kanan 2 langkah!"),
     ],
   };
 }

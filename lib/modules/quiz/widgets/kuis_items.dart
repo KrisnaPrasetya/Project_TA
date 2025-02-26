@@ -108,7 +108,7 @@ class _KuisItemsState extends State<KuisItems>
 
         if (result == true) {
           _initializeAnimation();
-        }
+        } 
       },
       child: Container(
         margin: EdgeInsets.only(bottom: Get.height * 0.02),

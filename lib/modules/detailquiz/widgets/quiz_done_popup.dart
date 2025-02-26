@@ -114,7 +114,7 @@ class QuizCompletionDialog extends StatelessWidget {
                     Lottie.asset(
                       'assets/lottie/confetti.json',
                       height: Get.height * 0.15,
-                      repeat: true,
+                      repeat: false,
                     ),
                   ],
                 ),
@@ -160,7 +160,7 @@ class QuizCompletionDialog extends StatelessWidget {
                   color: HexColor('#22A06B'),
                   onPressed: onClose,
                   child: Text(
-                    'Kembali ke Kuis',
+                    'Kembali ke menu kuis',
                     style: TextStyle(
                       fontSize: Get.width * 0.04,
                       fontWeight: FontWeight.bold,

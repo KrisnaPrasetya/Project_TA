@@ -54,7 +54,7 @@ class CustomHeaderDetailQuiz extends StatelessWidget {
                         fontSize: Get.width * 0.04,
                         fontWeight: FontWeight.bold,
                       ),
-                      textAlign: TextAlign.left,
+                      textAlign: TextAlign.center,
                     );
                   }),
                 ],
