@@ -35,7 +35,6 @@ class AboutUsScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                _buildHeader(),
                 const SizedBox(height: 20),
                 _buildTeamSection(controller),
               ],
@@ -43,32 +42,6 @@ class AboutUsScreen extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      decoration: BoxDecoration(
-        color: Get.theme.primaryColor,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-      ),
-      child: Column(
-        children: [
-          const Text(
-            'Kenali anggota tim yang berdedikasi untuk memberikan layanan terbaik',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
     );
   }
 
