@@ -16,20 +16,19 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
   late Animation<double> _progressAnimation;
   final String materiTitle = "Kubus dan Balok";
   final String imageAsset = "assets/images/block_of_cubes.png";
-  
+
   @override
   void initState() {
     super.initState();
-    
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     );
-    
-    // Initial progress setup
+
     final controller = Get.find<MateriPageController>();
     double initialProgress = controller.totalProgress.value / 100.0;
-    
+
     _progressAnimation = Tween<double>(
       begin: 0.0,
       end: initialProgress,
@@ -37,21 +36,20 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
-    
+
     _animationController.forward();
   }
-  
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Update animation if controller changes
     updateProgressAnimation();
   }
-  
+
   void updateProgressAnimation() {
     final controller = Get.find<MateriPageController>();
     double newProgress = controller.totalProgress.value / 100.0;
-    
+
     if (_progressAnimation.value != newProgress) {
       _progressAnimation = Tween<double>(
         begin: _progressAnimation.value,
@@ -60,7 +58,7 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
         parent: _animationController,
         curve: Curves.easeInOut,
       ));
-      
+
       _animationController.forward(from: 0);
     }
   }
@@ -75,13 +73,13 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
   Widget build(BuildContext context) {
     return GetBuilder<MateriPageController>(
       builder: (controller) {
-        // Update animation when controller updates
-        if (_progressAnimation.value != controller.totalProgress.value / 100.0) {
+        if (_progressAnimation.value !=
+            controller.totalProgress.value / 100.0) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (mounted) updateProgressAnimation();
           });
         }
-        
+
         return Container(
           width: double.infinity,
           height: Get.height * 0.30,
@@ -111,7 +109,8 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
                       padding: EdgeInsets.all(Get.width * 0.03),
                       decoration: BoxDecoration(
                         image: const DecorationImage(
-                          image: AssetImage("assets/images/background_materi1.png"),
+                          image: AssetImage(
+                              "assets/images/background_materi1.png"),
                           fit: BoxFit.cover,
                         ),
                         color: Colors.grey[300],
@@ -152,10 +151,12 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
                                         value: _progressAnimation.value,
                                         strokeWidth: Get.width * 0.013,
                                         backgroundColor: Colors.grey[300],
-                                        valueColor: AlwaysStoppedAnimation<Color>(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
                                           (_progressAnimation.value >= 0.80)
                                               ? Colors.green
-                                              : (_progressAnimation.value >= 0.50)
+                                              : (_progressAnimation.value >=
+                                                      0.50)
                                                   ? const Color(0xFF28A745)
                                                   : Colors.red[200]!,
                                         ),
@@ -167,7 +168,8 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
                                   radius: Get.width * 0.10,
                                   backgroundColor: Colors.white,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset(
@@ -179,13 +181,17 @@ class _CustomHeaderDetailMateriState extends State<CustomHeaderDetailMateri>
                                         animation: _progressAnimation,
                                         builder: (context, child) {
                                           return Text(
-                                            '${(controller.totalProgress.value).toInt()}%',
+                                            '${(_progressAnimation.value * 100).toInt()}%',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: Get.width * 0.04,
-                                              color: controller.totalProgress.value >= 80
+                                              color: (_progressAnimation.value *
+                                                          100) >=
+                                                      80
                                                   ? Colors.green
-                                                  : controller.totalProgress.value >= 50
+                                                  : (_progressAnimation.value *
+                                                              100) >=
+                                                          50
                                                       ? const Color(0xFF28A745)
                                                       : Colors.red[200]!,
                                             ),
