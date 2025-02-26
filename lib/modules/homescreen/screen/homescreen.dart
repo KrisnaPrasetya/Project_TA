@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/detailmateri/screen/detail_screen.dart';
+import 'package:project_ta/modules/detailmateri/screen/materi_screen.dart';
 import 'package:project_ta/modules/homescreen/controller/homescreen_controller.dart';
 import 'package:project_ta/modules/hompage/screen/homepage_menu_screen.dart';
 import 'package:project_ta/modules/materi/screen/materi_screen.dart';

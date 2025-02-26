@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/materipagescreen/controller/materi_page_controller.dart';
+import 'package:project_ta/modules/materipagescreen/controller/detail_materi_controller.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/customheader_materi.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/pembelajarandua.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/pembelajaransatu.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/detailmateri/controller/detail_materi_controller.dart';
+import 'package:project_ta/modules/detailmateri/controller/materi_controller.dart';
 
 class DetailMateriController extends GetxController {
   late ScrollController scrollController;
