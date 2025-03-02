@@ -153,6 +153,7 @@ class Pembelajaransatu extends StatelessWidget {
                   Card(
                     elevation: 0,
                     color: Colors.amber.shade50,
+                    shadowColor: Colors.amber.shade500,
                     child: Padding(
                       padding: EdgeInsets.all(12),
                       child: Column(
@@ -163,7 +164,7 @@ class Pembelajaransatu extends StatelessWidget {
                               Icon(Icons.lightbulb, color: Colors.amber),
                               SizedBox(width: 8),
                               Text(
-                                'Contoh benda dalam kehidupan sehari-hari:',
+                                'Contoh benda dalam kehidupan\nsehari-hari:',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: Get.width * 0.04,
@@ -172,43 +173,51 @@ class Pembelajaransatu extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('• ',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.04,
-                                      fontWeight: FontWeight.bold)),
-                              Text('Kubus: ',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.04,
-                                      fontWeight: FontWeight.bold)),
-                              Expanded(
-                                child: Text(
-                                  'Dadu, rubik, kotak makanan kecil.',
-                                  style: TextStyle(fontSize: Get.width * 0.04),
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(start: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('• ',
+                                    style: TextStyle(
+                                        fontSize: Get.width * 0.04,
+                                        fontWeight: FontWeight.bold)),
+                                Text('Kubus: ',
+                                    style: TextStyle(
+                                        fontSize: Get.width * 0.04,
+                                        fontWeight: FontWeight.bold)),
+                                Expanded(
+                                  child: Text(
+                                    'Dadu, rubik, kotak makanan kecil.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('• ',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.04,
-                                      fontWeight: FontWeight.bold)),
-                              Text('Balok: ',
-                                  style: TextStyle(
-                                      fontSize: Get.width * 0.04,
-                                      fontWeight: FontWeight.bold)),
-                              Expanded(
-                                child: Text(
-                                  'Kotak susu, buku, kardus sepatu.',
-                                  style: TextStyle(fontSize: Get.width * 0.04),
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(start: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('• ',
+                                    style: TextStyle(
+                                        fontSize: Get.width * 0.04,
+                                        fontWeight: FontWeight.bold)),
+                                Text('Balok: ',
+                                    style: TextStyle(
+                                        fontSize: Get.width * 0.04,
+                                        fontWeight: FontWeight.bold)),
+                                Expanded(
+                                  child: Text(
+                                    'Kotak susu, buku, kardus sepatu.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
