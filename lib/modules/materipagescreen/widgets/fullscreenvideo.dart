@@ -5,8 +5,7 @@ import 'package:video_player/video_player.dart';
 class FullScreenVideoPlayer extends StatefulWidget {
   final VideoPlayerController controller;
 
-  const FullScreenVideoPlayer({Key? key, required this.controller})
-      : super(key: key);
+  const FullScreenVideoPlayer({Key? key, required this.controller}) : super(key: key);
 
   @override
   _FullScreenVideoPlayerState createState() => _FullScreenVideoPlayerState();
@@ -16,24 +15,22 @@ class _FullScreenVideoPlayerState extends State<FullScreenVideoPlayer> {
   @override
   void initState() {
     super.initState();
-    // Mengubah orientasi ke landscape saat fullscreen dimulai
+    // Ubah orientasi ke landscape saat masuk fullscreen
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.immersiveSticky); // Menyembunyikan status bar
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky); // Sembunyikan status bar
   }
 
   @override
   void dispose() {
-    // Kembali ke portrait saat keluar fullscreen
+    // Kembalikan ke mode portrait saat keluar fullscreen
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.edgeToEdge); // Tampilkan kembali status bar
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge); // Tampilkan status bar kembali
     super.dispose();
   }
 
@@ -49,6 +46,7 @@ class _FullScreenVideoPlayerState extends State<FullScreenVideoPlayer> {
             } else {
               widget.controller.play();
             }
+            setState(() {});
           },
           child: Stack(
             alignment: Alignment.center,
@@ -58,7 +56,7 @@ class _FullScreenVideoPlayerState extends State<FullScreenVideoPlayer> {
                 child: VideoPlayer(widget.controller),
               ),
               Positioned(
-                bottom: 20,
+                bottom: 40,
                 left: 10,
                 right: 10,
                 child: VideoProgressIndicator(
@@ -72,10 +70,10 @@ class _FullScreenVideoPlayerState extends State<FullScreenVideoPlayer> {
                 ),
               ),
               Positioned(
-                bottom: 10,
-                right: 10,
+                top: 20,
+                left: 20,
                 child: IconButton(
-                  icon: Icon(Icons.fullscreen, color: Colors.white),
+                  icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
                   onPressed: () {
                     Navigator.pop(context);
                   },

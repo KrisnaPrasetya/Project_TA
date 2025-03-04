@@ -5,8 +5,7 @@ import 'package:video_player/video_player.dart';
 class VideoPlayerWidget extends StatefulWidget {
   final String assetPath;
 
-  const VideoPlayerWidget({Key? key, required this.assetPath})
-      : super(key: key);
+  const VideoPlayerWidget({Key? key, required this.assetPath}) : super(key: key);
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
@@ -25,7 +24,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       });
 
     _controller.addListener(() {
-      setState(() {});
+      setState(() {}); // Update UI setiap perubahan video
     });
   }
 
@@ -40,13 +39,17 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     });
   }
 
-  void _openFullScreen() {
-    Navigator.push(
+  void _openFullScreen() async {
+    final wasPlaying = _controller.value.isPlaying;
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => FullScreenVideoPlayer(controller: _controller),
       ),
     );
+    if (wasPlaying) {
+      _controller.play(); // Melanjutkan video jika sebelumnya sedang diputar
+    }
   }
 
   @override
@@ -61,7 +64,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                   children: [
                     VideoPlayer(_controller),
                     Positioned(
-                      bottom: 5,
+                      bottom: 10,
                       left: 10,
                       right: 10,
                       child: VideoProgressIndicator(
@@ -75,7 +78,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                       ),
                     ),
                     Positioned(
-                      bottom: 10,
+                      bottom: 40,
                       right: 10,
                       child: IconButton(
                         icon: Icon(Icons.fullscreen, color: Colors.white),
@@ -100,9 +103,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             : Container(
                 height: 200,
                 color: Colors.black,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
+                child: Center(child: CircularProgressIndicator()),
               ),
       ],
     );
