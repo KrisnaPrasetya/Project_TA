@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/youtube_player.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/video_player.dart';
 
 class Pembelajarantiga extends StatelessWidget {
   const Pembelajarantiga({super.key});
@@ -8,9 +8,7 @@ class Pembelajarantiga extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        YoutubePlayerWidget(
-          videoUrl: 'https://www.youtube.com/watch?v=vfp0r-lFm1k',
-        ),
+        VideoPlayerWidget(assetPath: "assets/videos/sample.mp4"),
         SizedBox(height: 10),
         Text('Lokasi dan Koordinat '),
       ],
