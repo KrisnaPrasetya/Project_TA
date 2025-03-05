@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/balok.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/cuboid.dart';
 
 class Pembelajarandua extends StatelessWidget {
   const Pembelajarandua({super.key});
@@ -308,13 +310,11 @@ class Pembelajarandua extends StatelessWidget {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
-                              child: Icon(Icons.view_in_ar,
-                                  size: 80, color: Colors.blue),
-                            ),
+                            child: InteractiveCube(),
                           ),
-                          Text('Kubus dari berbagai sudut',
-                              style: TextStyle(fontSize: Get.width * 0.035)),
+                          Text('Kubus dari\nberbagai sudut',
+                              style: TextStyle(fontSize: Get.width * 0.035),
+                              textAlign: TextAlign.center),
                         ],
                       ),
 
@@ -328,13 +328,11 @@ class Pembelajarandua extends StatelessWidget {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
-                              child: Icon(Icons.view_in_ar,
-                                  size: 80, color: Colors.orange),
-                            ),
+                            child: InteractiveBalok(),
                           ),
-                          Text('Balok dari berbagai sudut',
-                              style: TextStyle(fontSize: Get.width * 0.035)),
+                          Text('Balok dari\nberbagai sudut',
+                              style: TextStyle(fontSize: Get.width * 0.035),
+                              textAlign: TextAlign.center),
                         ],
                       ),
                     ],
