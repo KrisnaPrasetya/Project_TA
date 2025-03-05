@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/balok.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/cuboid.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/video_player.dart';
 
 class Pembelajaransatu extends StatelessWidget {
   const Pembelajaransatu({super.key});
@@ -235,10 +238,11 @@ class Pembelajaransatu extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.casino,
-                                  size: 60, color: Colors.blue),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/pembelajaran_satu/dadu.png'),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           Text('Dadu (Kubus)',
@@ -253,10 +257,11 @@ class Pembelajaransatu extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.inventory_2,
-                                  size: 60, color: Colors.orange),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/pembelajaran_satu/kotak_sepatu.png'),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           Text('Kotak Sepatu (Balok)',
@@ -327,7 +332,6 @@ class Pembelajaransatu extends StatelessWidget {
                     textAlign: TextAlign.justify,
                   ),
                   SizedBox(height: Get.height * 0.015),
-
                   // 3D Cube and Cuboid visualization
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -335,29 +339,24 @@ class Pembelajaransatu extends StatelessWidget {
                       // Cube visualization placeholder
                       Column(
                         children: [
+                          // Container(
+                          //   height: 150,
+                          //   width: 150,
+                          //   decoration: BoxDecoration(
+                          //     color: Colors.grey.shade200,
+                          //     borderRadius: BorderRadius.circular(8),
+                          //   ),
+                          //   child: InteractiveCube(),
+                          // ),
                           Container(
                             height: 150,
                             width: 150,
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Transform(
-                                transform: Matrix4.identity()
-                                  ..setEntry(3, 2, 0.001)
-                                  ..rotateX(0.5)
-                                  ..rotateY(0.5),
-                                alignment: Alignment.center,
-                                child: Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue.withOpacity(0.7),
-                                    border: Border.all(
-                                        color: Colors.black, width: 2),
-                                  ),
-                                ),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/pembelajaran_satu/kubus.png'),
                               ),
                             ),
                           ),
@@ -367,33 +366,27 @@ class Pembelajaransatu extends StatelessWidget {
                                   fontWeight: FontWeight.bold)),
                         ],
                       ),
-
                       // Cuboid visualization placeholder
                       Column(
                         children: [
+                          // Container(
+                          //   height: 150,
+                          //   width: 150,
+                          //   decoration: BoxDecoration(
+                          //     color: Colors.grey.shade200,
+                          //     borderRadius: BorderRadius.circular(8),
+                          //   ),
+                          //   child: InteractiveBalok(),
+                          // ),
                           Container(
                             height: 150,
                             width: 150,
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Transform(
-                                transform: Matrix4.identity()
-                                  ..setEntry(3, 2, 0.001)
-                                  ..rotateX(0.5)
-                                  ..rotateY(0.5),
-                                alignment: Alignment.center,
-                                child: Container(
-                                  height: 70,
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.orange.withOpacity(0.7),
-                                    border: Border.all(
-                                        color: Colors.black, width: 2),
-                                  ),
-                                ),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/pembelajaran_satu/balok.png'),
                               ),
                             ),
                           ),
@@ -843,48 +836,43 @@ class Pembelajaransatu extends StatelessWidget {
                   SizedBox(height: Get.height * 0.015),
 
                   // Net Patterns Illustrations
-                  Row(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       // Cube net pattern
-                      Column(
-                        children: [
-                          Container(
-                            height: 150,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.view_module,
-                                  size: 80, color: Colors.blue),
-                            ),
+                      Container(
+                        height: 150,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/pembelajaran_satu/jaring_kubus.png'),
                           ),
-                          Text('Jaring-jaring Kubus',
-                              style: TextStyle(fontSize: Get.width * 0.035)),
-                        ],
+                        ),
                       ),
-
+                      Text('Jaring-jaring Kubus',
+                          style: TextStyle(fontSize: Get.width * 0.035)),
+                      const SizedBox(
+                        height: 12,
+                      ),
                       // Cuboid net pattern
-                      Column(
-                        children: [
-                          Container(
-                            height: 150,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.dashboard,
-                                  size: 80, color: Colors.orange),
+                      Container(
+                        height: 150,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: AssetImage(
+                              'assets/images/pembelajaran_satu/jaring_balok.png',
                             ),
                           ),
-                          Text('Jaring-jaring Balok',
-                              style: TextStyle(fontSize: Get.width * 0.035)),
-                        ],
+                        ),
                       ),
+                      Text('Jaring-jaring Balok',
+                          style: TextStyle(fontSize: Get.width * 0.035)),
                     ],
                   ),
                   SizedBox(height: Get.height * 0.015),
@@ -1240,44 +1228,29 @@ class Pembelajaransatu extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 140,
-                        width: Get.width * 0.85,
+                        height: 150,
+                        width: 150,
                         decoration: BoxDecoration(
                           color: Colors.grey.shade200,
                           borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/pembelajaran_satu/duad_dadu.png'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.view_in_ar,
-                                      size: 40, color: Colors.blue),
-                                  Icon(Icons.add, size: 20),
-                                  Icon(Icons.view_in_ar,
-                                      size: 40, color: Colors.blue),
-                                ],
-                              ),
-                              Icon(Icons.arrow_forward, size: 30),
-                              Transform(
-                                transform: Matrix4.identity()
-                                  ..setEntry(3, 2, 0.001)
-                                  ..rotateX(0.4)
-                                  ..rotateY(0.4),
-                                alignment: Alignment.center,
-                                child: Container(
-                                  height: 50,
-                                  width: 80,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue.withOpacity(0.7),
-                                    border: Border.all(
-                                        color: Colors.black, width: 2),
-                                  ),
-                                ),
-                              ),
-                            ],
+                      ),
+                      SizedBox(width: 20),
+                      Container(
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/pembelajaran_satu/menara_dadu.png'),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -1427,6 +1400,7 @@ class Pembelajaransatu extends StatelessWidget {
                               ),
                               SizedBox(height: 5),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Icon(Icons.check_circle,
                                       color: Colors.green, size: 20),
@@ -1452,7 +1426,11 @@ class Pembelajaransatu extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              const SizedBox(
+                                height: 12,
+                              ),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Icon(Icons.check_circle,
                                       color: Colors.green, size: 20),
@@ -1488,84 +1466,25 @@ class Pembelajaransatu extends StatelessWidget {
                   SizedBox(height: Get.height * 0.015),
 
                   // Illustration of combining cuboids
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 140,
-                        width: Get.width * 0.85,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Transform(
-                                    transform: Matrix4.identity()
-                                      ..setEntry(3, 2, 0.001)
-                                      ..rotateX(0.4)
-                                      ..rotateY(0.4),
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      height: 30,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        color: Colors.orange.withOpacity(0.7),
-                                        border: Border.all(
-                                            color: Colors.black, width: 2),
-                                      ),
-                                    ),
-                                  ),
-                                  Transform(
-                                    transform: Matrix4.identity()
-                                      ..setEntry(3, 2, 0.001)
-                                      ..rotateX(0.4)
-                                      ..rotateY(0.4),
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      height: 30,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        color: Colors.orange.withOpacity(0.7),
-                                        border: Border.all(
-                                            color: Colors.black, width: 2),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Icon(Icons.arrow_downward, size: 20),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.home,
-                                      size: 60, color: Colors.orange.shade700),
-                                ],
-                              ),
-                              Text(
-                                'Menyusun balok menjadi bangunan',
-                                style: TextStyle(
-                                  fontSize: Get.width * 0.035,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
             SizedBox(height: Get.height * 0.03),
-
+            Text(
+              'Video pembelajaran',
+              style: TextStyle(
+                fontSize: Get.width * 0.045,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: VideoPlayerWidget(assetPath: "assets/videos/sample.mp4"),
+              ),
+            ),
             // Conclusion/Summary section
             Container(
               padding: EdgeInsets.all(16),

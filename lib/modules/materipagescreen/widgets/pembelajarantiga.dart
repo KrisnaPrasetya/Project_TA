@@ -8,7 +8,13 @@ class Pembelajarantiga extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        VideoPlayerWidget(assetPath: "assets/videos/sample.mp4"),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: VideoPlayerWidget(assetPath: "assets/videos/sample.mp4"),
+          ),
+        ),
         SizedBox(height: 10),
         Text('Lokasi dan Koordinat '),
       ],

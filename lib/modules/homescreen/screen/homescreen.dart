@@ -20,13 +20,15 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (controller) {
-        return Scaffold(
-          body: Obx(() => homeWidgets[controller.navIndex]),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton:
-              Obx(() => _buildCenterFloatingButton(controller)),
-          bottomNavigationBar: Obx(() => _buildBottomNavBar(controller)),
+        return SafeArea(
+          child: Scaffold(
+            body: Obx(() => homeWidgets[controller.navIndex]),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton:
+                Obx(() => _buildCenterFloatingButton(controller)),
+            bottomNavigationBar: Obx(() => _buildBottomNavBar(controller)),
+          ),
         );
       },
     );

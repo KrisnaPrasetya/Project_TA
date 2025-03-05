@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/fullscreenvideo.dart';
 import 'package:video_player/video_player.dart';
 
@@ -71,17 +72,23 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 
   void _openFullScreen() async {
-    final wasPlaying = _controller.value.isPlaying;
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FullScreenVideoPlayer(controller: _controller),
-      ),
-    );
-    if (wasPlaying) {
-      _controller.play();
-    }
+  final wasPlaying = _controller.value.isPlaying;
+  await Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => FullScreenVideoPlayer(controller: _controller),
+    ),
+  );
+
+  // Paksa rebuild UI setelah fullscreen ditutup
+  setState(() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  });
+
+  if (wasPlaying) {
+    _controller.play(); // Lanjutkan video jika sebelumnya diputar
   }
+}
 
   @override
   void dispose() {
