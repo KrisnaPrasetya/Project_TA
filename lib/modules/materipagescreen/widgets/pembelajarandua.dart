@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/balok.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/cuboid.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/cube.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/video_player.dart';
 
 class Pembelajarandua extends StatelessWidget {
   const Pembelajarandua({super.key});
@@ -296,49 +297,48 @@ class Pembelajarandua extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.015),
 
                     // Illustrations for cube and cuboid views
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // Cube views illustration
-                        Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: InteractiveCube(),
-                            ),
-                            Text('Kubus dari\nberbagai sudut',
-                                style: TextStyle(fontSize: Get.width * 0.035),
-                                textAlign: TextAlign.center),
-                          ],
-                        ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     // Cube views illustration
+                    //     Column(
+                    //       children: [
+                    //         Container(
+                    //           height: 150,
+                    //           width: 150,
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.grey.shade200,
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           child: InteractiveCube(),
+                    //         ),
+                    //         Text('Kubus dari\nberbagai sudut',
+                    //             style: TextStyle(fontSize: Get.width * 0.035),
+                    //             textAlign: TextAlign.center),
+                    //       ],
+                    //     ),
 
-                        // Cuboid views illustration
-                        Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: InteractiveBalok(),
-                            ),
-                            Text('Balok dari\nberbagai sudut',
-                                style: TextStyle(fontSize: Get.width * 0.035),
-                                textAlign: TextAlign.center),
-                          ],
-                        ),
-                      ],
-                    ),
+                    //     // Cuboid views illustration
+                    //     Column(
+                    //       children: [
+                    //         Container(
+                    //           height: 150,
+                    //           width: 150,
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.grey.shade200,
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           child: InteractiveBalok(),
+                    //         ),
+                    //         Text('Balok dari\nberbagai sudut',
+                    //             style: TextStyle(fontSize: Get.width * 0.035),
+                    //             textAlign: TextAlign.center),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: Get.height * 0.015),
                     Card(
                       color: Colors.amber.shade50,
@@ -364,21 +364,9 @@ class Pembelajarandua extends StatelessWidget {
                             SizedBox(height: 8),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('📌 ',
-                                      style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                      )),
-                                  Expanded(
-                                    child: Text(
-                                      'Lihat kotak bekal atau kardus dari berbagai arah—bentuknya berubah tergantung sudut pandang kita!',
-                                      style:
-                                          TextStyle(fontSize: Get.width * 0.04),
-                                    ),
-                                  ),
-                                ],
+                              child: Text(
+                                'Lihat kotak bekal atau kardus dari berbagai arah—bentuknya berubah tergantung sudut pandang kita!',
+                                style: TextStyle(fontSize: Get.width * 0.04),
                               ),
                             ),
                           ],
@@ -566,66 +554,69 @@ class Pembelajarandua extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.015),
-
-                    // Illustrations for rotating cube and cuboid
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // Rotating Cube illustration
-                        Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Center(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Icon(Icons.view_in_ar,
-                                        size: 80, color: Colors.blue),
-                                    Icon(Icons.rotate_right,
-                                        size: 30, color: Colors.black),
-                                  ],
-                                ),
-                              ),
+                    const SizedBox(height: 25),
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.yellow.shade200,
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Cobalah putar kubus atau balok di bawah ini',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
                             ),
-                            Text('Kubus diputar',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 18),
+                          // Illustrations for rotating cube and cuboid
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              // Rotating Cube illustration
+                              Column(
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    width: 150,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: InteractiveCube(),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text('Kubus',
+                                      style: TextStyle(
+                                          fontSize: Get.width * 0.035)),
+                                ],
+                              ),
 
-                        // Rotating Cuboid illustration
-                        Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
+                              // Rotating Cuboid illustration
+                              Column(
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    width: 150,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: InteractiveBalok(),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text('Balok',
+                                      style: TextStyle(
+                                          fontSize: Get.width * 0.035)),
+                                ],
                               ),
-                              child: Center(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Icon(Icons.view_in_ar,
-                                        size: 80, color: Colors.orange),
-                                    Icon(Icons.rotate_right,
-                                        size: 30, color: Colors.black),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Text('Balok diputar',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Card(
@@ -1109,7 +1100,7 @@ class Pembelajarandua extends StatelessWidget {
                                             )),
                                         Expanded(
                                           child: Text(
-                                            'Potong bata atau balok kayu menjadi dua bagian horizontal—bentuknya tetap balok tetapi lebih kecil!',
+                                            'Potong bata atau balok kayu menjadi dua bagian bentuknya tetap balok tetapi lebih kecil!',
                                             style: TextStyle(
                                                 fontSize: Get.width * 0.038),
                                           ),
@@ -1147,71 +1138,79 @@ class Pembelajarandua extends StatelessWidget {
                       ),
                     ),
 
-                    // Illustrations for cutting cube and cuboid
                     SizedBox(height: Get.height * 0.015),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // Cutting Cube illustration
-                        Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Center(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Icon(Icons.view_in_ar,
-                                        size: 80, color: Colors.blue),
-                                    Icon(Icons.content_cut,
-                                        size: 30, color: Colors.black),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Text('Memotong Kubus',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     // Cutting Cube illustration
+                    //     Column(
+                    //       children: [
+                    //         Container(
+                    //           height: 150,
+                    //           width: 150,
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.grey.shade200,
+                    //             borderRadius: BorderRadius.circular(8),
+                    //             image: DecorationImage(
+                    //               image: AssetImage(
+                    //                   'assets/images/pembelajaran_dua/balok_cut.png'),
+                    //               fit: BoxFit.cover,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         Text('Balok dipotong\nmenjadi dua',
+                    //             style: TextStyle(fontSize: Get.width * 0.035),
+                    //             textAlign: TextAlign.center),
+                    //       ],
+                    //     ),
 
-                        // Cutting Cuboid illustration
-                        Column(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Center(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Icon(Icons.view_in_ar,
-                                        size: 80, color: Colors.orange),
-                                    Icon(Icons.content_cut,
-                                        size: 30, color: Colors.black),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Text('Memotong Balok',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
-                      ],
-                    ),
+                    //     Column(
+                    //       children: [
+                    //         Container(
+                    //           height: 150,
+                    //           width: 150,
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.grey.shade200,
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           child: Center(
+                    //             child: Stack(
+                    //               alignment: Alignment.center,
+                    //               children: [
+                    //                 Icon(Icons.view_in_ar,
+                    //                     size: 80, color: Colors.orange),
+                    //                 Icon(Icons.content_cut,
+                    //                     size: 30, color: Colors.black),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         Text('Memotong Balok',
+                    //             style: TextStyle(fontSize: Get.width * 0.035)),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
               SizedBox(height: Get.height * 0.03),
-
+              Text(
+                'Video pembelajaran',
+                style: TextStyle(
+                  fontSize: Get.width * 0.045,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child:
+                      VideoPlayerWidget(assetPath: "assets/videos/sample.mp4"),
+                ),
+              ),
               // Summary section
               Container(
                 padding: EdgeInsets.all(16),
@@ -1252,34 +1251,114 @@ class Pembelajarandua extends StatelessWidget {
                         padding: EdgeInsets.all(12),
                         child: Column(
                           children: [
-                            Text(
-                              '✨ Kubus dan balok dapat terlihat berbeda tergantung dari sudut pandang kita melihatnya.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'Kubus dan balok dapat terlihat berbeda tergantung dari sudut pandang kita melihatnya.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              '✨ Kubus terlihat seperti persegi jika dilihat dari atas atau depan.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'Kubus terlihat seperti persegi jika dilihat dari atas atau depan.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              '✨ Balok terlihat seperti persegi panjang jika dilihat dari atas, samping, atau depan.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨.',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'Balok terlihat seperti persegi panjang jika dilihat dari atas, samping, atau depan.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              '✨ Saat diputar, kubus tetap terlihat sama, sementara balok dapat terlihat berbeda tergantung arah putarannya.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'Saat diputar, kubus tetap terlihat sama, sementara balok dapat terlihat berbeda tergantung arah putarannya.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              '✨ Memotong kubus dan balok dapat menghasilkan bentuk berbeda seperti prisma segitiga atau trapesium.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'Memotong kubus dan balok dapat menghasilkan bentuk berbeda seperti prisma segitiga atau trapesium.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

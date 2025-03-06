@@ -45,6 +45,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/pembelajaran_satu/
+    - assets/images/pembelajaran_dua/
     - assets/images/avatar/
     - assets/images/pofile/
     - assets/icons/
