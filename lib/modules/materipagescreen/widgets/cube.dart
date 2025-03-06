@@ -278,7 +278,7 @@ class _InteractiveCubeState extends State<InteractiveCube> {
             angleX: angleX,
             angleY: angleY,
             cube: const Cube(
-              size: 90,
+              size: 80,
               color: Colors.red,
             )),
       ),

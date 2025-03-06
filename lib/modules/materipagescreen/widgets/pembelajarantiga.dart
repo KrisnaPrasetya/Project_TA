@@ -57,7 +57,8 @@ class Pembelajarantiga extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.grid_on, color: Colors.blue.shade700),
+                                Icon(Icons.grid_on,
+                                    color: Colors.blue.shade700),
                                 SizedBox(width: 8),
                                 Expanded(
                                   child: RichText(
@@ -156,7 +157,8 @@ class Pembelajarantiga extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       'Diberi label dengan huruf (A, B, C, dst) dan berjalan secara vertikal.',
-                                      style: TextStyle(fontSize: Get.width * 0.04),
+                                      style:
+                                          TextStyle(fontSize: Get.width * 0.04),
                                     ),
                                   ),
                                 ],
@@ -178,7 +180,8 @@ class Pembelajarantiga extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       'Diberi label dengan angka (1, 2, 3, dst) dan berjalan secara horizontal.',
-                                      style: TextStyle(fontSize: Get.width * 0.04),
+                                      style:
+                                          TextStyle(fontSize: Get.width * 0.04),
                                     ),
                                   ),
                                 ],
@@ -258,53 +261,26 @@ class Pembelajarantiga extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: Get.height * 0.015),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                                // Placeholder untuk gambar papan catur
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Papan Catur",
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                              ),
-                            ),
-                            Text('Papan Catur',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
+                    Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/pembelajaran_tiga/chess.png'),
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                                // Placeholder untuk gambar peta kota
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Peta Kota",
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                              ),
-                            ),
-                            Text('Peta Kota',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
+                    Text('Papan Catur',
+                        style: TextStyle(fontSize: Get.width * 0.035)),
+                    SizedBox(height: Get.height * 0.015),
+                    Image.asset(
+                      'assets/images/pembelajaran_tiga/map.png',
+                    ),
+                    Text('Peta Kota',
+                        style: TextStyle(fontSize: Get.width * 0.035)),
                   ],
                 ),
               ),
@@ -383,7 +359,8 @@ class Pembelajarantiga extends StatelessWidget {
                                           text: 'bertambah',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(text: ' (misalnya, dari C2 ke D2).'),
+                                      TextSpan(
+                                          text: ' (misalnya, dari C2 ke D2).'),
                                     ],
                                   ),
                                 ),
@@ -412,7 +389,8 @@ class Pembelajarantiga extends StatelessWidget {
                                           text: 'berkurang',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(text: ' (misalnya, dari D2 ke C2).'),
+                                      TextSpan(
+                                          text: ' (misalnya, dari D2 ke C2).'),
                                     ],
                                   ),
                                 ),
@@ -463,7 +441,8 @@ class Pembelajarantiga extends StatelessWidget {
                                           text: 'berkurang',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(text: ' (misalnya, dari C3 ke C2).'),
+                                      TextSpan(
+                                          text: ' (misalnya, dari C3 ke C2).'),
                                     ],
                                   ),
                                 ),
@@ -492,7 +471,8 @@ class Pembelajarantiga extends StatelessWidget {
                                           text: 'bertambah',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)),
-                                      TextSpan(text: ' (misalnya, dari C2 ke C3).'),
+                                      TextSpan(
+                                          text: ' (misalnya, dari C2 ke C3).'),
                                     ],
                                   ),
                                 ),
@@ -726,11 +706,13 @@ class Pembelajarantiga extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('• ',
-                                    style: TextStyle(fontSize: Get.width * 0.04)),
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04)),
                                 Expanded(
                                   child: Text(
                                     'Jika seseorang berada di titik A2 dan ingin menuju C2, ia harus bergerak 2 langkah ke bawah.',
-                                    style: TextStyle(fontSize: Get.width * 0.04),
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
                                   ),
                                 ),
                               ],
@@ -739,11 +721,13 @@ class Pembelajarantiga extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('• ',
-                                    style: TextStyle(fontSize: Get.width * 0.04)),
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04)),
                                 Expanded(
                                   child: Text(
                                     'Jika seseorang berada di titik B4 dan ingin menuju B7, ia harus bergerak 3 langkah ke bawah.',
-                                    style: TextStyle(fontSize: Get.width * 0.04),
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
                                   ),
                                 ),
                               ],
@@ -755,295 +739,7 @@ class Pembelajarantiga extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: Get.height * 0.02),
 
-              // Section 5: Practical Applications
-              Container(
-                padding: EdgeInsets.all(16),
-                width: Get.width * 0.95,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Aplikasi dalam Kehidupan Sehari-hari',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Text(
-                      'Sistem koordinat banyak digunakan dalam kehidupan sehari-hari. Mari kita lihat beberapa contoh aplikasinya!',
-                      style: TextStyle(fontSize: Get.width * 0.04),
-                      textAlign: TextAlign.justify,
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Card(
-                      elevation: 0,
-                      color: Colors.teal.shade50,
-                      child: Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.explore, color: Colors.teal),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Aplikasi Sistem Koordinat:',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: Get.width * 0.042,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('1. ',
-                                    style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.bold)),
-                                Expanded(
-                                  child: Text(
-                                    'Permainan seperti catur, battleship, dan permainan strategi lainnya.',
-                                    style: TextStyle(fontSize: Get.width * 0.04),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('2. ',
-                                    style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.bold)),
-                                Expanded(
-                                  child: Text(
-                                    'Peta dan navigasi untuk menemukan lokasi tertentu.',
-                                    style: TextStyle(fontSize: Get.width * 0.04),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('3. ',
-                                    style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.bold)),
-                                Expanded(
-                                  child: Text(
-                                    'Buku-buku atlas dan pemetaan geografis.',
-                                    style: TextStyle(fontSize: Get.width * 0.04),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('4. ',
-                                    style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.bold)),
-                                Expanded(
-                                  child: Text(
-                                    'Denah tempat duduk di bioskop atau teater.',
-                                    style: TextStyle(fontSize: Get.width * 0.04),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                                // Placeholder untuk gambar permainan battleship
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Battleship",
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                ),
-                              ),
-                            ),
-                            Text('Permainan Battleship',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(8),
-                                // Placeholder untuk gambar denah tempat duduk
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Denah Tempat Duduk",
-                                  style: TextStyle(color: Colors.grey.shade600),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                            Text('Denah Tempat Duduk',
-                                style: TextStyle(fontSize: Get.width * 0.035)),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.blue.shade300, width: 2),
-                        color: Colors.blue.shade50,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.push_pin, color: Colors.red),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'Coba perhatikan lingkungan sekitarmu! Bisakah kamu menemukan penggunaan sistem koordinat di sekitarmu?',
-                              style: TextStyle(
-                                  fontSize: Get.width * 0.04,
-                                  fontStyle: FontStyle.italic),
-                              textAlign: TextAlign.justify,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: Get.height * 0.02),
-
-              // Section 6: Interactive Exercise Example
-              Container(
-                padding: EdgeInsets.all(16),
-                width: Get.width * 0.95,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Mari Mencoba!',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Text(
-                      'Berikut adalah contoh penerapan sistem koordinat sederhana. Cobalah untuk menentukan koordinat dari objek-objek yang ditandai.',
-                      style: TextStyle(fontSize: Get.width * 0.04),
-                      textAlign: TextAlign.justify,
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Container(
-                      height: 250,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(8),
-                        // Placeholder untuk grid koordinat dengan objek
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Grid Koordinat dengan Objek",
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.orange.shade50,
-                      ),
-                      padding: EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Pertanyaan:',
-                            style: TextStyle(
-                              fontSize: Get.width * 0.042,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.orange.shade800,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            '1. Di koordinat manakah pohon berada?',
-                            style: TextStyle(fontSize: Get.width * 0.04),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            '2. Berapa langkah yang diperlukan untuk berpindah dari bunga (B3) ke rumah?',
-                            style: TextStyle(fontSize: Get.width * 0.04),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            '3. Jika kamu bergerak 2 langkah ke kanan dan 3 langkah ke bawah dari koordinat A1, di koordinat manakah kamu berada?',
-                            style: TextStyle(fontSize: Get.width * 0.04),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(height: Get.height * 0.03),
               Text(
                 'Video pembelajaran',
@@ -1061,7 +757,7 @@ class Pembelajarantiga extends StatelessWidget {
                       VideoPlayerWidget(assetPath: "assets/videos/sample.mp4"),
                 ),
               ),
-              
+
               // Conclusion/Summary section
               Container(
                 padding: EdgeInsets.all(16),
