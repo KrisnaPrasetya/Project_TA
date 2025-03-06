@@ -40,12 +40,6 @@ class ProgressItemList extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundColor: Colors.grey[300],
-                child: Icon(Icons.book, color: Colors.grey[700]),
-              ),
-              const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +47,7 @@ class ProgressItemList extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -95,7 +89,7 @@ class ProgressItemList extends StatelessWidget {
                       suffix: "%",
                       textStyle: TextStyle(
                         fontSize: 12,
-                        color: progress  >= 0.5 ? Colors.green : Colors.orange,
+                        color: progress >= 0.5 ? Colors.green : Colors.orange,
                       ),
                     )
                   ],
