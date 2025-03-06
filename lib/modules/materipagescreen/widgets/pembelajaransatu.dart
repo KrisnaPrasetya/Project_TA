@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/balok.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/cuboid.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/video_player.dart';
 
 class Pembelajaransatu extends StatelessWidget {
@@ -1166,6 +1164,7 @@ class Pembelajaransatu extends StatelessWidget {
                                 ),
                                 SizedBox(height: 5),
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(Icons.check_circle,
                                         color: Colors.green, size: 20),
@@ -1193,7 +1192,9 @@ class Pembelajaransatu extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+                                const SizedBox(height: 5),
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(Icons.check_circle,
                                         color: Colors.green, size: 20),
@@ -1540,34 +1541,84 @@ class Pembelajaransatu extends StatelessWidget {
                         padding: EdgeInsets.all(12),
                         child: Column(
                           children: [
-                            Text(
-                              '✨ Mengonstruksi adalah membangun kubus dan balok dari bagian-bagiannya.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    'Mengonstruksi adalah membangun kubus dan balok dari bagian-bagiannya.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              '✨ Mengurai adalah membongkar kubus dan balok menjadi bagian-bagiannya.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    'Mengurai adalah membongkar kubus dan balok menjadi bagian-bagiannya.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 8),
-                            Text(
-                              '✨ Kubus dan balok terdiri dari sisi, rusuk, dan titik sudut.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            const SizedBox(height: 8),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    'Jaring-jaring adalah bentuk kubus atau balok yang dibuka dan diratakan.',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 8),
-                            Text(
-                              '✨ Jaring-jaring adalah bentuk kubus atau balok yang dibuka dan diratakan.',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              '✨ Kita bisa menggabungkan kubus dan balok untuk membuat bentuk baru!',
-                              style: TextStyle(fontSize: Get.width * 0.04),
-                              textAlign: TextAlign.justify,
+                            const SizedBox(height: 8),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '✨',
+                                  style: TextStyle(fontSize: Get.width * 0.04),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                const SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    'Kita bisa menggabungkan kubus dan balok untuk membuat bentuk baru!',
+                                    style:
+                                        TextStyle(fontSize: Get.width * 0.04),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
