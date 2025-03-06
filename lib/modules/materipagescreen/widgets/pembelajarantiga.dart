@@ -36,7 +36,7 @@ class Pembelajarantiga extends StatelessWidget {
                     Text(
                       'Lokasi dan Koordinat dalam Sistem Berpetak',
                       style: TextStyle(
-                        fontSize: Get.width * 0.045,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -251,7 +251,7 @@ class Pembelajarantiga extends StatelessWidget {
                                   style: TextStyle(fontSize: Get.width * 0.04)),
                               Expanded(
                                 child: Text(
-                                  'Peta kota juga menggunakan grid koordinat untuk menentukan lokasi.',
+                                  'Peta negara juga menggunakan grid koordinat untuk menentukan lokasi.',
                                   style: TextStyle(fontSize: Get.width * 0.04),
                                 ),
                               ),
@@ -279,7 +279,7 @@ class Pembelajarantiga extends StatelessWidget {
                     Image.asset(
                       'assets/images/pembelajaran_tiga/map.png',
                     ),
-                    Text('Peta Kota',
+                    Text('Peta Negara',
                         style: TextStyle(fontSize: Get.width * 0.035)),
                   ],
                 ),
@@ -483,22 +483,6 @@ class Pembelajarantiga extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: Get.height * 0.015),
-                    Container(
-                      height: 200,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(8),
-                        // Placeholder untuk gambar ilustrasi pergerakan
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Ilustrasi Pergerakan",
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.015),
                     Card(
                       color: Colors.blue.shade50,
                       elevation: 1,
@@ -533,8 +517,6 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
               ),
               SizedBox(height: Get.height * 0.02),
-
-              // Section 4: Calculating Distance in Coordinate System
               Container(
                 padding: EdgeInsets.all(16),
                 width: Get.width * 0.95,
