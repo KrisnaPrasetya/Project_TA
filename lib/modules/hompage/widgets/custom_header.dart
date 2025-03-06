@@ -13,7 +13,7 @@ class CustomHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: Get.height * 0.53,
+      height: Get.height * 0.4,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF1DE9B6), Color(0xFF64FFDA)],
