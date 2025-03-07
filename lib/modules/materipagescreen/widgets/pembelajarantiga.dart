@@ -192,20 +192,9 @@ class Pembelajarantiga extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: Get.height * 0.015),
-                    Container(
-                      height: 200,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(8),
-                        // Placeholder untuk gambar sistem koordinat sederhana
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Gambar Sistem Koordinat",
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      ),
+                    Image.asset(
+                      'assets/images/pembelajaran_tiga/koordinat.png',
+                      width: Get.width * 0.8,
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Container(
@@ -643,22 +632,6 @@ class Pembelajarantiga extends StatelessWidget {
                             ],
                           ),
                         ],
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.015),
-                    Container(
-                      height: 200,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(8),
-                        // Placeholder untuk gambar ilustrasi perhitungan jarak
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Ilustrasi Perhitungan Jarak",
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
                       ),
                     ),
                     SizedBox(height: Get.height * 0.015),
