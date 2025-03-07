@@ -29,6 +29,7 @@ class CustomHeaderDetailQuiz extends StatelessWidget {
             left: Get.width * 0.04,
             right: Get.width * 0.04,
             child: Container(
+              alignment: Alignment.center,
               padding: EdgeInsets.all(Get.width * 0.04),
               height: Get.height * 0.18,
               decoration: BoxDecoration(
@@ -43,6 +44,7 @@ class CustomHeaderDetailQuiz extends StatelessWidget {
                 ],
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Obx(() {

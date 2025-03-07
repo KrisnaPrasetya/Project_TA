@@ -32,8 +32,8 @@ class DetailMateriScreen extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios,
                   size: 25, color: Colors.white),
             ),
-            leadingWidth: 20,
             backgroundColor: Color(0xFF009CE1),
+            titleSpacing: 0,
           ),
           body: NotificationListener<ScrollNotification>(
             onNotification: (notification) {
