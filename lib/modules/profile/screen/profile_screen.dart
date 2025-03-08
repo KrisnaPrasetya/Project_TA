@@ -139,7 +139,7 @@ class ProfileScreen extends StatelessWidget {
                                   } else if (index == 1) {
                                     Get.toNamed(AppRoutes.tentangKami);
                                   } else if (index == 2) {
-                                    // Handle source and reference
+                                    Get.toNamed(AppRoutes.referensiSumber);
                                   }
                                 },
                               );

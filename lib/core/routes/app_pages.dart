@@ -7,8 +7,8 @@ import 'package:project_ta/modules/hompage/screen/homepage_menu_screen.dart';
 import 'package:project_ta/modules/materipagescreen/screen/detail_materi_screen.dart';
 import 'package:project_ta/modules/profile/screen/profile_screen.dart';
 import 'package:project_ta/modules/splash_screen/screen/splash_screen.dart';
+import 'package:project_ta/modules/sumberreferensi/screen/referensi_screen.dart';
 import 'package:project_ta/modules/tentangkami/tentang_kami_screen.dart';
-import 'package:project_ta/reference/cube.dart';
 
 import 'app_routes.dart';
 
@@ -21,8 +21,8 @@ class AppPages {
     GetPage(name: AppRoutes.detailPageMateri, page: () => DetailMateriScreen()),
     GetPage(name: AppRoutes.firsttimeuser, page: () => FirsttimeUserScreen()),
     GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
-    GetPage(name: AppRoutes.cube, page: () => CubePage()),
     GetPage(name: AppRoutes.quizDetail, page: () => QuizdetailScreen()),
     GetPage(name: AppRoutes.tentangKami, page: () => AboutUsScreen()),
+    GetPage(name: AppRoutes.referensiSumber, page: () => ReferensiScreen()),
   ];
 }
