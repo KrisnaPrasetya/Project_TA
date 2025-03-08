@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project_ta/modules/splash_screen/controller/splash_screen_controller.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -31,10 +32,11 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/mascot.png',
+                  Lottie.asset(
+                    'assets/lottie/maskot.json',
                     width: 200,
                     height: 200,
+                    repeat: false,
                   ),
                 ],
               ),
