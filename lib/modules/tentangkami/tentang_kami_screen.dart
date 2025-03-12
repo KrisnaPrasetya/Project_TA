@@ -61,6 +61,7 @@ class AboutUsScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(20),
+      width: 400,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -97,23 +98,6 @@ class AboutUsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          // Text(
-          //   member.description,
-          //   textAlign: TextAlign.center,
-          //   style: TextStyle(
-          //     fontSize: 14,
-          //     color: Colors.grey[800],
-          //   ),
-          // ),
-          const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildSocialIcon(Icons.email),
-              const SizedBox(width: 15),
-              _buildSocialIcon(Icons.facebook),
-            ],
-          ),
         ],
       ),
     );

@@ -6,8 +6,8 @@ class SplashScreenController extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
 
   Future<void> nextPage() async {
-    await Future.delayed(const Duration(seconds: 3));
     await checkFirstTimeUser();
+    await Future.delayed(const Duration(seconds: 3));
   }
 
   Future<void> checkFirstTimeUser() async {

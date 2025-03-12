@@ -21,21 +21,21 @@ class AboutUsController extends GetxController {
       position: 'Pembimbing 1',
       // description:
       // 'Putri memiliki pengalaman lebih dari 10 tahun dalam bidang teknologi dan inovasi. Ia mendirikan perusahaan ini dengan visi untuk memberikan solusi yang dapat menjawab kebutuhan masyarakat.',
-      imagePath: 'assets/images/profile1.jpg',
+      imagePath: 'assets/images/tentang/dosen1.jpg',
     ),
     TeamMember(
       name: 'Dr. DEVIANA, S.Pd., M.Pd',
       position: 'Pembimbing 2',
       // description:
       // 'Seorang ahli teknologi dengan latar belakang di bidang AI dan Machine Learning. Budi bertanggung jawab atas pengembangan teknologi dan inovasi produk perusahaan.',
-      imagePath: 'assets/images/profile2.jpg',
+      imagePath: 'assets/images/tentang/dosen2.jpg',
     ),
     TeamMember(
       name: 'Kadek Aries Yudhia Krisna Prasetya',
-      position: 'Pembuat',
+      position: 'Pembuat Aplikasi',
       // description:
       // 'Anisa adalah seorang desainer UI/UX berpengalaman yang memastikan bahwa setiap produk kami tidak hanya fungsional tetapi juga menyenangkan untuk digunakan.',
-      imagePath: 'assets/images/profile3.jpg',
+      imagePath: 'assets/images/tentang/pembuat.jpg',
     ),
   ];
 

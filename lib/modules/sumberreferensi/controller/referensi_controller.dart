@@ -34,36 +34,32 @@ class ReferensiController extends GetxController {
 
       // Video 1
       ReferensiModel(
-        judul: 'Flutter & GetX State Management Tutorial [Video]',
-        penulis: '', 
-        tahun: '2022',
-        penerbit: 'The Flutter Way',
-        url: 'https://www.youtube.com/watch?v=g4jmm8WXuZE',
-        deskripsi:
-            'Tutorial video yang membahas implementasi GetX state management dalam aplikasi Flutter.',
+        judul: 'mengonstruksi dan mengurai bangun ruang matematika kelas 6',
+        penulis: '',
+        tahun: '2025',
+        penerbit: 'My class My adventure',
+        url: 'https://www.youtube.com/watch?v=11gXUUBGxKQ',
+        deskripsi: '',
       ),
 
       // Video 2
       ReferensiModel(
-        judul: 'Flutter GetX Pattern: Complete Responsive UI [Video]',
+        judul: 'visualisasi spasial matematika kelas 6 SD bangun ruang',
         penulis: '',
-        tahun: '2022',
-        penerbit: 'Afgprogrammer', 
-        url: 'https://www.youtube.com/watch?v=IrVQQpAQMKM',
-        deskripsi:
-            'Tutorial implementasi desain responsif menggunakan Flutter dan GetX pattern.',
+        tahun: '2025',
+        penerbit: 'My class My adventure',
+        url: 'https://www.youtube.com/watch?v=sJXxG7-eYsw',
+        deskripsi: '',
       ),
 
       // Video 3
       ReferensiModel(
-        judul:
-            'Flutter GetX Crash Course: State Management & Navigation [Video]',
+        judul: 'Lokasi KUBUS DAN BALOK Kelas 6 SD Kurikulum Merdeka',
         penulis: '',
-        tahun: '2023',
-        penerbit: 'Tadas Petra',
-        url: 'https://www.youtube.com/watch?v=ttQtlX_Q0eU',
-        deskripsi:
-            'Crash course video yang menjelaskan penggunaan GetX untuk state management dan navigasi dalam Flutter.',
+        tahun: '2024',
+        penerbit: 'Ruang Pintar',
+        url: 'https://www.youtube.com/watch?v=cqb63ma5-c4',
+        deskripsi: '',
       ),
     ];
 

@@ -21,7 +21,15 @@ class SetupAvatarWidget extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SizedBox(height: Get.height * 0.02),
+              Text(
+                "Hai, selamat datang!",
+                style: TextStyle(
+                  fontSize: Get.width * 0.06,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: Get.height * 0.03),
               Obx(() => Container(
                     width: Get.width * 0.25,
                     height: Get.width * 0.25,
