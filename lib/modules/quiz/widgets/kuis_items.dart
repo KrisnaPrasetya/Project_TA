@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/quiz/controller/quiz_controller.dart';
+import 'package:project_ta/widgets/custom_container.dart';
 
-class KuisItems extends StatefulWidget {
+class KuisItems extends StatelessWidget {
   final KuisProgress material;
 
   const KuisItems({
@@ -12,103 +13,22 @@ class KuisItems extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<KuisItems> createState() => _KuisItemsState();
-}
-
-class _KuisItemsState extends State<KuisItems>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _progressAnimation;
-  bool _isFirstBuild = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeAnimation();
-  }
-
-  void _initializeAnimation() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    );
-
-    _progressAnimation = Tween<double>(
-      begin: 0,
-      end: widget.material.progress,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _isFirstBuild = true;
-
-    final mainController = Get.find<QuizController>();
-    ever(mainController.canStartAnimation, (bool canStart) {
-      if (canStart && mounted) {
-        _startAnimation();
-      }
-    });
-  }
-
-  void _startAnimation() {
-    if (_isFirstBuild) {
-      _controller.forward();
-      _isFirstBuild = false;
-    } else {
-      _controller.reset();
-      _updateProgressAnimation();
-      _controller.forward();
-    }
-  }
-
-  void _updateProgressAnimation() {
-    _progressAnimation = Tween<double>(
-      begin: 0,
-      end: widget.material.progress,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-  }
-
-  @override
-  void didUpdateWidget(KuisItems oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.material.progress != widget.material.progress) {
-      _updateProgressAnimation();
-      _controller.forward(from: 0);
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Color _getProgressColor(double progress) {
-    if (progress >= 80) {
-      return Colors.green;
-    } else if (progress >= 50) {
-      return Colors.orange;
-    } else {
-      return Colors.red[200]!;
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        final result = await Get.toNamed(
-          AppRoutes.quizDetail,
-          arguments: {'id': widget.material.id},
-        );
-
-        if (result == true) {
-          _initializeAnimation();
-        } 
+      onTap: () {
+        if (!material.isUnlocked) {
+          // Show dialog why quiz is locked - now showing clear material progress requirement
+          _showLockReasonDialog(context);
+        } else if (material.attemptsRemaining <= 0) {
+          // Show dialog that attempts are exhausted
+          _showNoAttemptsDialog(context);
+        } else {
+          // Navigate to quiz
+          Get.toNamed(
+            AppRoutes.quizDetail,
+            arguments: {'id': material.id},
+          );
+        }
       },
       child: Container(
         margin: EdgeInsets.only(bottom: Get.height * 0.02),
@@ -128,12 +48,47 @@ class _KuisItemsState extends State<KuisItems>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '${widget.material.id}: ${widget.material.title}',
-              style: TextStyle(
-                fontSize: Get.width * 0.035,
-                fontWeight: FontWeight.w500,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    '${material.id}: ${material.title}',
+                    style: TextStyle(
+                      fontSize: Get.width * 0.035,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                // Heart icons for attempts (only if quiz is unlocked)
+                if (material.isUnlocked)
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.favorite,
+                        color: material.attemptsRemaining >= 1
+                            ? Colors.red
+                            : Colors.grey[300],
+                        size: Get.width * 0.05,
+                      ),
+                      SizedBox(width: 4),
+                      Icon(
+                        Icons.favorite,
+                        color: material.attemptsRemaining >= 2
+                            ? Colors.red
+                            : Colors.grey[300],
+                        size: Get.width * 0.05,
+                      ),
+                    ],
+                  ),
+                // Lock/unlock icon
+                if (!material.isUnlocked)
+                  Icon(
+                    Icons.lock,
+                    color: Colors.grey,
+                    size: Get.width * 0.06,
+                  ),
+              ],
             ),
             SizedBox(height: Get.height * 0.01),
             Row(
@@ -141,40 +96,232 @@ class _KuisItemsState extends State<KuisItems>
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(Get.width * 0.025),
-                    child: AnimatedBuilder(
-                      animation: _progressAnimation,
-                      builder: (context, child) {
-                        return LinearProgressIndicator(
-                          value: _progressAnimation.value / 100,
-                          backgroundColor: Colors.grey[200],
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            _getProgressColor(widget.material.progress),
-                          ),
-                          minHeight: Get.height * 0.008,
-                        );
-                      },
+                    child: LinearProgressIndicator(
+                      value: material.progress / 100,
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        _getProgressColor(material.progress),
+                      ),
+                      minHeight: Get.height * 0.008,
                     ),
                   ),
                 ),
                 SizedBox(width: Get.width * 0.02),
-                AnimatedBuilder(
-                  animation: _progressAnimation,
-                  builder: (context, child) {
-                    return Text(
-                      '${_progressAnimation.value.toInt()} Poin',
-                      style: TextStyle(
-                        color: _getProgressColor(widget.material.progress),
-                        fontWeight: FontWeight.bold,
-                        fontSize: Get.width * 0.03,
-                      ),
-                    );
-                  },
+                Text(
+                  '${material.progress.toInt()}%',
+                  style: TextStyle(
+                    color: _getProgressColor(material.progress),
+                    fontWeight: FontWeight.bold,
+                    fontSize: Get.width * 0.03,
+                  ),
                 ),
               ],
+            ),
+
+            // Show material progress indicator for all quizzes, even locked first quiz
+            Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Progres Belajar:',
+                          style: TextStyle(
+                            fontSize: Get.width * 0.03,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(Get.width * 0.025),
+                          child: LinearProgressIndicator(
+                            value: material.materialProgress / 100,
+                            backgroundColor: Colors.grey[200],
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              _getMaterialProgressColor(
+                                  material.materialProgress),
+                            ),
+                            minHeight: Get.height * 0.006,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: Get.width * 0.02),
+                  Text(
+                    '${material.materialProgress.toInt()}%',
+                    style: TextStyle(
+                      color:
+                          _getMaterialProgressColor(material.materialProgress),
+                      fontWeight: FontWeight.bold,
+                      fontSize: Get.width * 0.03,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _showLockReasonDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Align(alignment: Alignment.center, child: Text('Kuis Terkunci')),
+        titleTextStyle: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              material.materialProgress < 100
+                  ? 'Kuis ini terkunci karena kamu belum mempelajari materi sepenuhnya.'
+                  : 'Kuis ini terkunci karena kamu belum menyelesaikan kuis sebelumnya.',
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Progres belajar kamu: ${material.materialProgress.toInt()}%',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8),
+            Text(
+              material.materialProgress < 100
+                  ? 'Selesaikan materi terlebih dahulu untuk membuka kuis ini.'
+                  : 'Selesaikan kuis sebelumnya dengan nilai minimal 80 untuk membuka kuis ini.',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ],
+        ),
+        actions: [
+          Align(
+            alignment: Alignment.center,
+            child: AnimatedContainerButton(
+              containerColor: Colors.green,
+              width: Get.width * 0.6,
+              height: Get.height * 0.06,
+              onTap: () => Get.back(),
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Dialog to show when attempts are exhausted
+  void _showNoAttemptsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Align(
+            alignment: Alignment.center,
+            child: Text(material.progress >= 80
+                ? 'Kamu sudah lulus untuk kuis ini'
+                : 'Kesempatan Habis')),
+        titleTextStyle: TextStyle(
+          fontSize: material.progress >= 80 ? 18 : 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            material.progress >= 80
+                ? SizedBox.shrink()
+                : Icon(
+                    Icons.favorite_border,
+                    color: Colors.red,
+                    size: 48,
+                  ),
+            SizedBox(height: material.progress >= 80 ? 0 : 16),
+            material.progress >= 80
+                ? SizedBox.shrink()
+                : Text(
+                    'Kamu telah menggunakan semua kesempatan untuk kuis ini',
+                    textAlign: TextAlign.center,
+                  ),
+            SizedBox(height: 8),
+            Text(
+              'Poin Kamu: ${material.progress.toInt()} Poin',
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              material.progress >= 80
+                  ? 'Selamat! Kamu telah lulus kuis ini'
+                  : 'Kuis berikutnya tetap terbuka karena kesempatan kamu telah habis',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                fontStyle: FontStyle.italic,
+                color: material.progress >= 80 ? Colors.green : Colors.amber,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Align(
+            alignment: Alignment.center,
+            child: AnimatedContainerButton(
+              containerColor: Colors.green,
+              width: Get.width * 0.6,
+              height: Get.height * 0.06,
+              onTap: () => Get.back(),
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Color _getProgressColor(double progress) {
+    if (progress >= 80) {
+      return Colors.green;
+    } else if (progress >= 40) {
+      return Colors.amber;
+    } else {
+      return Colors.red;
+    }
+  }
+
+  Color _getMaterialProgressColor(double progress) {
+    if (progress >= 100) {
+      return Colors.green;
+    } else if (progress >= 50) {
+      return Colors.blue;
+    } else {
+      return Colors.amber;
+    }
   }
 }

@@ -25,62 +25,9 @@ class QuizdetailScreen extends StatelessWidget {
             return PopScope(
               // ignore: deprecated_member_use
               onPopInvoked: (didPop) async {
-                final bool confirmExit = await showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(
-                      'Apakah ingin kembali ?',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
-                    content: Text(
-                      'Jika kamu kembali progress tidak akan disimpan.',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    actions: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          CustomButton(
-                            width: 120,
-                            height: 45,
-                            onPressed: () async {
-                              await Get.find<QuizController>()
-                                  .refreshQuizPage();
-                              Get.back(result: true);
-                            },
-                            color: Colors.red,
-                            child: Text(
-                              'Ya',
-                              style: TextStyle(
-                                fontSize: Get.width * 0.04,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          CustomButton(
-                            width: 120,
-                            height: 45,
-                            onPressed: () => Get.back(result: false),
-                            color: Colors.green,
-                            child: Text(
-                              'Tidak',
-                              style: TextStyle(
-                                fontSize: Get.width * 0.04,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-
-                if (confirmExit == true) {
-                  Get.back();
+                if (!didPop) {
+                  // Show the exit confirmation dialog
+                  await _showExitWarningDialog(context, controller);
                 }
               },
               child: Scaffold(
@@ -390,8 +337,6 @@ class QuizdetailScreen extends StatelessWidget {
                                                               : () async {
                                                                   await controller
                                                                       .saveScore();
-                                                                  // Get.back();
-                                                                  // Get.dialog();
                                                                 },
                                                           child: Text(
                                                             controller.currentQuestionIndex
@@ -474,6 +419,30 @@ class QuizdetailScreen extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
+                                      // Hearts for attempts
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.favorite,
+                                            color: controller.attemptsRemaining
+                                                        .value >=
+                                                    1
+                                                ? Colors.red
+                                                : Colors.grey[300],
+                                            size: Get.width * 0.05,
+                                          ),
+                                          SizedBox(width: 4),
+                                          Icon(
+                                            Icons.favorite,
+                                            color: controller.attemptsRemaining
+                                                        .value >=
+                                                    2
+                                                ? Colors.red
+                                                : Colors.grey[300],
+                                            size: Get.width * 0.05,
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -490,74 +459,9 @@ class QuizdetailScreen extends StatelessWidget {
                                         color: Colors.white,
                                       ),
                                       onPressed: () async {
-                                        final bool confirmExit =
-                                            await showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            title: Text(
-                                              'Apakah ingin kembali ?',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            content: Text(
-                                              'Jika kamu kembali progress tidak akan disimpan.',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            actions: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  CustomButton(
-                                                    width: 120,
-                                                    height: 45,
-                                                    onPressed: () async {
-                                                      await Get.find<
-                                                              QuizController>()
-                                                          .refreshQuizPage();
-                                                      Get.back(result: true);
-                                                    },
-                                                    color: Colors.red,
-                                                    child: Text(
-                                                      'Ya',
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            Get.width * 0.04,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  CustomButton(
-                                                    width: 120,
-                                                    height: 45,
-                                                    onPressed: () =>
-                                                        Get.back(result: false),
-                                                    color: Colors.green,
-                                                    child: Text(
-                                                      'Tidak',
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            Get.width * 0.04,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        );
-
-                                        if (confirmExit == true) {
-                                          Get.back();
-                                        }
+                                        // Use the same exit warning dialog for both back methods
+                                        await _showExitWarningDialog(
+                                            context, controller);
                                       },
                                     ),
                                     Text('Kembali',
@@ -580,6 +484,79 @@ class QuizdetailScreen extends StatelessWidget {
           }),
         );
       },
+    );
+  }
+
+  // Extracted method for showing exit warning dialog
+  Future<void> _showExitWarningDialog(
+      BuildContext context, QuizdetailController controller) async {
+    final bool confirmExit = await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'Apakah kamu yakin ingin keluar?',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        ),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Poin yang kamu dapatkan sekarang akan menjadi poin kamu nanti!',
+              style: TextStyle(fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Kesempatan menjawab akan berkurang',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.red,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomButton(
+                width: 120,
+                height: 45,
+                onPressed: () async {
+                  // Handle saving score and reducing attempts
+                  await controller.handleEarlyExit();
+                  Get.back(result: true);
+                  Get.back(); // Navigate back to quiz list
+                },
+                color: Colors.red,
+                child: Text(
+                  'Ya',
+                  style: TextStyle(
+                    fontSize: Get.width * 0.04,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              CustomButton(
+                width: 120,
+                height: 45,
+                onPressed: () => Get.back(result: false),
+                color: Colors.green,
+                child: Text(
+                  'Tidak',
+                  style: TextStyle(
+                    fontSize: Get.width * 0.04,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

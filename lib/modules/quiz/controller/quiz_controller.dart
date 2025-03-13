@@ -14,6 +14,11 @@ class QuizController extends GetxController {
   bool isLearning = true;
   var userName = 'User'.obs;
 
+  // Minimum material progress required to unlock a quiz
+  final double requiredMaterialProgress = 100.0;
+  // Minimum score to unlock next quiz
+  final int minimumPassingScore = 80;
+
   Future<void> loadName() async {
     String? name = await _secureStorage.read(key: 'name');
     userName.value = name ?? 'User';
@@ -24,7 +29,7 @@ class QuizController extends GetxController {
     super.onClose();
   }
 
-@override
+  @override
   void onInit() {
     super.onInit();
     loadName();
@@ -41,7 +46,7 @@ class QuizController extends GetxController {
     // Calculate total points and percentage
     _calculateTotalPoints();
     
-    // Delay sedikit lebih lama untuk memastikan widget sudah ter-render
+    // Delay to ensure widget rendering
     await Future.delayed(const Duration(milliseconds: 200));
     
     // Trigger animation
@@ -49,7 +54,7 @@ class QuizController extends GetxController {
     update();
   }
 
-  // Add method to calculate total points
+  // Calculate total points
   void _calculateTotalPoints() {
     int total = 0;
     for (var material in materials) {
@@ -76,9 +81,19 @@ class QuizController extends GetxController {
     final List<KuisProgress> updatedMaterials = [];
     
     for (int i = 1; i <= 3; i++) {
-      final key = 'quiz_${i}_points';
-      final scoreStr = await _secureStorage.read(key: key);
+      final quizKey = 'quiz_${i}_points';
+      final scoreStr = await _secureStorage.read(key: quizKey);
       final score = int.tryParse(scoreStr ?? '0') ?? 0;
+
+      // Get material progress
+      final materialKey = 'progress_material_$i';
+      final progressStr = await _secureStorage.read(key: materialKey);
+      final materialProgress = double.tryParse(progressStr ?? '0') ?? 0;
+
+      // Get attempts remaining
+      final attemptsKey = 'quiz_${i}_attempts';
+      final attemptsStr = await _secureStorage.read(key: attemptsKey);
+      final attemptsRemaining = int.tryParse(attemptsStr ?? '2') ?? 2;
 
       String title;
       switch (i) {
@@ -95,11 +110,17 @@ class QuizController extends GetxController {
           title = "Unknown Material";
       }
 
+      // Check if this quiz is unlocked - check ALL quizzes including the first one
+      bool isUnlocked = await isQuizUnlocked(i);
+
       updatedMaterials.add(
         KuisProgress(
           id: i,
           title: title,
           progress: score.toDouble(),
+          materialProgress: materialProgress,
+          attemptsRemaining: attemptsRemaining,
+          isUnlocked: isUnlocked,
         ),
       );
     }
@@ -109,10 +130,42 @@ class QuizController extends GetxController {
     update();
   }
 
+  // Check if a quiz is unlocked
+  Future<bool> isQuizUnlocked(int quizId) async {
+    // Get current material progress - this check applies to ALL quizzes
+    final materialKey = 'progress_material_$quizId';
+    final progressStr = await _secureStorage.read(key: materialKey);
+    final materialProgress = double.tryParse(progressStr ?? '0') ?? 0;
+    
+    // First quiz only requires its material to be completed
+    if (quizId == 1) {
+      return materialProgress >= requiredMaterialProgress;
+    }
+
+    // For quizzes after the first one, also check previous quiz completion
+    final previousScoreKey = 'quiz_${quizId - 1}_points';
+    final previousScoreStr = await _secureStorage.read(key: previousScoreKey);
+    final previousScore = int.tryParse(previousScoreStr ?? '0') ?? 0;
+
+    // Get previous quiz attempts
+    final previousAttemptsKey = 'quiz_${quizId - 1}_attempts';
+    final previousAttemptsStr = await _secureStorage.read(key: previousAttemptsKey);
+    final previousAttemptsRemaining = int.tryParse(previousAttemptsStr ?? '2') ?? 2;
+
+    // Special case: if attempts are exhausted and score is still below minimum
+    bool attemptsExhausted = previousAttemptsRemaining <= 0;
+
+    // Quiz is unlocked if:
+    // 1. Current material is studied 100% AND
+    // 2. Previous quiz score is above minimum passing score OR attempts are exhausted
+    return materialProgress >= requiredMaterialProgress && 
+           (previousScore >= minimumPassingScore || attemptsExhausted);
+  }
+
   @override 
   void onReady() {
     super.onReady();
-    // Memastikan animasi dimulai ketika widget sudah siap
+    // Ensure animation starts when widget is ready
     initializeQuizData();
   }
 }
@@ -121,10 +174,16 @@ class KuisProgress {
   final int id;
   final String title;
   final double progress;
+  final double materialProgress;  // Added to track material study progress
+  final int attemptsRemaining;    // Added to track attempts
+  final bool isUnlocked;          // Added to track unlock status
 
   KuisProgress({
     required this.id,
     required this.title,
     required this.progress,
+    this.materialProgress = 0.0,
+    this.attemptsRemaining = 2,
+    this.isUnlocked = false,
   });
 }
