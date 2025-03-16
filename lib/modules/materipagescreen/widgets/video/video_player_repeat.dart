@@ -99,7 +99,7 @@ class _VideoThumbnailState extends State<VideoThumbnail> {
           child: Container(
             height: widget.height,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Stack(
@@ -109,11 +109,12 @@ class _VideoThumbnailState extends State<VideoThumbnail> {
                 if (widget.thumbnailAsset.isNotEmpty)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      widget.thumbnailAsset,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Image.asset(
+                        widget.thumbnailAsset,
+                        // fit: BoxFit.cover,
+                      ),
                     ),
                   )
                 else
@@ -208,7 +209,6 @@ class _VideoThumbnailState extends State<VideoThumbnail> {
                         child: Lottie.asset(
                           'assets/lottie/guide_click.json', // Ganti dengan path animasi Anda
                           fit: BoxFit.contain,
-                          
                         ),
                       )
                     else

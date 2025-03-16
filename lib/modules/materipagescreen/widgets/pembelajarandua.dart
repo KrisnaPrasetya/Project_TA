@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_ta/modules/materipagescreen/controller/audio_controller.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/balok.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/cube.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/interactive/balok.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/interactive/cube.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/video/video_player.dart';
 
 class Pembelajarandua extends StatelessWidget {
@@ -50,21 +50,19 @@ class Pembelajarandua extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[5] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[5]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(5),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[5]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[5]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(5),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -109,21 +107,19 @@ class Pembelajarandua extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[6] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[6]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(6),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[6]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[6]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(6),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -413,21 +409,19 @@ class Pembelajarandua extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[7] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[7]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(7),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[7]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[7]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(7),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -612,7 +606,11 @@ class Pembelajarandua extends StatelessWidget {
                                       color: Colors.grey.shade200,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: InteractiveCube(),
+                                    child: InteractiveCubeWithGuide(
+                                      showGuide:
+                                          true, // Aktifkan guide pada komponen ini
+                                      guideText: 'Geser untuk memutar kubus',
+                                    ),
                                   ),
                                   const SizedBox(height: 5),
                                   Text('Kubus',
@@ -620,7 +618,6 @@ class Pembelajarandua extends StatelessWidget {
                                           fontSize: Get.width * 0.035)),
                                 ],
                               ),
-
                               // Rotating Cuboid illustration
                               Column(
                                 children: [
@@ -631,7 +628,11 @@ class Pembelajarandua extends StatelessWidget {
                                       color: Colors.grey.shade200,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: InteractiveBalok(),
+                                    child: InteractiveBalokWithGuide(
+                                      showGuide:
+                                          true, // Aktifkan guide pada komponen ini
+                                      guideText: 'Geser untuk memutar balok',
+                                    ),
                                   ),
                                   const SizedBox(height: 5),
                                   Text('Balok',
@@ -746,21 +747,19 @@ class Pembelajarandua extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[8] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[8]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(8),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[8]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[8]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(8),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -1012,7 +1011,7 @@ class Pembelajarandua extends StatelessWidget {
 
                           // Rest of cutting cuboid content
                           // ...
-                          
+
                           // Diagonal cut
                           Text(
                             'Memotong balok secara diagonal (dari ujung ke ujung)',
@@ -1204,8 +1203,8 @@ class Pembelajarandua extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
-                  child:
-                      VideoPlayerWidget(assetPath: "assets/videos/visualisasi_sparsial.mp4"),
+                  child: VideoPlayerWidget(
+                      assetPath: "assets/videos/visualisasi_sparsial.mp4"),
                 ),
               ),
               // Summary section
@@ -1243,21 +1242,19 @@ class Pembelajarandua extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[9] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[9]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(9),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[9]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[9]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(9),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),

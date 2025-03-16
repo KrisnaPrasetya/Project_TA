@@ -910,7 +910,7 @@ class Pembelajaransatu extends StatelessWidget {
                                 child: VideoThumbnail(
                                   videoAsset: 'assets/videos/kubus.mp4',
                                   thumbnailAsset:
-                                      'assets/images/pembelajaran_satu/kubus.png',
+                                      'assets/images/pembelajaran_satu/jaring_kubus1.png',
                                   label: 'Jaring - jaring Kubus 1',
                                   playbackSpeed: 0.5,
                                   height: 120, // Explicit height
@@ -924,7 +924,7 @@ class Pembelajaransatu extends StatelessWidget {
                                 child: VideoThumbnail(
                                   videoAsset: 'assets/videos/kubus2.mp4',
                                   thumbnailAsset:
-                                      'assets/images/pembelajaran_satu/kubus.png',
+                                      'assets/images/pembelajaran_satu/jaring_kubus2.png',
                                   label: 'Jaring - jaring Kubus 2',
                                   playbackSpeed: 0.5,
                                   height: 120, // Explicit height
@@ -947,7 +947,7 @@ class Pembelajaransatu extends StatelessWidget {
                                 child: VideoThumbnail(
                                   videoAsset: 'assets/videos/balok1.mp4',
                                   thumbnailAsset:
-                                      'assets/images/pembelajaran_satu/balok.png',
+                                      'assets/images/pembelajaran_satu/jaring_balok1.png',
                                   label: 'Jaring - jaring Balok 1',
                                   playbackSpeed: 0.5,
                                   height: 120,
@@ -961,7 +961,7 @@ class Pembelajaransatu extends StatelessWidget {
                                 child: VideoThumbnail(
                                   videoAsset: 'assets/videos/balok2.mp4',
                                   thumbnailAsset:
-                                      'assets/images/pembelajaran_satu/balok.png',
+                                      'assets/images/pembelajaran_satu/jaring_balok2.png',
                                   label: 'Jaring - jaring Balok 2',
                                   playbackSpeed: 0.5,
                                   height: 120, // Explicit height
