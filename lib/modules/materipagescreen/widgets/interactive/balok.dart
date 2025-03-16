@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/interactive/guide.dart';
 import 'package:vector_math/vector_math.dart' as vm;
+import 'package:get/get.dart';
+
+// Controller untuk mengelola state guide untuk objek 3D
+// Catatan: Kelas ini juga didefinisikan di file InteractiveCube.dart
+// Untuk produksi, seharusnya dipisahkan ke file tersendiri untuk menghindari duplikasi
 
 class Balok {
   final double panjang;
@@ -254,6 +261,103 @@ class _InteractiveBalokState extends State<InteractiveBalok> {
           ),
         ),
       ),
+    );
+  }
+}
+
+// Wrapper widget untuk InteractiveBalok dengan guide
+class InteractiveBalokWithGuide extends StatefulWidget {
+  final bool showGuide;
+  final String guideText;
+
+  const InteractiveBalokWithGuide({
+    Key? key,
+    this.showGuide = false,
+    this.guideText = 'Geser untuk memutar balok',
+  }) : super(key: key);
+
+  @override
+  State<InteractiveBalokWithGuide> createState() =>
+      _InteractiveBalokWithGuideState();
+}
+
+class _InteractiveBalokWithGuideState extends State<InteractiveBalokWithGuide> {
+  late Interactive3DGuideController _guideController;
+  bool _showGuide = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Lazy initialization controller
+    _guideController = Get.put(Interactive3DGuideController(), permanent: true);
+
+    // Cek apakah perlu menampilkan guide
+    if (widget.showGuide && !_guideController.isGuideShown('balok')) {
+      Future.delayed(Duration.zero, () {
+        if (mounted) {
+          setState(() {
+            _showGuide = true;
+          });
+        }
+      });
+    }
+  }
+
+  void _hideGuide() {
+    if (_showGuide) {
+      setState(() {
+        _showGuide = false;
+      });
+      _guideController.markGuideAsShown('balok');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Original InteractiveBalok widget
+        InteractiveBalok(),
+
+        // Guide Overlay
+        if (_showGuide)
+          GestureDetector(
+            onTap: _hideGuide,
+            onPanStart: (_) => _hideGuide(),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 110,
+                      child: Lottie.asset(
+                        'assets/lottie/swipe.json',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        widget.guideText,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

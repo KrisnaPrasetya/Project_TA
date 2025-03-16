@@ -1,6 +1,9 @@
 import 'dart:math';
-import 'package:vector_math/vector_math.dart' as vm;
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/interactive/guide.dart';
+import 'package:vector_math/vector_math.dart' as vm;
+import 'package:get/get.dart';
 
 class Cube {
   final double size;
@@ -282,6 +285,103 @@ class _InteractiveCubeState extends State<InteractiveCube> {
               color: Colors.red,
             )),
       ),
+    );
+  }
+}
+
+// Wrapper widget untuk InteractiveCube dengan guide
+class InteractiveCubeWithGuide extends StatefulWidget {
+  final bool showGuide;
+  final String guideText;
+
+  const InteractiveCubeWithGuide({
+    Key? key,
+    this.showGuide = false,
+    this.guideText = 'Geser untuk memutar kubus',
+  }) : super(key: key);
+
+  @override
+  State<InteractiveCubeWithGuide> createState() =>
+      _InteractiveCubeWithGuideState();
+}
+
+class _InteractiveCubeWithGuideState extends State<InteractiveCubeWithGuide> {
+  late Interactive3DGuideController _guideController;
+  bool _showGuide = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Lazy initialization controller
+    _guideController = Get.put(Interactive3DGuideController(), permanent: true);
+
+    // Cek apakah perlu menampilkan guide
+    if (widget.showGuide && !_guideController.isGuideShown('cube')) {
+      Future.delayed(Duration.zero, () {
+        if (mounted) {
+          setState(() {
+            _showGuide = true;
+          });
+        }
+      });
+    }
+  }
+
+  void _hideGuide() {
+    if (_showGuide) {
+      setState(() {
+        _showGuide = false;
+      });
+      _guideController.markGuideAsShown('cube');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Original InteractiveCube widget
+        InteractiveCube(),
+
+        // Guide Overlay
+        if (_showGuide)
+          GestureDetector(
+            onTap: _hideGuide,
+            onPanStart: (_) => _hideGuide(),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 110,
+                      child: Lottie.asset(
+                        'assets/lottie/swipe.json',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        widget.guideText,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
