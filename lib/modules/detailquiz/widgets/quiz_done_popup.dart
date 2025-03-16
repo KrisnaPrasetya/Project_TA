@@ -28,7 +28,7 @@ class QuizCompletionDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool passed = score >= minimumPassingScore;
     final bool canRetry = attemptsRemaining > 0 && !passed;
-    
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -39,32 +39,24 @@ class QuizCompletionDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             // Animation based on result
-            passed
-                ? Lottie.asset(
-                    'assets/lottie/success.json',
-                    width: 150,
-                    height: 150,
-                    repeat: false,
-                  )
-                : Lottie.asset(
-                    'assets/lottie/try_again.json',
-                    width: 150,
-                    height: 150,
-                    repeat: true,
-                  ),
-            SizedBox(height: 16),
-            
+
             // Title based on result
             Text(
-              passed ? 'Selamat!' : 'Yuk Belajar Lagi',
+              passed ? 'Selamat Kamu Berhasil!' : 'Yuk Belajar Lagi!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: passed ? Colors.green : Colors.amber,
+                color: passed ? Colors.green : Colors.black,
               ),
             ),
-            SizedBox(height: 8),
-            
+            passed
+                ? Lottie.asset(
+                    'assets/lottie/success.json',
+                    repeat: true,
+                    width: 150,
+                    height: 150,
+                  )
+                : SizedBox.shrink(),
             // Message based on result
             Text(
               passed
@@ -74,7 +66,7 @@ class QuizCompletionDialog extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 24),
-            
+
             // Score display
             Container(
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -93,7 +85,7 @@ class QuizCompletionDialog extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '$score / ${totalQuestions * 10}',
+                    '$score',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -103,7 +95,7 @@ class QuizCompletionDialog extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Highest score display (if applicable)
             if (highestScore > score && !isFirstAttempt)
               Padding(
@@ -136,7 +128,7 @@ class QuizCompletionDialog extends StatelessWidget {
                   ),
                 ),
               ),
-            
+
             // Message about attempts remaining
             if (canRetry)
               Padding(
@@ -150,7 +142,7 @@ class QuizCompletionDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
             // Note about second attempt score cap
             if (canRetry)
               Padding(
@@ -159,14 +151,14 @@ class QuizCompletionDialog extends StatelessWidget {
                   'Catatan: Skor maksimum pada percobaan kedua adalah 80 poin.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.grey[600],
                   ),
                 ),
               ),
-            
+
             SizedBox(height: 24),
-            
+
             // Buttons
             Row(
               mainAxisAlignment: canRetry
@@ -178,7 +170,8 @@ class QuizCompletionDialog extends StatelessWidget {
                     onPressed: onRetry,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,
-                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                     ),
                     child: Text(
                       'Coba Lagi',

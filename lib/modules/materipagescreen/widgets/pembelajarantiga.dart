@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/video_player.dart';
+import 'package:project_ta/modules/materipagescreen/controller/audio_controller.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/video/video_player.dart';
 
 class Pembelajarantiga extends StatelessWidget {
   const Pembelajarantiga({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final audioController = Get.put(AudioController());
     return Padding(
       padding: EdgeInsets.all(Get.width * 0.01),
       child: Column(
@@ -33,13 +35,35 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Lokasi dan Koordinat dalam Sistem Berpetak',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Lokasi dan Koordinat dalam Sistem Berpetak',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[10] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[10]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(10),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -109,13 +133,35 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Memahami Sistem Koordinat',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Memahami Sistem Koordinat',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[11] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[11]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(11),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -293,13 +339,35 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Cara Menentukan Posisi dalam Koordinat',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Cara Menentukan Posisi dalam Koordinat',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[12] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[12]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(12),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -506,6 +574,8 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
               ),
               SizedBox(height: Get.height * 0.02),
+
+              // Section 4: Distance in Coordinate System
               Container(
                 padding: EdgeInsets.all(16),
                 width: Get.width * 0.95,
@@ -523,13 +593,35 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Menentukan Jarak dalam Sistem Koordinat',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Menentukan Jarak dalam Sistem Koordinat',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[13] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[13]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(13),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -735,13 +827,35 @@ class Pembelajarantiga extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Yuk Kita Rangkum!',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Yuk Kita Rangkum!',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[14] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[14]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(14),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Card(

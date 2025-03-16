@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project_ta/core/routes/app_routes.dart';
 import 'package:project_ta/modules/quiz/controller/quiz_controller.dart';
 import 'package:project_ta/widgets/custom_container.dart';
@@ -108,7 +109,7 @@ class KuisItems extends StatelessWidget {
                 ),
                 SizedBox(width: Get.width * 0.02),
                 Text(
-                  '${material.progress.toInt()}%',
+                  '${material.progress.toInt()} Poin',
                   style: TextStyle(
                     color: _getProgressColor(material.progress),
                     fontWeight: FontWeight.bold,
@@ -122,6 +123,7 @@ class KuisItems extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 8.0),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
                     child: Column(
@@ -184,6 +186,15 @@ class KuisItems extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Align(
+              alignment: Alignment.center,
+              child: Lottie.asset(
+                'assets/lottie/locked.json',
+                width: 150,
+                height: 150,
+                repeat: true,
+              ),
+            ),
             Text(
               material.materialProgress < 100
                   ? 'Kuis ini terkunci karena kamu belum mempelajari materi sepenuhnya.'
@@ -248,11 +259,8 @@ class KuisItems extends StatelessWidget {
           children: [
             material.progress >= 80
                 ? SizedBox.shrink()
-                : Icon(
-                    Icons.favorite_border,
-                    color: Colors.red,
-                    size: 48,
-                  ),
+                : Lottie.asset('assets/lottie/heart.json',
+                    repeat: false, reverse: true),
             SizedBox(height: material.progress >= 80 ? 0 : 16),
             material.progress >= 80
                 ? SizedBox.shrink()
@@ -275,9 +283,8 @@ class KuisItems extends StatelessWidget {
                   : 'Kuis berikutnya tetap terbuka karena kesempatan kamu telah habis',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16,
-                fontStyle: FontStyle.italic,
-                color: material.progress >= 80 ? Colors.green : Colors.amber,
+                fontSize: 14,
+                color: material.progress >= 80 ? Colors.green : Colors.black,
               ),
             ),
           ],

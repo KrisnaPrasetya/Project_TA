@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_ta/modules/materipagescreen/controller/audio_controller.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/balok.dart';
 import 'package:project_ta/modules/materipagescreen/widgets/cube.dart';
-import 'package:project_ta/modules/materipagescreen/widgets/video_player.dart';
+import 'package:project_ta/modules/materipagescreen/widgets/video/video_player.dart';
 
 class Pembelajarandua extends StatelessWidget {
   const Pembelajarandua({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final audioController = Get.put(AudioController());
     return Padding(
       padding: EdgeInsets.all(Get.width * 0.01),
       child: Column(
@@ -35,13 +37,35 @@ class Pembelajarandua extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Visualisasi Spasial',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Visualisasi Spasial',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[5] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[5]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(5),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -72,13 +96,35 @@ class Pembelajarandua extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Bagaimana Kubus dan Balok Terlihat dari Berbagai Sudut?',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Bagaimana Kubus dan Balok Terlihat dari Berbagai Sudut?',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[6] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[6]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(6),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
 
@@ -297,48 +343,6 @@ class Pembelajarandua extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    // Illustrations for cube and cuboid views
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                    //     // Cube views illustration
-                    //     Column(
-                    //       children: [
-                    //         Container(
-                    //           height: 150,
-                    //           width: 150,
-                    //           decoration: BoxDecoration(
-                    //             color: Colors.grey.shade200,
-                    //             borderRadius: BorderRadius.circular(8),
-                    //           ),
-                    //           child: InteractiveCube(),
-                    //         ),
-                    //         Text('Kubus dari\nberbagai sudut',
-                    //             style: TextStyle(fontSize: Get.width * 0.035),
-                    //             textAlign: TextAlign.center),
-                    //       ],
-                    //     ),
-
-                    //     // Cuboid views illustration
-                    //     Column(
-                    //       children: [
-                    //         Container(
-                    //           height: 150,
-                    //           width: 150,
-                    //           decoration: BoxDecoration(
-                    //             color: Colors.grey.shade200,
-                    //             borderRadius: BorderRadius.circular(8),
-                    //           ),
-                    //           child: InteractiveBalok(),
-                    //         ),
-                    //         Text('Balok dari\nberbagai sudut',
-                    //             style: TextStyle(fontSize: Get.width * 0.035),
-                    //             textAlign: TextAlign.center),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
                     SizedBox(height: Get.height * 0.015),
                     Card(
                       color: Colors.amber.shade50,
@@ -396,13 +400,35 @@ class Pembelajarandua extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Bagaimana Kubus dan Balok Diputar?',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Bagaimana Kubus dan Balok Diputar?',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[7] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[7]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(7),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -707,13 +733,35 @@ class Pembelajarandua extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Apa bentuk yang terlihat jika kita memotong kubus dan balok?',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Apa bentuk yang terlihat jika kita memotong kubus dan balok?',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[8] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[8]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(8),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Text(
@@ -962,6 +1010,9 @@ class Pembelajarandua extends StatelessWidget {
                           ),
                           SizedBox(height: 12),
 
+                          // Rest of cutting cuboid content
+                          // ...
+                          
                           // Diagonal cut
                           Text(
                             'Memotong balok secara diagonal (dari ujung ke ujung)',
@@ -1137,60 +1188,6 @@ class Pembelajarandua extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    SizedBox(height: Get.height * 0.015),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                    //     // Cutting Cube illustration
-                    //     Column(
-                    //       children: [
-                    //         Container(
-                    //           height: 150,
-                    //           width: 150,
-                    //           decoration: BoxDecoration(
-                    //             color: Colors.grey.shade200,
-                    //             borderRadius: BorderRadius.circular(8),
-                    //             image: DecorationImage(
-                    //               image: AssetImage(
-                    //                   'assets/images/pembelajaran_dua/balok_cut.png'),
-                    //               fit: BoxFit.cover,
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         Text('Balok dipotong\nmenjadi dua',
-                    //             style: TextStyle(fontSize: Get.width * 0.035),
-                    //             textAlign: TextAlign.center),
-                    //       ],
-                    //     ),
-
-                    //     Column(
-                    //       children: [
-                    //         Container(
-                    //           height: 150,
-                    //           width: 150,
-                    //           decoration: BoxDecoration(
-                    //             color: Colors.grey.shade200,
-                    //             borderRadius: BorderRadius.circular(8),
-                    //           ),
-                    //           child: Center(
-                    //             child: Stack(
-                    //               alignment: Alignment.center,
-                    //               children: [
-                    //                 Icon(Icons.view_in_ar,
-                    //                     size: 80, color: Colors.orange),
-                    //                 Icon(Icons.content_cut,
-                    //                     size: 30, color: Colors.black),
-                    //               ],
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         Text('Memotong Balok',
-                    //             style: TextStyle(fontSize: Get.width * 0.035)),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
@@ -1233,13 +1230,35 @@ class Pembelajarandua extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Yuk Kita Rangkum!',
-                      style: TextStyle(
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    // Title row with audio button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Yuk Kita Rangkum!',
+                            style: TextStyle(
+                              fontSize: Get.width * 0.045,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        GetBuilder<AudioController>(
+                          builder: (controller) {
+                            return IconButton(
+                              icon: Icon(
+                                controller.isPlaying[9] 
+                                    ? Icons.volume_up
+                                    : Icons.volume_off,
+                                color: controller.isPlaying[9]
+                                    ? Colors.green
+                                    : Colors.grey,
+                              ),
+                              onPressed: () => controller.toggleAudio(9),
+                            );
+                          }
+                        ),
+                      ],
                     ),
                     SizedBox(height: Get.height * 0.015),
                     Card(

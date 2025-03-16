@@ -501,6 +501,12 @@ class QuizdetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Lottie.asset(
+              'assets/lottie/alert.json',
+              repeat: false,
+              width: 150,
+              height: 150,
+            ),
             Text(
               'Poin yang kamu dapatkan sekarang akan menjadi poin kamu nanti!',
               style: TextStyle(fontWeight: FontWeight.w500),
