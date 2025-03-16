@@ -911,9 +911,10 @@ class Pembelajaransatu extends StatelessWidget {
                                   videoAsset: 'assets/videos/kubus.mp4',
                                   thumbnailAsset:
                                       'assets/images/pembelajaran_satu/kubus.png',
-                                  label: 'Kubus 1',
+                                  label: 'Jaring - jaring Kubus 1',
                                   playbackSpeed: 0.5,
                                   height: 120, // Explicit height
+                                  showGuide: true,
                                 ),
                               ),
                             ),
@@ -924,9 +925,10 @@ class Pembelajaransatu extends StatelessWidget {
                                   videoAsset: 'assets/videos/kubus2.mp4',
                                   thumbnailAsset:
                                       'assets/images/pembelajaran_satu/kubus.png',
-                                  label: 'Kubus 2',
+                                  label: 'Jaring - jaring Kubus 2',
                                   playbackSpeed: 0.5,
                                   height: 120, // Explicit height
+                                  showGuide: true,
                                 ),
                               ),
                             ),
@@ -946,9 +948,10 @@ class Pembelajaransatu extends StatelessWidget {
                                   videoAsset: 'assets/videos/balok1.mp4',
                                   thumbnailAsset:
                                       'assets/images/pembelajaran_satu/balok.png',
-                                  label: 'Balok 1',
+                                  label: 'Jaring - jaring Balok 1',
                                   playbackSpeed: 0.5,
-                                  height: 120, // Explicit height
+                                  height: 120,
+                                  showGuide: true, // Explicit height
                                 ),
                               ),
                             ),
@@ -959,9 +962,10 @@ class Pembelajaransatu extends StatelessWidget {
                                   videoAsset: 'assets/videos/balok2.mp4',
                                   thumbnailAsset:
                                       'assets/images/pembelajaran_satu/balok.png',
-                                  label: 'Balok 2',
+                                  label: 'Jaring - jaring Balok 2',
                                   playbackSpeed: 0.5,
                                   height: 120, // Explicit height
+                                  showGuide: true,
                                 ),
                               ),
                             ),

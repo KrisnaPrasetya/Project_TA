@@ -2,14 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+
+// Controller untuk mengelola state guide menggunakan GetX
+class VideoGuideController extends GetxController {
+  // Map untuk menyimpan status guide untuk setiap video
+  final Map<String, bool> _guideShownMap = {};
+
+  // Cek apakah guide sudah ditampilkan untuk video tertentu
+  bool isGuideShown(String videoId) {
+    return _guideShownMap[videoId] ?? false;
+  }
+
+  // Tandai bahwa guide sudah ditampilkan untuk video tertentu
+  void markGuideAsShown(String videoId) {
+    _guideShownMap[videoId] = true;
+    update(); // Trigger pembaruan UI
+  }
+}
 
 // Video thumbnail that opens a popup player when tapped (no play icon)
-class VideoThumbnail extends StatelessWidget {
+class VideoThumbnail extends StatefulWidget {
   final String videoAsset; // Path to video file
   final String thumbnailAsset; // Path to thumbnail image
   final String label; // Optional label for the video
   final double playbackSpeed; // Video playback speed
   final double height; // Optional explicit height
+  final bool showGuide; // Apakah menampilkan guide
 
   const VideoThumbnail({
     Key? key,
@@ -18,100 +37,207 @@ class VideoThumbnail extends StatelessWidget {
     this.label = '', // Optional label
     this.playbackSpeed = 1.0,
     this.height = 150.0, // Default height
+    this.showGuide = false, // Default tidak menampilkan guide
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Show custom dialog with external close button
-        showDialog(
-          context: context,
-          barrierDismissible: true,
-          barrierColor: Colors.black.withOpacity(0.85),
-          builder: (context) => ExternalButtonVideoPlayer(
-            videoAsset: videoAsset,
-            playbackSpeed: playbackSpeed,
-          ),
-        );
-      },
-      child: Container(
-        height: height,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Stack(
-          fit: StackFit.expand, // Ensure Stack fills its container
-          children: [
-            // Thumbnail or placeholder
-            if (thumbnailAsset.isNotEmpty)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  thumbnailAsset,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-              )
-            else
-              // Placeholder when no thumbnail is available
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[800],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Icon(
-                  Icons.video_library,
-                  color: Colors.white70,
-                  size: 40,
-                ),
-              ),
+  State<VideoThumbnail> createState() => _VideoThumbnailState();
+}
 
-            // Optional label at the bottom
-            if (label.isNotEmpty)
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        Colors.black.withOpacity(0.7)
-                      ],
+class _VideoThumbnailState extends State<VideoThumbnail> {
+  late VideoGuideController _guideController;
+  bool _showGuide = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Lazy init controller jika belum ada
+    _guideController = Get.put(VideoGuideController(), permanent: true);
+
+    // Cek apakah perlu menampilkan guide
+    if (widget.showGuide && !_guideController.isGuideShown(widget.videoAsset)) {
+      // Tunda sebentar untuk memastikan widget sudah dirender dengan baik
+      Future.delayed(Duration.zero, () {
+        if (mounted) {
+          setState(() {
+            _showGuide = true;
+          });
+        }
+      });
+    }
+  }
+
+  void _hideGuide() {
+    if (_showGuide) {
+      setState(() {
+        _showGuide = false;
+      });
+      _guideController.markGuideAsShown(widget.videoAsset);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Video thumbnail asli
+        GestureDetector(
+          onTap: () {
+            // Jika guide tidak ditampilkan, langsung putar video
+            if (!_showGuide) {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                barrierColor: Colors.black.withOpacity(0.85),
+                builder: (context) => ExternalButtonVideoPlayer(
+                  videoAsset: widget.videoAsset,
+                  playbackSpeed: widget.playbackSpeed,
+                ),
+              );
+            }
+          },
+          child: Container(
+            height: widget.height,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Stack(
+              fit: StackFit.expand, // Ensure Stack fills its container
+              children: [
+                // Thumbnail or placeholder
+                if (widget.thumbnailAsset.isNotEmpty)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      widget.thumbnailAsset,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
                     ),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
+                  )
+                else
+                  // Placeholder when no thumbnail is available
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[800],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      Icons.video_library,
+                      color: Colors.white70,
+                      size: 40,
                     ),
                   ),
-                  child: Text(
-                    label,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+
+                // Optional label at the bottom
+                if (widget.label.isNotEmpty)
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.7)
+                          ],
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        widget.label,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
+              ],
+            ),
+          ),
+        ),
+
+        // Guide Overlay
+        if (_showGuide)
+          GestureDetector(
+            onTap: () {
+              _hideGuide();
+              // Tunggu sedikit setelah guide hilang, baru tampilkan video player
+              Future.delayed(Duration(milliseconds: 300), () {
+                if (mounted) {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.85),
+                    builder: (context) => ExternalButtonVideoPlayer(
+                      videoAsset: widget.videoAsset,
+                      playbackSpeed: widget.playbackSpeed,
+                    ),
+                  );
+                }
+              });
+            },
+            child: Container(
+              height: widget.height,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Lottie animation (optional)
+                    if (Get.context != null) // Cek apakah Get.context tersedia
+                      SizedBox(
+                        height: 100,
+                        width: 110,
+                        child: Lottie.asset(
+                          'assets/lottie/guide_click.json', // Ganti dengan path animasi Anda
+                          fit: BoxFit.contain,
+                          
+                        ),
+                      )
+                    else
+                      Icon(
+                        Icons.touch_app,
+                        color: Colors.white,
+                        size: widget.height * 0.3,
+                      ),
+
+                    SizedBox(height: 4),
+                    Text(
+                      'Ketuk untuk memutar video',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-          ],
-        ),
-      ),
+            ),
+          ),
+      ],
     );
   }
 }
 
-// Video player with external close button
+// Video player dengan external close button (Tidak dimodifikasi)
 class ExternalButtonVideoPlayer extends StatefulWidget {
   final String videoAsset;
   final double playbackSpeed;
