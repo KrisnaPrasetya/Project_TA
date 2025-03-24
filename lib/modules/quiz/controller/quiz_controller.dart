@@ -41,12 +41,12 @@ class QuizController extends GetxController {
     canStartAnimation.value = false;
     
     // Load scores
-    await loadScores();
+    await loadScores(); 
     
     // Calculate total points and percentage
     _calculateTotalPoints();
     
-    // Delay to ensure widget rendering
+    // Delay to ensure widget rendering 
     await Future.delayed(const Duration(milliseconds: 200));
     
     // Trigger animation

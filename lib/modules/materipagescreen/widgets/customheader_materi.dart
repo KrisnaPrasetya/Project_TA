@@ -40,7 +40,7 @@ class CustomheaderMateri extends StatelessWidget {
       case 1:
         return 'Visualisasi Spasial';
       case 2:
-        return 'Pengertian Tabung dan Kerucut';
+        return 'Lokasi dan Koordinat';
       default:
         return 'Materi';
     }

@@ -22,7 +22,7 @@ class QuizScreen extends StatelessWidget {
                 CustomHeaderQuiz(
                   controller: controller,
                 ),
-                SizedBox(height: Get.height * 0.02),
+                const SizedBox(height: 8),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
                   child: Container(
@@ -48,7 +48,7 @@ class QuizScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: Get.height * 0.015),
+                const SizedBox(height: 12),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
                   child: ListView.builder(

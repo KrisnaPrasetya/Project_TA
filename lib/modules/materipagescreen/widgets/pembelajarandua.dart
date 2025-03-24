@@ -1204,7 +1204,7 @@ class Pembelajarandua extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: VideoPlayerWidget(
-                      assetPath: "assets/videos/visualisasi_sparsial.mp4"),
+                      assetPath: "assets/videos/menkontruksi.mp4"),
                 ),
               ),
               // Summary section

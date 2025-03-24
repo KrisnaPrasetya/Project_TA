@@ -138,8 +138,8 @@ class ProfileScreen extends StatelessWidget {
                                         barrierDismissible: false);
                                   } else if (index == 1) {
                                     Get.toNamed(AppRoutes.tentangKami);
-                                  } else if (index == 2) {
-                                    Get.toNamed(AppRoutes.referensiSumber);
+                                    // } else if (index == 2) {
+                                    //   Get.toNamed(AppRoutes.referensiSumber);
                                   }
                                 },
                               );

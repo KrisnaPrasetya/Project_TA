@@ -1615,8 +1615,8 @@ class Pembelajaransatu extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
-                  child:
-                      VideoPlayerWidget(assetPath: "assets/videos/kubus.mp4"),
+                  child: VideoPlayerWidget(
+                      assetPath: "assets/videos/menkontruksi.mp4"),
                 ),
               ),
               // Conclusion/Summary section

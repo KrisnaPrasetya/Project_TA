@@ -511,7 +511,7 @@ class Pembelajarantiga extends StatelessWidget {
                             children: [
                               Text('• ',
                                   style: TextStyle(fontSize: Get.width * 0.04)),
-                              Expanded(
+                              Expanded( 
                                 child: RichText(
                                   text: TextSpan(
                                     style: TextStyle(
@@ -801,7 +801,7 @@ class Pembelajarantiga extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child:
-                      VideoPlayerWidget(assetPath: "assets/videos/koordinat.mp4"),
+                      VideoPlayerWidget(assetPath: "assets/videos/menkontruksi.mp4"),
                 ),
               ),
 

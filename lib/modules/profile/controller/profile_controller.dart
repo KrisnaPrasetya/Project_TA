@@ -6,7 +6,7 @@ class ProfileController extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
   RxString avatarPath = ''.obs;
   RxString userName = ''.obs;
-      RxString errorMessage = ''.obs; 
+  RxString errorMessage = ''.obs;
 
   TextEditingController nameController = TextEditingController();
 
@@ -16,10 +16,11 @@ class ProfileController extends GetxController {
     loadAvatar();
     loadName();
   }
+
   Future<void> updateAvatar(String newAvatarPath) async {
-  await _secureStorage.write(key: 'avatar', value: newAvatarPath);
-  avatarPath.value = newAvatarPath;
-}
+    await _secureStorage.write(key: 'avatar', value: newAvatarPath);
+    avatarPath.value = newAvatarPath;
+  }
 
   Future<void> loadAvatar() async {
     String? savedAvatar = await _secureStorage.read(key: 'avatar');
@@ -48,10 +49,10 @@ class ProfileController extends GetxController {
       icon: 'assets/images/pofile/tentang_kami.svg',
       title: "Tentang Kami",
     ),
-    ItemProfile(
-      icon: 'assets/images/pofile/referensi.svg',
-      title: "Sumber & Referensi",
-    ),
+    // ItemProfile(
+    //   icon: 'assets/images/pofile/referensi.svg',
+    //   title: "Sumber & Referensi",
+    // ),
   ];
 }
 
