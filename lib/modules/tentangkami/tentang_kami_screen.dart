@@ -84,7 +84,7 @@ class AboutUsScreen extends StatelessWidget {
           Text(
             member.name,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -92,7 +92,7 @@ class AboutUsScreen extends StatelessWidget {
           Text(
             member.position,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Colors.grey[600],
               fontWeight: FontWeight.w500,
             ),

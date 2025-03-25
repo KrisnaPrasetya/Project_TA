@@ -801,7 +801,7 @@ class Pembelajarantiga extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child:
-                      VideoPlayerWidget(assetPath: "assets/videos/menkontruksi.mp4"),
+                      VideoPlayerWidget(assetPath: "assets/videos/koordinat.mp4"),
                 ),
               ),
 

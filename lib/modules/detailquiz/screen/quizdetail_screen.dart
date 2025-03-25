@@ -495,6 +495,7 @@ class QuizdetailScreen extends StatelessWidget {
       builder: (context) => AlertDialog(
         title: Text(
           'Apakah kamu yakin ingin keluar?',
+          textAlign: TextAlign.center,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         content: Column(

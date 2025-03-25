@@ -61,7 +61,7 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.30,
+      height: MediaQuery.of(context).size.height * 0.28,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFFFFC100), Color(0xFFFFBE00)],
@@ -76,7 +76,7 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
       child: Stack(
         children: [
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.065,
+            top: MediaQuery.of(context).size.height * 0.055,
             left: MediaQuery.of(context).size.width * 0.04,
             right: MediaQuery.of(context).size.width * 0.04,
             child: Container(
@@ -96,7 +96,7 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.08,
+            top: MediaQuery.of(context).size.height * 0.06,
             left: MediaQuery.of(context).size.width * 0.30,
             child: Text(
               'Informasi Poin Kamu',
@@ -108,7 +108,7 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.11,
+            top: MediaQuery.of(context).size.height * 0.09,
             left: MediaQuery.of(context).size.width * 0.39,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +175,7 @@ class _CustomHeaderQuizState extends State<CustomHeaderQuiz>
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.24,
+            top: MediaQuery.of(context).size.height * 0.22,
             left: MediaQuery.of(context).size.width * 0.26,
             child: Obx(() => Row(
                   children: [
