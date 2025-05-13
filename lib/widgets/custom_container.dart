@@ -7,7 +7,7 @@ class AnimatedContainerButton extends StatefulWidget {
   final Color borderColor;
   final double borderWidth;
   final double width;
-  final double height;
+  final double? height;
   final BorderRadius borderRadius;
   final bool enableAnimation;
   final AlignmentGeometry alignment;
@@ -21,7 +21,7 @@ class AnimatedContainerButton extends StatefulWidget {
     this.borderColor = Colors.transparent,
     this.borderWidth = 2,
     this.width = 200,
-    this.height = 60,
+    this.height,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.enableAnimation = true,
     this.alignment = Alignment.center,
@@ -29,14 +29,15 @@ class AnimatedContainerButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AnimatedContainerButton> createState() => _AnimatedContainerButtonState();
+  State<AnimatedContainerButton> createState() =>
+      _AnimatedContainerButtonState();
 }
 
 class _AnimatedContainerButtonState extends State<AnimatedContainerButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +45,7 @@ class _AnimatedContainerButtonState extends State<AnimatedContainerButton>
       duration: const Duration(milliseconds: 150),
       vsync: this,
     );
-    
+
     _scaleAnimation = Tween<double>(
       begin: 1.0,
       end: 0.95,

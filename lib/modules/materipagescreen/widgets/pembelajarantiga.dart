@@ -48,21 +48,19 @@ class Pembelajarantiga extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[10] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[10]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(10),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[10]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[10]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(10),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -146,21 +144,19 @@ class Pembelajarantiga extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[11] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[11]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(11),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[11]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[11]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(11),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -352,21 +348,19 @@ class Pembelajarantiga extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[12] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[12]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(12),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[12]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[12]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(12),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -495,11 +489,11 @@ class Pembelajarantiga extends StatelessWidget {
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(text: ', angka baris '),
                                       TextSpan(
-                                          text: 'berkurang',
+                                          text: 'bertambah',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(
-                                          text: ' (misalnya, dari C3 ke C2).'),
+                                          text: ' (misalnya, dari C3 ke C4).'),
                                     ],
                                   ),
                                 ),
@@ -511,7 +505,7 @@ class Pembelajarantiga extends StatelessWidget {
                             children: [
                               Text('• ',
                                   style: TextStyle(fontSize: Get.width * 0.04)),
-                              Expanded( 
+                              Expanded(
                                 child: RichText(
                                   text: TextSpan(
                                     style: TextStyle(
@@ -525,11 +519,11 @@ class Pembelajarantiga extends StatelessWidget {
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(text: ', angka baris '),
                                       TextSpan(
-                                          text: 'bertambah',
+                                          text: 'berkurang',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)),
                                       TextSpan(
-                                          text: ' (misalnya, dari C2 ke C3).'),
+                                          text: ' (misalnya, dari C2 ke C1).'),
                                     ],
                                   ),
                                 ),
@@ -606,21 +600,19 @@ class Pembelajarantiga extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[13] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[13]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(13),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[13]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[13]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(13),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -757,7 +749,7 @@ class Pembelajarantiga extends StatelessWidget {
                                         TextStyle(fontSize: Get.width * 0.04)),
                                 Expanded(
                                   child: Text(
-                                    'Jika seseorang berada di titik A2 dan ingin menuju C2, ia harus bergerak 2 langkah ke bawah.',
+                                    'Jika seseorang berada di titik A2 dan ingin menuju C2, ia harus bergerak 2 langkah ke samping kanan.',
                                     style:
                                         TextStyle(fontSize: Get.width * 0.04),
                                   ),
@@ -772,7 +764,7 @@ class Pembelajarantiga extends StatelessWidget {
                                         TextStyle(fontSize: Get.width * 0.04)),
                                 Expanded(
                                   child: Text(
-                                    'Jika seseorang berada di titik B4 dan ingin menuju B7, ia harus bergerak 3 langkah ke bawah.',
+                                    'Jika seseorang berada di titik B4 dan ingin menuju B7, ia harus bergerak 3 langkah ke atas.',
                                     style:
                                         TextStyle(fontSize: Get.width * 0.04),
                                   ),
@@ -800,8 +792,8 @@ class Pembelajarantiga extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
-                  child:
-                      VideoPlayerWidget(assetPath: "assets/videos/koordinat.mp4"),
+                  child: VideoPlayerWidget(
+                      assetPath: "assets/videos/koordinat.mp4"),
                 ),
               ),
 
@@ -840,21 +832,19 @@ class Pembelajarantiga extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        GetBuilder<AudioController>(
-                          builder: (controller) {
-                            return IconButton(
-                              icon: Icon(
-                                controller.isPlaying[14] 
-                                    ? Icons.volume_up
-                                    : Icons.volume_off,
-                                color: controller.isPlaying[14]
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              onPressed: () => controller.toggleAudio(14),
-                            );
-                          }
-                        ),
+                        GetBuilder<AudioController>(builder: (controller) {
+                          return IconButton(
+                            icon: Icon(
+                              controller.isPlaying[14]
+                                  ? Icons.volume_up
+                                  : Icons.volume_off,
+                              color: controller.isPlaying[14]
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                            onPressed: () => controller.toggleAudio(14),
+                          );
+                        }),
                       ],
                     ),
                     SizedBox(height: Get.height * 0.015),
@@ -938,7 +928,7 @@ class Pembelajarantiga extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Expanded(
                                   child: Text(
-                                    'Pergerakan vertikal: ke atas (angka berkurang), ke bawah (angka bertambah).',
+                                    'Pergerakan vertikal: ke atas (angka bertambah), ke bawah (angka angka berkurang).',
                                     style:
                                         TextStyle(fontSize: Get.width * 0.04),
                                     textAlign: TextAlign.justify,

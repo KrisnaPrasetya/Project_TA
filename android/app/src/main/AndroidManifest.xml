@@ -1,13 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     
-    <!-- Menambahkan fitur audio output untuk mendukung video -->
+
     <uses-feature android:name="android.hardware.audio.output" android:required="false"/>
-    
-    <!-- Izin Internet (wajib untuk debug & streaming video) -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="mathApp"
+        android:label="MathApp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         

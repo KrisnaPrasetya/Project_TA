@@ -21,10 +21,10 @@ class QuizData {
           question:
               "Apa yang terjadi jika kita membuka seluruh sisi kubus dan meratakannya?",
           options: [
-            "A. Kubus berubah menjadi lingkaran",
-            "B. Kubus menjadi jaring-jaring",
-            "C. Kubus tetap sama",
-            "D. Kubus menghilang"
+            "Kubus berubah menjadi lingkaran",
+            "Kubus menjadi jaring-jaring",
+            "Kubus tetap sama",
+            "Kubus menghilang"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -32,7 +32,7 @@ class QuizData {
               "Bayangkan kalau kita membuka kotak susu dan meratakannya. Itu akan menjadi jaring-jaring kubus!"),
       Question(
           question: "Berapa banyak sisi yang dimiliki oleh sebuah balok?",
-          options: ["A. 4 Sisi", "B. 5 Sisi", "C. 6 Sisi", "D. 8 Sisi"],
+          options: ["4 Sisi", "5 Sisi", "6 Sisi", "8 Sisi"],
           correctAnswer: 2,
           gambarKuis: '',
           explanation:
@@ -40,10 +40,10 @@ class QuizData {
       Question(
           question: "Sebuah kubus memiliki berapa titik sudut?",
           options: [
-            "A. 6 Titik sudut",
-            "B. 8 Titik sudut",
-            "C. 10 Titik sudut",
-            "D. 12 Titik sudut"
+            "6 Titik sudut",
+            "8 Titik sudut",
+            "10 Titik sudut",
+            "12 Titik sudut"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -52,12 +52,7 @@ class QuizData {
       Question(
           question:
               "Jika sebuah balok diurai menjadi bagian-bagiannya, berapa banyak rusuk yang terlihat?",
-          options: [
-            "A. 10 Rusuk",
-            "B. 12 Titik sudut",
-            "C. 14 Titik sudut",
-            "D. 16 Titik sudut"
-          ],
+          options: ["10 Rusuk", "12 Rusuk", "14 Rusuk", "16 Rusuk"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
@@ -65,7 +60,7 @@ class QuizData {
       Question(
           question:
               "Jika kita menyusun dua kubus kecil menjadi satu, bangun ruang yang terbentuk adalah...?",
-          options: ["A. Tetap kubus", "B. Balok", "C. Bola", "D. Prisma"],
+          options: ["Tetap kubus", "Balok", "Bola", "Prisma"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
@@ -74,19 +69,18 @@ class QuizData {
       Question(
           question:
               "Berapa banyak bentuk jaring-jaring yang berbeda yang bisa dibuat dari sebuah kubus?",
-          options: ["A. 6", "B. 8", "C. 11", "D. 12"],
+          options: ["6", "8", "11", "12"],
           correctAnswer: 2,
           gambarKuis: '',
           explanation:
               "Ada 11 macam jaring-jaring kubus yang berbeda. Semuanya terdiri dari 6 persegi yang disusun dengan berbagai cara!"),
       Question(
-          question:
-              "Jaring-jaring balok terdiri dari bentuk apa saja?",
+          question: "Jaring-jaring balok terdiri dari bentuk apa saja?",
           options: [
-            "A. 6 persegi sama besar",
-            "B. 6 persegi panjang dengan ukuran bervariasi",
-            "C. 4 persegi panjang dan 2 persegi",
-            "D. 2 persegi dan 4 lingkaran"
+            "6 persegi sama besar",
+            "6 persegi panjang dengan ukuran bervariasi",
+            "4 persegi panjang dan 2 persegi",
+            "2 persegi dan 4 lingkaran"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -95,7 +89,7 @@ class QuizData {
       Question(
           question:
               "Jika sebuah kubus memiliki 8 titik sudut, berapa banyak rusuk yang dimilikinya?",
-          options: ["A. 8 rusuk", "B. 10 rusuk", "C. 12 rusuk", "D. 14 rusuk"],
+          options: ["8 rusuk", "10 rusuk", "12 rusuk", "14 rusuk"],
           correctAnswer: 2,
           gambarKuis: '',
           explanation:
@@ -104,10 +98,10 @@ class QuizData {
           question:
               "Jika kubus dan balok sama-sama memiliki 6 sisi, apa perbedaan utama antara keduanya?",
           options: [
-            "A. Kubus tidak memiliki rusuk",
-            "B. Semua sisi kubus berbentuk persegi, sedangkan balok memiliki sisi berbentuk persegi panjang",
-            "C. Balok memiliki lebih banyak titik sudut",
-            "D. Kubus tidak bisa dibuat jaring-jaring"
+            "Kubus tidak memiliki rusuk",
+            "Semua sisi kubus berbentuk persegi, sedangkan balok memiliki sisi berbentuk persegi panjang",
+            "Balok memiliki lebih banyak titik sudut",
+            "Kubus tidak bisa dibuat jaring-jaring"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -117,10 +111,10 @@ class QuizData {
           question:
               "Jika kita memotong sebuah kubus menjadi dua bagian sama besar, apa bentuk yang dihasilkan?",
           options: [
-            "A. Dua kubus kecil",
-            "B. Dua balok",
-            "C. Dua prisma segitiga",
-            "D. Dua piramida"
+            "Dua kubus kecil",
+            "Dua balok",
+            "Dua prisma segitiga",
+            "Dua piramida"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -131,12 +125,7 @@ class QuizData {
       Question(
           question:
               "Jika kubus dilihat dari atas, bentuk yang terlihat adalah...?",
-          options: [
-            "A. Persegi",
-            "B. Segitiga",
-            "C. Lingkaran",
-            "D. Persegi panjang"
-          ],
+          options: ["Persegi", "Segitiga", "Lingkaran", "Persegi panjang"],
           correctAnswer: 0,
           gambarKuis: '',
           explanation:
@@ -144,10 +133,10 @@ class QuizData {
       Question(
           question: "Jika balok diputar ke samping, bagaimana bentuknya?",
           options: [
-            "A. Menjadi Persegi Panjang",
-            "B. Menjadi kubus",
-            "C. Menjadi lingkaran",
-            "D. Menjadi segitiga"
+            "Menjadi Persegi Panjang",
+            "Menjadi kubus",
+            "Menjadi lingkaran",
+            "Menjadi segitiga"
           ],
           correctAnswer: 0,
           gambarKuis: '',
@@ -157,10 +146,10 @@ class QuizData {
           question:
               "Jika kita melihat sebuah kubus dari sudut miring, bentuk yang terlihat adalah...?",
           options: [
-            "A. Tetap kubus",
-            "B. Seperti dua persegi bertumpuk",
-            "C. Lingkaran",
-            "D. Segitiga"
+            "Tetap kubus",
+            "Seperti dua persegi bertumpuk",
+            "Lingkaran",
+            "Segitiga"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -170,10 +159,10 @@ class QuizData {
           question:
               "Apa yang terjadi jika balok dipotong secara diagonal dari ujung ke ujung?",
           options: [
-            "A. Menjadi dua segitiga",
-            "B. Menjadi prisma segitiga",
-            "C. Tetap balok",
-            "D. Menjadi silinder"
+            "Menjadi dua segitiga",
+            "Menjadi prisma segitiga",
+            "Tetap balok",
+            "Menjadi silinder"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -183,10 +172,10 @@ class QuizData {
           question:
               "Jika kita melihat sebuah kubus dari tiga arah berbeda (atas, depan, samping), bagaimana bentuk yang terlihat?",
           options: [
-            "A. Selalu sama",
-            "B. Bisa berbeda",
-            "C. Tidak bisa dilihat dari tiga arah",
-            "D. Hanya satu sisi yang bisa terlihat"
+            "Selalu sama",
+            "Bisa berbeda",
+            "Tidak bisa dilihat dari tiga arah",
+            "Hanya satu sisi yang bisa terlihat"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -194,14 +183,8 @@ class QuizData {
               "Seperti saat kamu menggambar rumah mainan dari sisi berbeda, kubus juga terlihat berbeda dari tiap arah!"),
       // 5 soal tambahan untuk Materi 2
       Question(
-          question:
-              "Jika balok dilihat dari atas, apa bentuk yang terlihat?",
-          options: [
-            "A. Segitiga",
-            "B. Persegi",
-            "C. Persegi panjang",
-            "D. Lingkaran"
-          ],
+          question: "Jika balok dilihat dari atas, apa bentuk yang terlihat?",
+          options: ["Segitiga", "Persegi", "Persegi panjang", "Lingkaran"],
           correctAnswer: 2,
           gambarKuis: '',
           explanation:
@@ -210,23 +193,23 @@ class QuizData {
           question:
               "Jika kita melihat balok dari sudut miring atas, bentuk apakah yang terlihat?",
           options: [
-            "A. Hanya persegi panjang",
-            "B. Beberapa persegi panjang yang tumpang tindih",
-            "C. Segitiga",
-            "D. Lingkaran"
+            "Hanya persegi panjang",
+            "Beberapa persegi panjang yang tumpang tindih",
+            "Segitiga",
+            "Lingkaran"
           ],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
-              "Jika melihat balok dari sudut miring atas, kita bisa melihat beberapa persegi panjang yang tumpang tindih, membentuk gambar 3D balok!"),
+              "Jika melihat balok dari sudut miring atas, kita bisa melihat beberapa persegi panjang yang tumpang tindih!"),
       Question(
           question:
               "Jika dua balok disusun di samping satu sama lain, bangun apakah yang terbentuk?",
           options: [
-            "A. Tetap dua balok terpisah",
-            "B. Menjadi kubus",
-            "C. Menjadi balok yang lebih besar",
-            "D. Menjadi prisma segitiga"
+            "Tetap dua balok terpisah",
+            "Menjadi kubus",
+            "Menjadi balok yang lebih besar",
+            "Menjadi prisma segitiga"
           ],
           correctAnswer: 2,
           gambarKuis: '',
@@ -236,10 +219,10 @@ class QuizData {
           question:
               "Jika sebuah balok dipotong tepat di tengah secara vertikal, apa bentuk yang dihasilkan dari potongan tersebut?",
           options: [
-            "A. Dua balok yang lebih kecil",
-            "B. Dua kubus",
-            "C. Dua prisma segitiga",
-            "D. Dua piramida"
+            "Dua balok yang lebih kecil",
+            "Dua kubus",
+            "Dua prisma segitiga",
+            "Dua piramida"
           ],
           correctAnswer: 0,
           gambarKuis: '',
@@ -249,10 +232,10 @@ class QuizData {
           question:
               "Jika kita memotong kubus dari sudut ke sudut diagonal yang berlawanan, bentuk apa yang akan terbentuk?",
           options: [
-            "A. Dua balok",
-            "B. Dua prisma segitiga",
-            "C. Enam piramida",
-            "D. Empat prisma segitiga"
+            "Dua balok",
+            "Dua prisma segitiga",
+            "Enam piramida",
+            "Empat prisma segitiga"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -263,7 +246,7 @@ class QuizData {
       Question(
           question:
               "Makassar terletak di petak C2 dalam peta. Jika kita bergerak satu langkah ke kanan, kita ada di petak...?",
-          options: ["A. C1", "B. C3", "C. B2", "D. D2"],
+          options: ["C1", "C3", "B2", "D2"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
@@ -271,14 +254,14 @@ class QuizData {
       Question(
           question:
               "Jika rumah Tigor ada di petak B4 dan sekolahnya di B6, berapa langkah horizontal yang harus ditempuh?",
-          options: ["A. 2", "B. 3", "C. 4", "D. 5"],
+          options: ["2", "3", "4", "5"],
           correctAnswer: 0,
           gambarKuis: '',
           explanation: "Dari B4 ke B6, cukup 2 langkah horizontal ke kanan!"),
       Question(
           question:
               "Jika Tigor ada di petak A3 dan ingin ke petak C3, berapa langkah vertikal yang harus dilakukan?",
-          options: ["A. 1", "B. 2", "C. 3", "D. 4"],
+          options: ["1", "2", "3", "4"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
@@ -287,10 +270,10 @@ class QuizData {
           question:
               "Jika Tenri ada di D5 dan ingin menuju ke B5, bagaimana cara bergeraknya?",
           options: [
-            "A. 2 langkah ke atas",
-            "B. 2 langkah ke kanan",
-            "C. 2 langkah ke kiri",
-            "D. 2 langkah ke bawah"
+            "2 langkah ke atas",
+            "2 langkah ke kanan",
+            "2 langkah ke kiri",
+            "2 langkah ke bawah"
           ],
           correctAnswer: 0,
           gambarKuis: '',
@@ -300,10 +283,10 @@ class QuizData {
           question:
               "Jika rumah Tigor ada di A1 dan rumah Tenri di C3, bagaimana cara bergeraknya?",
           options: [
-            "A. 2 langkah ke bawah dan 2 ke kanan",
-            "B. 2 langkah ke atas dan 2 ke kanan",
-            "C. 2 langkah ke kanan dan 2 ke atas",
-            "D. 3 langkah ke kanan dan 1 ke atas"
+            "2 langkah ke bawah dan 2 ke kanan",
+            "2 langkah ke atas dan 2 ke kanan",
+            "2 langkah ke kanan dan 2 ke atas",
+            "3 langkah ke kanan dan 1 ke atas"
           ],
           correctAnswer: 0,
           gambarKuis: '',
@@ -314,10 +297,10 @@ class QuizData {
           question:
               "Jika perpustakaan terletak di petak D3 dan kantin di petak D5, berapa langkah yang harus ditempuh?",
           options: [
-            "A. 1 langkah ke kanan", 
-            "B. 2 langkah ke kanan", 
-            "C. 2 langkah ke bawah", 
-            "D. 3 langkah ke kanan"
+            "1 langkah ke kanan",
+            "2 langkah ke kanan",
+            "2 langkah ke bawah",
+            "3 langkah ke kanan"
           ],
           correctAnswer: 1,
           gambarKuis: '',
@@ -327,10 +310,10 @@ class QuizData {
           question:
               "Jika Rudi berada di petak B2 dan ingin pergi ke petak D4, bagaimana pergerakannya?",
           options: [
-            "A. 2 langkah ke kanan dan 2 ke bawah",
-            "B. 2 langkah ke kiri dan 2 ke atas",
-            "C. 2 langkah ke bawah dan 2 ke kanan",
-            "D. 4 langkah diagonal ke kanan bawah"
+            "2 langkah ke kanan dan 2 ke bawah",
+            "2 langkah ke kiri dan 2 ke atas",
+            "2 langkah ke bawah dan 2 ke kanan",
+            "4 langkah diagonal ke kanan bawah"
           ],
           correctAnswer: 0,
           gambarKuis: '',
@@ -340,10 +323,10 @@ class QuizData {
           question:
               "Jika pada peta terdapat taman di petak A4, dan Lisa berada di petak C2, bagaimana Lisa harus bergerak untuk sampai ke taman?",
           options: [
-            "A. 2 langkah ke atas dan 2 langkah ke kanan",
-            "B. 2 langkah ke atas dan 2 langkah ke kiri",
-            "C. 2 langkah ke bawah dan 2 langkah ke kanan",
-            "D. 2 langkah ke kiri dan 2 langkah ke atas"
+            "2 langkah ke atas dan 2 langkah ke kanan",
+            "2 langkah ke atas dan 2 langkah ke kiri",
+            "2 langkah ke bawah dan 2 langkah ke kanan",
+            "2 langkah ke kiri dan 2 langkah ke atas"
           ],
           correctAnswer: 0,
           gambarKuis: '',
@@ -352,12 +335,7 @@ class QuizData {
       Question(
           question:
               "Jika rumah Danu ada di petak B3 dan rumah Sinta di petak E3, berapa banyak langkah vertikal yang harus ditempuh Danu untuk sampai ke rumah Sinta?",
-          options: [
-            "A. 2 langkah", 
-            "B. 3 langkah", 
-            "C. 4 langkah", 
-            "D. 5 langkah"
-          ],
+          options: ["2 langkah", "3 langkah", "4 langkah", "5 langkah"],
           correctAnswer: 1,
           gambarKuis: '',
           explanation:
@@ -366,10 +344,10 @@ class QuizData {
           question:
               "Jika kita berada di petak D4 dan ingin menuju ke petak A1, bagaimana cara bergeraknya?",
           options: [
-            "A. 3 langkah ke atas dan 3 langkah ke kiri",
-            "B. 3 langkah ke bawah dan 3 langkah ke kanan",
-            "C. 4 langkah ke atas dan 3 langkah ke kiri",
-            "D. 3 langkah ke atas dan 4 langkah ke kiri"
+            "3 langkah ke atas dan 3 langkah ke kiri",
+            "3 langkah ke bawah dan 3 langkah ke kanan",
+            "4 langkah ke atas dan 3 langkah ke kiri",
+            "3 langkah ke atas dan 4 langkah ke kiri"
           ],
           correctAnswer: 0,
           gambarKuis: '',

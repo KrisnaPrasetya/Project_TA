@@ -17,7 +17,7 @@ class TeamMember {
 class AboutUsController extends GetxController {
   final List<TeamMember> teamMembers = [
     TeamMember(
-      name: 'NI NYOMAN SUPUWININGSIH, S.T., M.Kom',
+      name: 'Dr. NI NYOMAN SUPUWININGSIH, S.T., M.Kom',
       position: 'Pembimbing 1',
       // description:
       // 'Putri memiliki pengalaman lebih dari 10 tahun dalam bidang teknologi dan inovasi. Ia mendirikan perusahaan ini dengan visi untuk memberikan solusi yang dapat menjawab kebutuhan masyarakat.',

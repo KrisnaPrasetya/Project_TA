@@ -90,9 +90,9 @@ class QuizdetailScreen extends StatelessWidget {
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal:
-                                                        Get.width * 0.05,
+                                                        Get.width * 0.04,
                                                     vertical:
-                                                        Get.height * 0.02),
+                                                        Get.height * 0.015),
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -111,31 +111,23 @@ class QuizdetailScreen extends StatelessWidget {
                                                             Get.height * 0.02),
                                                     ...List.generate(
                                                       question.options.length,
-                                                      (index) => Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    Get.width *
-                                                                        0.02,
-                                                                vertical:
-                                                                    Get.height *
-                                                                        0.01),
-                                                        child: Center(
-                                                          child:
-                                                              AnimatedContainerButton(
+                                                      (index) => Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          AnimatedContainerButton(
                                                             width: Get.width *
                                                                 0.85,
-                                                            height: Get.height *
-                                                                0.06,
                                                             enableAnimation:
                                                                 !controller
                                                                     .isAnswered
                                                                     .value,
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        Get.width *
-                                                                            0.04),
+                                                            padding: EdgeInsets.symmetric(
+                                                                horizontal:
+                                                                    Get.width *
+                                                                        0.04,
+                                                                vertical:
+                                                                    Get.height *
+                                                                        0.02),
                                                             alignment: Alignment
                                                                 .centerLeft,
                                                             onTap: () {
@@ -177,7 +169,36 @@ class QuizdetailScreen extends StatelessWidget {
                                                                         .white
                                                                 : Colors.white,
                                                             child: Row(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
                                                               children: [
+                                                                Text(
+                                                                  String.fromCharCode(65 +
+                                                                          index) +
+                                                                      '.',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        Get.width *
+                                                                            0.04,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color: controller
+                                                                            .isAnswered
+                                                                            .value
+                                                                        ? controller.selectedAnswerIndex.value ==
+                                                                                index
+                                                                            ? (index == question.correctAnswer
+                                                                                ? HexColor('#22A06B')
+                                                                                : HexColor('#FF5569'))
+                                                                            : Colors.black
+                                                                        : Colors.black,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    width: 8),
                                                                 Expanded(
                                                                   child: Text(
                                                                     question.options[
@@ -204,46 +225,58 @@ class QuizdetailScreen extends StatelessWidget {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                                controller.isAnswered
-                                                                            .value &&
-                                                                        controller.selectedAnswerIndex.value ==
-                                                                            index
-                                                                    ? controller.selectedAnswerIndex.value ==
-                                                                            question
-                                                                                .correctAnswer
-                                                                        ? Lottie
-                                                                            .asset(
-                                                                            'assets/lottie/correct2.json',
-                                                                            repeat:
-                                                                                false,
-                                                                          )
-                                                                        : Lottie.asset(
-                                                                            'assets/lottie/wrong.json',
-                                                                            width: Get.width *
-                                                                                0.06,
-                                                                            height: Get.height *
-                                                                                0.03,
-                                                                            repeat:
-                                                                                false)
-                                                                    : SizedBox
-                                                                        .shrink()
                                                               ],
                                                             ),
                                                           ),
-                                                        ),
-                                                      ),
+                                                          if (controller
+                                                                  .isAnswered
+                                                                  .value &&
+                                                              controller
+                                                                      .selectedAnswerIndex
+                                                                      .value ==
+                                                                  index)
+                                                            Positioned(
+                                                              top: -20,
+                                                              right: -20,
+                                                              child: controller
+                                                                          .selectedAnswerIndex
+                                                                          .value ==
+                                                                      question
+                                                                          .correctAnswer
+                                                                  ? Lottie
+                                                                      .asset(
+                                                                      'assets/lottie/correct2.json',
+                                                                      repeat:
+                                                                          false,
+                                                                      height: Get
+                                                                              .height *
+                                                                          0.06,
+                                                                    )
+                                                                  : Lottie.asset(
+                                                                      'assets/lottie/wrong.json',
+                                                                      width: Get
+                                                                              .width *
+                                                                          0.08,
+                                                                      height: Get
+                                                                              .height *
+                                                                          0.06,
+                                                                      repeat:
+                                                                          false),
+                                                            ),
+                                                        ],
+                                                      ).marginOnly(
+                                                          bottom: Get.height *
+                                                              0.018),
                                                     ),
-
-                                                    // Explanation section
                                                     if (controller
                                                         .isAnswered.value) ...[
                                                       SizedBox(
                                                           height: Get.height *
-                                                              0.03),
+                                                              0.02),
                                                       Divider(),
                                                       SizedBox(
                                                           height: Get.height *
-                                                              0.02),
+                                                              0.015),
                                                       Padding(
                                                         padding: EdgeInsets
                                                             .symmetric(
@@ -362,7 +395,7 @@ class QuizdetailScreen extends StatelessWidget {
                                                       ),
                                                       SizedBox(
                                                           height: Get.height *
-                                                              0.03),
+                                                              0.02),
                                                     ],
                                                   ],
                                                 ),
