@@ -1,4 +1,5 @@
 name: project_ta
+
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -11,21 +12,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   get: ^4.6.6
   flutter_svg: ^2.0.10+1
   video_player: ^2.9.3
-  flutter_launcher_icons: ^0.14.2
   lottie: any
   animated_flip_counter: ^0.3.4
   hexcolor: ^3.0.1
   flutter_secure_storage: ^9.2.4
-  youtube_player_flutter: ^9.1.1
-  animated_text_kit: ^4.2.2
   vector_math: ^2.1.4
   url_launcher: ^6.3.1
   audioplayers: ^6.4.0
-  change_app_package_name: ^1.5.0
   flutter_image_compress: ^2.1.0
   path: ^1.8.3
 
@@ -89,3 +85,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+

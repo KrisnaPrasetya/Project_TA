@@ -15,7 +15,7 @@ void main() async {
       initialRoute: AppRoutes.splashScreen,
       getPages: AppPages.pages,
       transitionDuration: const Duration(milliseconds: 300),
-      title: 'Aplikasi Pembelajaran Matematika',
+      title: 'KlikMath',
     ),
   );
   SystemChrome.setSystemUIOverlayStyle(
